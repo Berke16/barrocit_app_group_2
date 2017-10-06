@@ -18,25 +18,26 @@ class CreateCustomersTable extends Migration
             $table->string('name');
             $table->string('street');
             $table->string('housenumber');
-            $table->string('zip code');
+            $table->string('zip_code');
             $table->string('residence');
             $table->string('cp_name');
             $table->string('cp_lastname');
-            $table->string('cp_insetrion');
+            $table->string('cp_insertion');
             $table->string('tele');
             $table->string('tele2');
             $table->string('fax_number');
             $table->string('mail');
             $table->string('banknumber');
-            $table->float('saldo');
+            $table->float('balance');
             $table->float('limit');
-            $table->string('btw_code');
+            $table->string('vat_code');
             $table->tinyInteger('prospect');
             $table->string('ledgerbill');
-            $table->tinyInteger('credityworthy');
-            $table->tinyInteger('bkr');
-            $table->tinyInteger('status');
-            $table->timestamps();
+            $table->tinyInteger('creditworthy');
+            $table->tinyInteger('bcr');
+            $table->tinyInteger('status')->default(0);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

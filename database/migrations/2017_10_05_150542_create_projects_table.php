@@ -25,8 +25,9 @@ class CreateProjectsTable extends Migration
             $table->text('hardware');
             $table->string('operating_system');
             $table->text('appointments');
-            $table->string('internal_contact_person');
-            $table->timestamps();
+            $table->string('internal_cp');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
