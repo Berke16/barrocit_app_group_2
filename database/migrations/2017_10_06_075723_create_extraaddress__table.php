@@ -19,7 +19,7 @@ class CreateExtraaddressTable extends Migration
             $table->foreign('customer_id')->references('id')->on('tbl_customers');
             $table->string('street');
             $table->string('housenumber');
-            $table->string('zip code');
+            $table->string('zip_code');
             $table->string('residence');
             $table->timestamps();
         });

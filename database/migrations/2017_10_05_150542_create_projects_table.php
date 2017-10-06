@@ -25,7 +25,7 @@ class CreateProjectsTable extends Migration
             $table->text('hardware');
             $table->string('operating_system');
             $table->text('appointments');
-            $table->string('internal_contact_person');
+            $table->string('internal_cp');
             $table->timestamps();
         });
     }

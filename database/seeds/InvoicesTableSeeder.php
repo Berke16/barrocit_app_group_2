@@ -12,10 +12,16 @@ class InvoicesTableSeeder extends Seeder
     public function run()
     {
         $faker = new \Faker\Factory();
-        for ($i = 0; $i < 40; $i++)
+
+        for ($i = 0; $i < 30; $i++)
         {
-            DB::table('tbl_companys')->insert([
-                'name' => $faker->create()->sentence(3)
+            DB::table('tbl_invoices')->insert([
+                'id' => $faker->create($i)->randomNumber(),
+                'project_id' => $faker->create()->randomNumber(),
+                'description' => $faker->create()->sentence(),
+                'price' => $faker->create()->randomNumber(),
+                'date_of_sending' => $faker->create()->date(),
+                'status' => $faker->create()->randomDigit(),
             ]);
         }
     }

@@ -12,14 +12,15 @@ class ActionsTableSeeder extends Seeder
     public function run()
     {
         $faker = new \Faker\Factory();
+
         for ($i = 0; $i < 280; $i++)
         {
-            DB::table('tbl_companys')->insert([
-                'id' => $faker->create()->randomDigit(),
-                'customer_id' => $faker->create()->randomDigit(),
+            DB::table('tbl_actions')->insert([
+                'id' => $faker->create($i)->randomNumber(),
+                'customer_id' => $faker->create($i)->randomNumber(),
                 'date_of_action' => $faker->create()->date(),
                 'description' => $faker->create()->sentence(),
-                'next_action' => $faker->create()->date()
+                'next_action' => $faker->create()->date(),
             ]);
         }
     }
