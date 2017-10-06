@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customers;
 use Illuminate\Http\Request;
 
 class homesController extends Controller
@@ -53,7 +54,8 @@ class homesController extends Controller
                 return view('homes.finance');
                 break;
             case 'sales':
-                return view('homes.sales');
+
+                return view('homes.sales')->with('customers', Customers::all());
                 break;
         }
 

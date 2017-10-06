@@ -26,30 +26,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="danger">
-                <td>0002</td>
-                <td>Barroc IT.</td>
-                <td>Jean-Pierre Slimmen</td>
-                <td>12-07-2017</td>
-            </tr>
-            <tr>
-                <td>0003</td>
-                <td>Barroc IT.</td>
-                <td>SM Wolfi</td>
-                <td>12-07-2017</td>
-            </tr>
-            <tr>
-                <td>0022</td>
-                <td>Baadadarroc IT.</td>
-                <td>Pierre Slimmen</td>
-                <td>12-02-2017</td>
-            </tr>
-            <tr>
-                <td>0012</td>
-                <td>Barrocsdasd IT.</td>
-                <td>Jean Slimmen</td>
-                <td>12-08-2017</td>
-            </tr>
+            @foreach($customers as $customer)
+                <tr>
+                    <td>{{$customer->id}}</td>
+                    <td>{{$customer->name}}</td>
+                    <td>{{$customer->cp_name}} {{$customer->insertion}} {{$customer->cp_lastname}}</td>
+                    <td>dd-mm-yyyy</td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
