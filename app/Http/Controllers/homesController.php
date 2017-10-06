@@ -45,7 +45,18 @@ class homesController extends Controller
      */
     public function show($id)
     {
-        //
+        switch ($id){
+            case 'development':
+                return view('homes.development');
+                break;
+            case 'finance':
+                return view('homes.finance');
+                break;
+            case 'sales':
+                return view('homes.sales');
+                break;
+        }
+
     }
 
     /**
