@@ -35,7 +35,7 @@ class CreateCustomersTable extends Migration
             $table->string('ledgerbill');
             $table->tinyInteger('credityworthy');
             $table->tinyInteger('bkr');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

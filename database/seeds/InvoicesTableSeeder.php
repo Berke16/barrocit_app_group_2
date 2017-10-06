@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CompanysTableSeeder extends Seeder
+class InvoicesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,11 +12,11 @@ class CompanysTableSeeder extends Seeder
     public function run()
     {
         $faker = new \Faker\Factory();
-        for ($i = 0; $i < 8; $i++)
+        for ($i = 0; $i < 40; $i++)
         {
-        DB::table('tbl_companys')->insert([
-            'name' => $faker->create()->sentence(3)
-        ]);
+            DB::table('tbl_companys')->insert([
+                'name' => $faker->create()->sentence(3)
+            ]);
         }
     }
 }
