@@ -16,11 +16,10 @@ class OffersTableSeeder extends Seeder
 
         for ($i = 0; $i < 45; $i++)
         {
-            DB::table('tbl_invoices')->insert([
-                'id' => $faker->create($i)->randomNumber(),
-                'customer_id' => $faker->create()->randomNumber(),
-                'number' => $faker->create()->randomNumber(),
-                'status' => $faker->create()->randomDigit(),
+            DB::table('tbl_offers')->insert([
+                'customer_id' => $faker->create()->numberBetween(1,50),
+                'number' => $faker->create()->numberBetween(1,54),
+                'status' => $faker->create()->randomDigit,
             ]);
         }
     }

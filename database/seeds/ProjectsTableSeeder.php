@@ -16,17 +16,16 @@ class ProjectsTableSeeder extends Seeder
         for ($i = 0; $i < 40; $i++)
         {
             DB::table('tbl_projects')->insert([
-                'id' => $faker->create($i)->randomDigitNotNull(),
-                'customer_id' => $faker->create()->randomNumber(),
-                'name' => $faker->create()->catchPhrase(),
-                'description' => $faker->create()->sentence(),
-                'status' => $faker->create()->randomDigit(),
-                'maintained_contract' => $faker->create()->randomDigit(),
-                'applications' => $faker->create()->sentence(),
-                'hardware' => $faker->create()->sentence(),
-                'operating_system' => $faker->create()->word(),
-                'appointments' => $faker->create()->date(),
-                'internal_cp' => $faker->create()->name(),
+                'customer_id' => $faker->create()->numberBetween(1,50),
+                'name' => $faker->create()->catchPhrase,
+                'description' => $faker->create()->sentence,
+                'status' => $faker->create()->randomDigit,
+                'maintained_contract' => $faker->create()->randomDigit,
+                'applications' => $faker->create()->sentence,
+                'hardware' => $faker->create()->sentence,
+                'operating_system' => $faker->create()->word,
+                'appointments' => $faker->create()->date,
+                'internal_cp' => $faker->create()->name,
             ]);
         }
     }

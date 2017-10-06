@@ -16,11 +16,10 @@ class ActionsTableSeeder extends Seeder
         for ($i = 0; $i < 280; $i++)
         {
             DB::table('tbl_actions')->insert([
-                'id' => $faker->create($i)->randomNumber(),
-                'customer_id' => $faker->create($i)->randomNumber(),
-                'date_of_action' => $faker->create()->date(),
-                'description' => $faker->create()->sentence(),
-                'next_action' => $faker->create()->date(),
+                'customer_id' => $faker->create()->numberBetween(1,50),
+                'date_of_action' => $faker->create()->dateTimeBetween('-1 years', '1 years'),
+                'description' => $faker->create()->sentence,
+                'next_action' => $faker->create()->dateTimeBetween('-1 years', '1 years'),
             ]);
         }
     }
