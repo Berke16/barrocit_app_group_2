@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExtraadsressTable extends Migration
+class CreateExtraaddressTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,9 +19,10 @@ class CreateExtraadsressTable extends Migration
             $table->foreign('customer_id')->references('id')->on('tbl_customers');
             $table->string('street');
             $table->string('housenumber');
-            $table->string('zip code');
+            $table->string('zip_code');
             $table->string('residence');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
