@@ -15,8 +15,8 @@ class CreateActionsTable extends Migration
     {
         Schema::create('tbl_actions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('tbl_companys');
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('tbl_customers');
             $table->timestamp('date_of_action');
             $table->text('description');
             $table->timestamp('next_action')->nullable();

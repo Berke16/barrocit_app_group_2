@@ -15,8 +15,8 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('tbl_projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('tbl_companys');
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('tbl_customers');
             $table->string('name');
             $table->text('description');
             $table->tinyInteger('status')->default('0');
