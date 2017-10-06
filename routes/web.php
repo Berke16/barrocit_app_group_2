@@ -27,8 +27,8 @@ Route::get('/finance', function () {
     return view('finance');
 });
 
-Route::get('/costumer', function () {
-    return view('costumer');
+Route::get('/costumers', function () {
+    return view('costumers');
 });
 
 Route::get('/project', function () {
