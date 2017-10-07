@@ -9,27 +9,27 @@
             <table class="table table-borderless col-xs-12">
                 <tr>
                     <th>Company Name:</th>
-                    <td>Kaczka</td>
+                    <td>{{$customer->name}}</td>
                 </tr>
                 <tr>
                     <th>Faxnumbr:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$customer->fax_number}}</td>
                 </tr>
                 <tr>
                     <th>Telephonenumber:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$customer->tele}}</td>
                 </tr>
                 <tr>
                     <th>Telephonenumber2:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$customer->tele2}}</td>
                 </tr>
                 <tr>
                     <th>Adress:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$customer->street}}</td>
                 </tr>
                 <tr>
                     <th>Zipcode</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$customer->zip_code}}</td>
                 </tr>
                 <tr>
                     <th>Resident:</th>
