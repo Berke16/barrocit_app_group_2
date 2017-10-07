@@ -26,14 +26,14 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($customers as $customer)
-                <tr>
-                    <td>{{$customer->id}}</td>
-                    <td>{{$customer->name}}</td>
-                    <td>{{$customer->cp_name}} {{$customer->insertion}} {{$customer->cp_lastname}}</td>
-                    <td>dd-mm-yyyy</td>
-                </tr>
-            @endforeach
+                @foreach($customers as $customer)
+                    <tr data-href="../customer/{{$customer->id}}">
+                        <th>{{$customer->id}}</th>
+                        <th>{{$customer->name}}</th>
+                        <th>{{$customer->cp_name}}</th>
+                        <th>dd-mm-yyyy</th>
+                    </tr>
+                    @endforeach
             </tbody>
         </table>
     </div>
