@@ -28,4 +28,21 @@ class Customer extends Model
         return $this->hasMany('App\Action');
     }
 
+    public function status()
+    {
+        if ($this->balance <= $this->limit)
+        {
+            return true;
+        }
+        return false;
+
+    }
+
+    public function calculateSaldo()
+    {
+        //All open invoices
+        //Calculate Saldo
+        //Return Salod
+    }
+
 }

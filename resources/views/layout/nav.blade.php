@@ -9,6 +9,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        @yield('menu')
                         <li class="divider"></li>
                         <li><a href="#">Logout</a></li>
                     </ul>

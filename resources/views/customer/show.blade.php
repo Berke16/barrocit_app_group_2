@@ -145,6 +145,7 @@
         </div>
     </div>
     <div class="container">
+        <section class="col-md-12" style="padding: 0;">
         <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -205,7 +206,7 @@
                         @foreach($customer->projects as $project)
                             @foreach($project->invoices as $invoice)
                                 <tr>
-                                    <td>{{$project->name}}</td>
+                                    <td data-href= "../project/{{$invoice->project->id}}">{{$invoice->project->name}}</td>
                                     <td>{{$invoice->id}}</td>
                                     <td>{{$invoice->description}}</td>
                                     <td>{{$invoice->price}}</td>
@@ -234,6 +235,7 @@
                 </div>
             </div>
         </div>
+        </section>
         <section class="col-md-6" style="padding: 0;">
             <div class="col-md-12" >
                 <div class="panel panel-default">
@@ -263,7 +265,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Offer's</h3>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addoffermodal">Add Acction</button>
+                            <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
                         </div>
                     </div>
                     <div style="height: 200px; overflow: scroll; overflow-x: hidden ;">

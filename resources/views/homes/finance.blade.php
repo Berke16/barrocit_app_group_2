@@ -1,7 +1,6 @@
-
 @extends('layout.master')
 @section('location')
-    Home
+    Home: Finance
 @endsection
 @section('content')
 
@@ -19,7 +18,7 @@
             <div class="panel-body">
                 <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Invoces Table" />
             </div>
-            <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
+            <div style="height: 500px; overflow: scroll; overflow-x: hidden;">
                 <table class="table table-hover text-center" id="invoices-table">
                     <thead>
                     <tr>
@@ -31,54 +30,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td><span class="label label-success">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td><span class="label label-danger">Banned</span></td>
-                    </tr>
-                    <tr>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td><span class="label label-warning">Pending</span></td>
-                    </tr>
-                    <tr>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td><span class="label label-default">Inactive</span></td>
-                    </tr>
-                    <tr>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td><span class="label label-default">Inactive</span></td>
-                    </tr>
-                    <tr>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td><span class="label label-default">Inactive</span></td>
-                    </tr><tr>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td>Barroc IT.</td>
-                        <td><span class="label label-default">Inactive</span></td>
-                    </tr>
+                        @foreach($invoices as $invoice)
+                            <tr>
+                                <td>{{$invoice->project->name}}</td>
+                                <td>{{$invoice->id}}</td>
+                                <td>{{$invoice->description}}</td>
+                                <td>{{$invoice->price}}</td>
+                                <td>
+                                    @switch($invoice->status)
+                                        @case(0)
+                                        <span class="label label-default">Not Sended</span>
+                                        @break
+                                        @case(1)
+                                        <span class="label label-warning">Sended</span>
+                                        @break
+                                        @case(2)
+                                        <span class="label label-danger">Late</span>
+                                        @break
+                                        @case(3)
+                                        <span class="label label-success">Payed</span>
+                                        @break
+                                    @endswitch
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -97,7 +72,7 @@
             <div class="panel-body">
                 <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#projects-table" placeholder="Filter Projects" />
             </div>
-            <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
+            <div style="height: 500px; overflow: scroll; overflow-x: hidden;">
                 <table class="table table-hover text-center" id="projects-table">
                     <thead>
                     <tr>
@@ -105,18 +80,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr  data-href="http://google.com" class="danger">
-                        <td>Barroc IT.</td>
-                    </tr>
-                    <tr>
-                        <td>Barroc IT.</td>
-                    </tr>
-                    <tr>
-                        <td>Barroc IT.</td>
-                    </tr>
-                    <tr>
-                        <td>Barroc IT.</td>
-                    </tr>
+                        @foreach($projects as $project)
+                            <tr>
+                                <td>{{$project->name}}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -135,6 +103,7 @@
             <div class="panel-body">
                 <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
             </div>
+            <div style="height: 500px; overflow: scroll; overflow-x: hidden;">
             <table class="table table-hover" id="dev-table">
                 <thead>
                 <tr>
@@ -145,32 +114,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="danger">
-                    <td>0002</td>
-                    <td>Barroc IT.</td>
-                    <td>Jean-Pierre Slimmen</td>
-                    <td>12-07-2017</td>
-                </tr>
-                <tr>
-                    <td>0003</td>
-                    <td>Barroc IT.</td>
-                    <td>SM Wolfi</td>
-                    <td>12-07-2017</td>
-                </tr>
-                <tr>
-                    <td>0022</td>
-                    <td>Baadadarroc IT.</td>
-                    <td>Pierre Slimmen</td>
-                    <td>12-02-2017</td>
-                </tr>
-                <tr>
-                    <td>0012</td>
-                    <td>Barrocsdasd IT.</td>
-                    <td>Jean Slimmen</td>
-                    <td>12-08-2017</td>
-                </tr>
+                @foreach($customers as $customer)
+                    <tr data-href="../customer/{{$customer->id}}">
+                        <th>{{$customer->id}}</th>
+                        <th>{{$customer->name}}</th>
+                        <th>{{$customer->cp_name}}</th>
+                        <th>dd-mm-yyyy</th>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </div>

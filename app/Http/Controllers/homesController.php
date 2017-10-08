@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Invoice;
+use App\Project;
 use Illuminate\Http\Request;
 
 class homesController extends Controller
@@ -46,22 +48,24 @@ class homesController extends Controller
      */
     public function show($id)
     {
-        $view = "index";
 
         switch ($id){
             case 'development':
-                $view = 'homes.development';
+                return view('homes.development')
+                    ->with('customers', Customer::all())
+                    ->with('projects', Project::all());
                 break;
             case 'finance':
-                $view = 'homes.finance';
+                return view('homes.finance')
+                    ->with('customers', Customer::all())
+                    ->with('projects', Project::all())
+                    ->with('invoices', Invoice::all());
                 break;
             case 'sales':
-                $view = 'homes.sales';
+                return view('homes.sales')
+                    ->with('customers', Customer::all());
                 break;
         }
-
-        return view($view)->with('customers', Customer::all());
-
     }
 
     /**

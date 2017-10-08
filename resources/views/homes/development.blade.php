@@ -64,7 +64,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                                @foreach(\App\Project::all() as $project)
+                                @foreach($projects as $project)
                                     <tr data-href="../project/{{$project->id}}">
                                         <td>{{$project->name}}</td>
                                     </tr>
