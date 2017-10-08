@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Barroc IT.</a>
-                <a class="navbar-brand">Home: Development</a>
+                <a class="navbar-brand">@yield('location')</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

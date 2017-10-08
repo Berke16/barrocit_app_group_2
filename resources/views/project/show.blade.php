@@ -1,6 +1,8 @@
 
 @extends('layout.master')
-
+@section('location')
+    Project:
+@endsection
 @section('content')
 
 
