@@ -1,7 +1,7 @@
 
 @extends('layout.master')
 @section('location')
-    Home: Finance
+    Home
 @endsection
 @section('content')
 

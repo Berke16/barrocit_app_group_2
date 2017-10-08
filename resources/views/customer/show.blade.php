@@ -172,7 +172,6 @@
                                 <td>{{$project->name}}</td>
                             </tr>
                         @endforeach
-
                         </tbody>
                     </table>
                 </div>

@@ -46,17 +46,21 @@ class homesController extends Controller
      */
     public function show($id)
     {
+        $view = "index";
+
         switch ($id){
             case 'development':
-                return view('homes.development');
+                $view = 'homes.development';
                 break;
             case 'finance':
-                return view('homes.finance');
+                $view = 'homes.finance';
                 break;
             case 'sales':
-                return view('homes.sales')->with('customers', Customer::all());
+                $view = 'homes.sales';
                 break;
         }
+
+        return view($view)->with('customers', Customer::all());
 
     }
 

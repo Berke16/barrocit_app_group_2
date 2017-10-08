@@ -12,4 +12,9 @@ class Project extends Model
     {
         return $this->hasMany('App\Invoice');
     }
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer');
+    }
 }

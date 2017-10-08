@@ -1,7 +1,7 @@
 
 @extends('layout.master')
 @section('location')
-    Project:
+    Project: {{$project->name}}
 @endsection
 @section('content')
 
@@ -12,27 +12,27 @@
             <table class="table table-borderless col-xs-12">
                 <tr>
                     <th>Project name:</th>
-                    <td>Placeholder</td>
+                    <td>{{$project->name}}</td>
                 </tr>
                 <tr>
                     <th>Description:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$project->description}}</td>
                 </tr>
                 <tr>
                     <th>Status:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$project->status}}</td>
                 </tr>
                 <tr>
                     <th>Start date:</th>
-                    <td>PlaceHolder</td>
+                    <td>dd-mm-yyyy</td>
                 </tr>
                 <tr>
                     <th>Deadline:</th>
-                    <td>PlaceHolder</td>
+                    <td>dd-mm-yyyy</td>
                 </tr>
                 <tr>
                     <th>Mentained contract:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$project->maintained_contract}}</td>
                 </tr>
             </table>
         </section>
@@ -40,19 +40,19 @@
             <table class="table table-borderless col-xs-12">
                 <tr>
                     <th>Applications:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$project->applications}}</td>
                 </tr>
                 <tr>
                     <th>Hardware:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$project->hardware}}</td>
                 </tr>
                 <tr>
                     <th>Operating system:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$project->operating_system}}</td>
                 </tr>
                 <tr>
                     <th>Appointments:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$project->appointments}}</td>
                 </tr>
             </table>
         </section>
@@ -60,11 +60,11 @@
             <table class="table table-borderless col-xs-12">
                 <tr>
                     <th>Company name:</th>
-                    <td><a href="">PlaceHolder</a></td>
+                    <td><a href="/customer/{{$project->customer->id}}">{{$project->customer->name}}</a></td>
                 </tr>
                 <tr>
                     <th>Internal contact person:</th>
-                    <td>PlaceHolder</td>
+                    <td>{{$project->customer->cp_name}} {{$project->customer->cp_insertion}} {{$project->customer->cp_lastname}}</td>
                 </tr>
             </table>
         </section>
@@ -87,7 +87,6 @@
             <table class="table table-hover text-center" id="invoices-table">
                 <thead>
                 <tr>
-                    <th class="text-center">Project</th>
                     <th class="text-center">Invoice Nr.</th>
                     <th class="text-center">Description</th>
                     <th class="text-center">Totaal</th>
@@ -95,54 +94,29 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td><span class="label label-success">Active</span></td>
-                </tr>
-                <tr>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td><span class="label label-danger">Banned</span></td>
-                </tr>
-                <tr>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                </tr>
-                <tr>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td><span class="label label-default">Inactive</span></td>
-                </tr>
-                <tr>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td><span class="label label-default">Inactive</span></td>
-                </tr>
-                <tr>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td><span class="label label-default">Inactive</span></td>
-                </tr><tr>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td>Barroc IT.</td>
-                    <td><span class="label label-default">Inactive</span></td>
-                </tr>
+                    @foreach($project->invoices as $invoice)
+                        <tr>
+                            <td>{{$invoice->id}}</td>
+                            <td>{{$invoice->description}}</td>
+                            <td>{{$invoice->price}}</td>
+                            <td>
+                                @switch($invoice->status)
+                                    @case(0)
+                                    <span class="label label-default">Not Sended</span>
+                                    @break
+                                    @case(1)
+                                    <span class="label label-warning">Sended</span>
+                                    @break
+                                    @case(2)
+                                    <span class="label label-danger">Late</span>
+                                    @break
+                                    @case(3)
+                                    <span class="label label-success">Payed</span>
+                                    @break
+                                @endswitch
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
