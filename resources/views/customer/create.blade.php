@@ -1,6 +1,8 @@
 
 @extends('layout.master')
-
+@section('location')
+    Add customer
+    @endsection
 @section('content')
 
 <div class="container well">

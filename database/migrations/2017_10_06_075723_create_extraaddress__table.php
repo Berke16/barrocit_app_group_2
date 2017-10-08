@@ -14,8 +14,7 @@ class CreateExtraaddressTable extends Migration
     public function up()
     {
         Schema::create('tbl_extra_address', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('customer_id')->unsigned();
+            $table->integer('customer_id')->unsigned()->unique();
             $table->foreign('customer_id')->references('id')->on('tbl_customers');
             $table->string('street');
             $table->string('housenumber');

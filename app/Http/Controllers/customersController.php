@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Customers;
+use App\Customer;
+use App\ExtraAddress;
 use Illuminate\Http\Request;
 
 class customersController extends Controller
@@ -46,8 +47,8 @@ class customersController extends Controller
      */
     public function show($id)
     {
-        $customer = Customers::where('id', $id)->get()->first();
-        return view('customer.show')->with('customer' , $customer);
+        return view('customer.show')
+            ->with('customer' , Customer::find($id));
     }
 
     /**

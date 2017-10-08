@@ -1,7 +1,11 @@
 
 @extends('layout.master')
+@section('location')
+    Add project
+@endsection
 
 @section('content')
+
 
 
 <div class="container well">

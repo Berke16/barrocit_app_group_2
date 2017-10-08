@@ -1,6 +1,8 @@
 
 @extends('layout.master')
-
+@section('location')
+    Home: Finance
+@endsection
 @section('content')
 
 <div class="container">

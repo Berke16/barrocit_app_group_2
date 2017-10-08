@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Actions extends Model
+class Offer extends Model
 {
-    //
+    protected $table = 'tbl_offers';
 }

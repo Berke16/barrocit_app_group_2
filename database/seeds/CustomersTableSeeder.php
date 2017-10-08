@@ -35,10 +35,10 @@ class CustomersTableSeeder extends Seeder
                 'balance' => $faker->create()->numberBetween(1,401),
                 'limit' => $faker->create()->numberBetween(1,400),
                 'vat_code' => $fakerDutch->vat,
-                'prospect' => $faker->create()->numberBetween(1,2),
+                'prospect' => $faker->create()->numberBetween(0,1),
                 'ledgerbill' => $faker->create()->randomNumber,
-                'creditworthy' => $faker->create()->numberBetween(1,2),
-                'bcr' => $faker->create()->numberBetween(1,2),
+                'creditworthy' => $faker->create()->numberBetween(0,1),
+                'bcr' => $faker->create()->numberBetween(0,1),
             ]);
         }
 
