@@ -10,6 +10,7 @@
     <div class="panel-body">
         <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#projects-table" placeholder="Filter Projects" />
     </div>
+
     <div class="table_high">
         <table class="table table-hover text-center" id="projects-table">
             <thead>

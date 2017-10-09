@@ -1,8 +1,8 @@
 
 @extends('layout.master')
-    @section('location')
-        Customer: {{$customer->name}}
-    @endsection
+@section('location')
+    Customer: {{$customer->name}}
+@endsection
 @section('content')
 
     <div class="container-fluid well">
@@ -132,10 +132,10 @@
                         <td>
                             @switch($customer->prospect)
                                 @case(0)
-                                    NO
+                                NO
                                 @break
                                 @case(1)
-                                    YES
+                                YES
                                 @break
                             @endswitch
                         </td>
@@ -146,26 +146,97 @@
     </div>
     <div class="container">
         <section class="col-md-12" style="padding: 0;">
-        <div class="col-md-3">
-            @php
-                $projects = $customer->projects;
-            @endphp
-                @include('templets.projecttabel')
-        </div>
-        <div class="col-md-9">
-            @php
-                $invoices = $customer->invoices->sortBy('status');
-            @endphp
-                @include('templets.invoicestable')
-        </div>
+            <div class="row">
+                <div class="col-md-3">
+                    @php
+                        $projects = $customer->projects;
+                    @endphp
+                    <div class="table_height">
+                        @include('templets.projecttabel')
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    @php
+                        $invoices = $customer->invoices->sortBy('status');
+                    @endphp
+                    <div class="table_height">
+                        @include('templets.invoicestable')
+                    </div>
+                </div>
+            </div>
         </section>
-        <section class="col-md-6" style="padding: 0;">
-            <div class="col-md-12" >
+        <div class="row">
+            <section class="col-md-6" style="padding: 0;">
+                <div class="col-md-12" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Latest contact</h3>
+                        </div>
+                        <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
+                            <table class="table table-hover text-center" id="invoices-table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center col-md-3">Date</th>
+                                    <th class="text-center col-md-9">Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{{$customer->actions->sortByDesc('created_at')->last()->date_of_action}}</td>
+                                    <td>{{$customer->actions->last()->description}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Offer's</h3>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
+                            </div>
+                        </div>
+                        <div style="height: 200px; overflow: scroll; overflow-x: hidden ;">
+                            <table class="table table-hover text-center" id="invoices-table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center col-md-6">Offernubers</th>
+                                    <th class="text-center col-md-6">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($customer->offers as $offer)
+                                    <tr>
+                                        <td>{{$offer->number}}</td>
+                                        <td>
+                                            @switch($offer->status)
+                                                @case(0)
+                                                <span class="label label-default">Not Accepted</span>
+                                                @break
+                                                @case(1)
+                                                <span class="label label-success">Accepted</span>
+                                                @break
+                                            @endswitch
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Latest contact</h3>
+                        <h3 class="panel-title">Action's</h3>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addacctionmodal">Add Action</button>
+                        </div>
                     </div>
-                    <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
+                    <div style="height: 460px; overflow: scroll; overflow-x: hidden;">
                         <table class="table table-hover text-center" id="invoices-table">
                             <thead>
                             <tr>
@@ -174,82 +245,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>{{$customer->actions->sortByDesc('created_at')->last()->date_of_action}}</td>
-                                <td>{{$customer->actions->last()->description}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12" >
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Offer's</h3>
-                        <div class="pull-right">
-                            <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
-                        </div>
-                    </div>
-                    <div style="height: 200px; overflow: scroll; overflow-x: hidden ;">
-                        <table class="table table-hover text-center" id="invoices-table">
-                            <thead>
-                            <tr>
-                                <th class="text-center col-md-6">Offernubers</th>
-                                <th class="text-center col-md-6">Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($customer->offers as $offer)
+                            @foreach($customer->actions->sortByDesc('date_of_action') as $action)
                                 <tr>
-                                    <td>{{$offer->number}}</td>
-                                    <td>
-                                        @switch($offer->status)
-                                           @case(0)
-                                                <span class="label label-default">Not Accepted</span>
-                                            @break
-                                            @case(1)
-                                                <span class="label label-success">Accepted</span>
-                                            @break
-                                        @endswitch
-                                    </td>
+                                    <td>{{$action->date_of_action}}</td>
+                                    <td>{{$action->description}}</td>
                                 </tr>
+
                             @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </section>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Action's</h3>
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addacctionmodal">Add Action</button>
-                    </div>
-                </div>
-                <div style="height: 460px; overflow: scroll; overflow-x: hidden;">
-                    <table class="table table-hover text-center" id="invoices-table">
-                        <thead>
-                        <tr>
-                            <th class="text-center col-md-3">Date</th>
-                            <th class="text-center col-md-9">Description</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($customer->actions->sortByDesc('date_of_action') as $action)
-                            <tr>
-                                <td>{{$action->date_of_action}}</td>
-                                <td>{{$action->description}}</td>
-                            </tr>
-
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
+
     </div>
     <div id="addoffermodal" class="modal fade" role="dialog">
         <div class="modal-dialog">

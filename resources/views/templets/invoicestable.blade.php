@@ -10,6 +10,7 @@
     <div class="panel-body">
         <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Invoces Table" />
     </div>
+
     <div class="table_high">
         <table class="table table-hover text-center" id="invoices-table">
             <thead>

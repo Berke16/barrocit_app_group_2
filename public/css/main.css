@@ -168,7 +168,12 @@ input[type=checkbox] {
 }
 
 .table_high{
-    height: 200px;
+    height: 100%;
     overflow: scroll;
     overflow-x: hidden;
+
+}
+.table_height{
+    height: 300px;
+
 }
