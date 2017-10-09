@@ -1,37 +1,13 @@
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>sales</title>
 
-    <!-- Bootstrap CSS served from a CDN -->
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+@extends('layout.master')
+@section('location')
+    Home: Sales
+@endsection
+@section('menu')
+    <li><a href="../customer/create">Add Customer</a></li>
+@endsection
+@section('content')
 
-</head>
-
-<body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Barroc IT.</a>
-                <a class="navbar-brand">Home: Sales</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="addcustomer.php">Add Customer</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -55,37 +31,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="danger">
-                <td>0002</td>
-                <td>Barroc IT.</td>
-                <td>Jean-Pierre Slimmen</td>
-                <td>12-07-2017</td>
-            </tr>
-            <tr>
-                <td>0003</td>
-                <td>Barroc IT.</td>
-                <td>SM Wolfi</td>
-                <td>12-07-2017</td>
-            </tr>
-            <tr>
-                <td>0022</td>
-                <td>Baadadarroc IT.</td>
-                <td>Pierre Slimmen</td>
-                <td>12-02-2017</td>
-            </tr>
-            <tr>
-                <td>0012</td>
-                <td>Barrocsdasd IT.</td>
-                <td>Jean Slimmen</td>
-                <td>12-08-2017</td>
-            </tr>
+                @foreach($customers as $customer)
+                    <tr data-href="../customer/{{$customer->id}}">
+                        <th>{{$customer->id}}</th>
+                        <th>{{$customer->name}}</th>
+                        <th>{{$customer->cp_name}}</th>
+                        <th>dd-mm-yyyy</th>
+                    </tr>
+                    @endforeach
             </tbody>
         </table>
     </div>
 </div>
-
-
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+@endsection
