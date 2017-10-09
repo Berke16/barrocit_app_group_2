@@ -14,7 +14,7 @@
                         <td>{{$customer->name}}</td>
                     </tr>
                     <tr>
-                        <th>Faxnumbr:</th>
+                        <th>Faxnumber:</th>
                         <td>{{$customer->fax_number}}</td>
                     </tr>
                     <tr>
@@ -22,11 +22,11 @@
                         <td>{{$customer->tele}}</td>
                     </tr>
                     <tr>
-                        <th>Telephonenumber2:</th>
+                        <th>Telephonenumber 2:</th>
                         <td>{{$customer->tele2}}</td>
                     </tr>
                     <tr>
-                        <th>Adress:</th>
+                        <th>Address:</th>
                         <td>{{$customer->street}}</td>
                     </tr>
                     <tr>
@@ -34,11 +34,11 @@
                         <td>{{$customer->zip_code}}</td>
                     </tr>
                     <tr>
-                        <th>Resident:</th>
+                        <th>Residence:</th>
                         <td>{{$customer->residence}}</td>
                     </tr>
                     <tr>
-                        <th>Housnummber</th>
+                        <th>Housenummber:</th>
                         <td>{{$customer->housenumber}}</td>
                     </tr>
                 </table>
@@ -46,7 +46,7 @@
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
                     <tr>
-                        <th>Adress 2:</th>
+                        <th>Address 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->street}}</td>
                         @endif
@@ -58,23 +58,23 @@
                         @endif
                     </tr>
                     <tr>
-                        <th>Resident 2:</th>
+                        <th>Residence 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->residence}}</td>
                         @endif
                     </tr>
                     <tr>
-                        <th>Housnummber 2:</th>
+                        <th>Housenummber 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->housenumber}}</td>
                         @endif
                     </tr>
                     <tr>
-                        <th>Contactperson:</th>
+                        <th>Contact-person:</th>
                         <td>{{$customer->cp_name}} {{$customer->cp_insetion}} {{$customer->cp_lastname}}</td>
                     </tr>
                     <tr>
-                        <th>Email::</th>
+                        <th>Email:</th>
                         <td>{{$customer->mail}}</td>
                     </tr>
                 </table>
@@ -82,11 +82,11 @@
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
                     <tr>
-                        <th>Rekening:</th>
+                        <th>Banknumber:</th>
                         <td>{{$customer->banknumber}}</td>
                     </tr>
                     <tr>
-                        <th>Salod:</th>
+                        <th>Balance:</th>
                         <td>{{$customer->balance}}</td>
                     </tr>
                     <tr>
@@ -98,44 +98,44 @@
                         <td>{{$customer->ledgerbill}}</td>
                     </tr>
                     <tr>
-                        <th>BTW-code:</th>
+                        <th>VAT-code:</th>
                         <td>{{$customer->vat_code}}</td>
                     </tr>
                     <tr>
-                        <th>BKR:</th>
+                        <th>BCR:</th>
                         <td>
                             @switch($customer->bcr)
                                 @case(0)
-                                Nee
+                                NO
                                 @break
                                 @case(1)
-                                Ja
+                                YES
                                 @break
                             @endswitch
                         </td>
                     </tr>
                     <tr>
-                        <th>Credityworthy:</th>
+                        <th>Creditworthy:</th>
                         <td>
                             @switch($customer->creditworthy)
                                 @case(0)
-                                Nee
+                                NO
                                 @break
                                 @case(1)
-                                Ja
+                                YES
                                 @break
                             @endswitch
                         </td>
                     </tr>
                     <tr>
-                        <th>Pospect:</th>
+                        <th>Prospect:</th>
                         <td>
                             @switch($customer->prospect)
                                 @case(0)
-                                    Nee
+                                    NO
                                 @break
                                 @case(1)
-                                    Ja
+                                    YES
                                 @break
                             @endswitch
                         </td>
@@ -150,13 +150,13 @@
             @php
                 $projects = $customer->projects;
             @endphp
-            @include('templets.projecttabel')
+                @include('templets.projecttabel')
         </div>
         <div class="col-md-9">
             @php
                 $invoices = $customer->invoices->sortBy('status');
             @endphp
-            @include('templets.invoicestable')
+                @include('templets.invoicestable')
         </div>
         </section>
         <section class="col-md-6" style="padding: 0;">

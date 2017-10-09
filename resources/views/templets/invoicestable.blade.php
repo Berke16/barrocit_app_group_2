@@ -17,7 +17,7 @@
                 <th class="text-center">Project</th>
                 <th class="text-center">Invoice Nr.</th>
                 <th class="text-center">Description</th>
-                <th class="text-center">Totaal</th>
+                <th class="text-center">Total</th>
                 <th class="text-center">Status</th>
             </tr>
             </thead>

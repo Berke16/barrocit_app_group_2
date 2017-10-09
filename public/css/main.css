@@ -151,8 +151,8 @@ input.form-control, textarea.form-control {
 }
 
 .panel-heading{
-    color: #CFC1B5 !important;
     text-shadow: 1px 1px 1px black;
+    color: #CFC1B5 !important;
 }
 
 th{
