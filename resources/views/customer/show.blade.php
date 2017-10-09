@@ -147,93 +147,16 @@
     <div class="container">
         <section class="col-md-12" style="padding: 0;">
         <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Projects</h3>
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addprojectmodal">Add Project</button>
-                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-                        <i class="glyphicon glyphicon-filter"></i>
-                    </span>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#projects-table" placeholder="Filter Projects" />
-                </div>
-                <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
-                    <table class="table table-hover text-center" id="projects-table">
-                        <thead>
-                        <tr>
-                            <th class="text-center">Name</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($customer->projects as $project)
-                            <tr data-href="../project/{{$project->id}}">
-                                <td>{{$project->name}}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            @php
+                $projects = $customer->projects;
+            @endphp
+            @include('templets.projecttabel')
         </div>
         <div class="col-md-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Invoices</h3>
-                    <div class="pull-right">
-                    <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-                        <i class="glyphicon glyphicon-filter"></i>
-                    </span>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Invoces Table" />
-                </div>
-                <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
-                    <table class="table table-hover" id="invoices-table">
-                        <thead>
-                        <tr>
-                            <th>Project</th>
-                            <th>Nr.</th>
-                            <th>Description</th>
-                            <th>Totaal</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($customer->projects as $project)
-                            @foreach($project->invoices as $invoice)
-                                <tr>
-                                    <td data-href= "../project/{{$invoice->project->id}}">{{$invoice->project->name}}</td>
-                                    <td>{{$invoice->id}}</td>
-                                    <td>{{$invoice->description}}</td>
-                                    <td>{{$invoice->price}}</td>
-                                    <td>
-                                        @switch($invoice->status)
-                                            @case(0)
-                                            <span class="label label-default">Not Sended</span>
-                                            @break
-                                            @case(1)
-                                            <span class="label label-warning">Sended</span>
-                                            @break
-                                            @case(2)
-                                            <span class="label label-danger">Late</span>
-                                            @break
-                                            @case(3)
-                                            <span class="label label-success">Payed</span>
-                                            @break
-                                        @endswitch
-                                    </td>
-                                </tr>
-
-                            @endforeach
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            @php
+                $invoices = $customer->invoices->sortBy('status');
+            @endphp
+            @include('templets.invoicestable')
         </div>
         </section>
         <section class="col-md-6" style="padding: 0;">
