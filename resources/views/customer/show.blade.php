@@ -9,98 +9,122 @@
         <div class="container">
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
+
                     <tr>
                         <th>Company Name:</th>
                         <td>{{$customer->name}}</td>
                     </tr>
+
                     <tr>
                         <th>Faxnumber:</th>
                         <td>{{$customer->fax_number}}</td>
                     </tr>
+
                     <tr>
                         <th>Telephonenumber:</th>
                         <td>{{$customer->tele}}</td>
                     </tr>
+
                     <tr>
                         <th>Telephonenumber 2:</th>
                         <td>{{$customer->tele2}}</td>
                     </tr>
+
                     <tr>
                         <th>Address:</th>
                         <td>{{$customer->street}}</td>
                     </tr>
+
                     <tr>
                         <th>Zipcode</th>
                         <td>{{$customer->zip_code}}</td>
                     </tr>
+
                     <tr>
                         <th>Residence:</th>
                         <td>{{$customer->residence}}</td>
                     </tr>
+
                     <tr>
                         <th>Housenummber:</th>
                         <td>{{$customer->housenumber}}</td>
                     </tr>
+
                 </table>
             </section>
+
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
+
                     <tr>
                         <th>Address 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->street}}</td>
                         @endif
                     </tr>
+
                     <tr>
                         <th>Zipcode 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->zip_code}}</td>
                         @endif
                     </tr>
+
                     <tr>
                         <th>Residence 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->residence}}</td>
                         @endif
                     </tr>
+
                     <tr>
                         <th>Housenummber 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->housenumber}}</td>
                         @endif
                     </tr>
+
                     <tr>
                         <th>Contact-person:</th>
                         <td>{{$customer->cp_name}} {{$customer->cp_insetion}} {{$customer->cp_lastname}}</td>
                     </tr>
+
                     <tr>
                         <th>Email:</th>
                         <td>{{$customer->mail}}</td>
                     </tr>
+
                 </table>
             </section>
+
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
+
                     <tr>
                         <th>Banknumber:</th>
                         <td>{{$customer->banknumber}}</td>
                     </tr>
+
                     <tr>
                         <th>Balance:</th>
                         <td>{{$customer->balance}}</td>
                     </tr>
+
                     <tr>
                         <th>Limit:</th>
                         <td>{{$customer->limit}}</td>
                     </tr>
+
                     <tr>
                         <th>Ledgerbill:</th>
                         <td>{{$customer->ledgerbill}}</td>
                     </tr>
+
                     <tr>
                         <th>VAT-code:</th>
                         <td>{{$customer->vat_code}}</td>
                     </tr>
+
                     <tr>
                         <th>BCR:</th>
                         <td>
@@ -114,6 +138,7 @@
                             @endswitch
                         </td>
                     </tr>
+
                     <tr>
                         <th>Creditworthy:</th>
                         <td>
@@ -127,6 +152,7 @@
                             @endswitch
                         </td>
                     </tr>
+
                     <tr>
                         <th>Prospect:</th>
                         <td>
@@ -140,10 +166,12 @@
                             @endswitch
                         </td>
                     </tr>
+
                 </table>
             </section>
         </div>
     </div>
+
     <div class="container">
         <section class="col-md-12" style="padding: 0;">
             <div class="row" style="height: 200px">
@@ -165,6 +193,7 @@
                 </div>
             </div>
         </section>
+
         <div class="row">
             <section class="col-md-6" style="padding: 0;">
                 <div class="col-md-12" >
@@ -175,16 +204,20 @@
                         <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
                             <table class="table table-hover text-center" id="invoices-table">
                                 <thead>
-                                <tr>
-                                    <th class="text-center col-md-3">Date</th>
-                                    <th class="text-center col-md-9">Description</th>
-                                </tr>
+
+                                    <tr>
+                                        <th class="text-center col-md-3">Date</th>
+                                        <th class="text-center col-md-9">Description</th>
+                                    </tr>
+
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>{{$customer->actions->sortByDesc('created_at')->last()->date_of_action}}</td>
-                                    <td>{{$customer->actions->last()->description}}</td>
-                                </tr>
+
+                                    <tr>
+                                        <td>{{$customer->actions->sortByDesc('created_at')->last()->date_of_action}}</td>
+                                        <td>{{$customer->actions->last()->description}}</td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
