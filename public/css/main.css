@@ -151,8 +151,8 @@ input.form-control, textarea.form-control {
 }
 
 .panel-heading{
-    color: #CFC1B5 !important;
     text-shadow: 1px 1px 1px black;
+    color: #CFC1B5 !important;
 }
 
 th{
@@ -168,7 +168,12 @@ input[type=checkbox] {
 }
 
 .table_high{
-    height: 200px;
+    height: 100%;
     overflow: scroll;
     overflow-x: hidden;
+
+}
+.table_height{
+    height: 300px;
+
 }

@@ -10,6 +10,7 @@
     <div class="panel-body">
         <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Invoces Table" />
     </div>
+
     <div class="table_high">
         <table class="table table-hover text-center" id="invoices-table">
             <thead>
@@ -17,7 +18,7 @@
                 <th class="text-center">Project</th>
                 <th class="text-center">Invoice Nr.</th>
                 <th class="text-center">Description</th>
-                <th class="text-center">Totaal</th>
+                <th class="text-center">Total</th>
                 <th class="text-center">Status</th>
             </tr>
             </thead>
