@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-
 Route::resource('project' , 'projectsController');
 Route::resource('home' , 'homesController');
 Route::resource('customer' , 'customersController');
