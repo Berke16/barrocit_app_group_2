@@ -10,11 +10,11 @@
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
                     <tr>
-                        <th>Company Name:</th>
+                        <th>Company name:</th>
                         <td>{{$customer->name}}</td>
                     </tr>
                     <tr>
-                        <th>Faxnumbr:</th>
+                        <th>Faxnumber:</th>
                         <td>{{$customer->fax_number}}</td>
                     </tr>
                     <tr>
@@ -22,23 +22,23 @@
                         <td>{{$customer->tele}}</td>
                     </tr>
                     <tr>
-                        <th>Telephonenumber2:</th>
+                        <th>Telephonenumber 2:</th>
                         <td>{{$customer->tele2}}</td>
                     </tr>
                     <tr>
-                        <th>Adress:</th>
+                        <th>Address:</th>
                         <td>{{$customer->street}}</td>
                     </tr>
                     <tr>
-                        <th>Zipcode</th>
+                        <th>Zipcode:</th>
                         <td>{{$customer->zip_code}}</td>
                     </tr>
                     <tr>
-                        <th>Resident:</th>
+                        <th>Residence:</th>
                         <td>{{$customer->residence}}</td>
                     </tr>
                     <tr>
-                        <th>Housnummber</th>
+                        <th>Housenumber:</th>
                         <td>{{$customer->housenumber}}</td>
                     </tr>
                 </table>
@@ -46,7 +46,7 @@
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
                     <tr>
-                        <th>Adress 2:</th>
+                        <th>Address 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->street}}</td>
                         @endif
@@ -58,13 +58,13 @@
                         @endif
                     </tr>
                     <tr>
-                        <th>Resident 2:</th>
+                        <th>Residence 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->residence}}</td>
                         @endif
                     </tr>
                     <tr>
-                        <th>Housnummber 2:</th>
+                        <th>Housenumber 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->housenumber}}</td>
                         @endif
@@ -74,7 +74,7 @@
                         <td>{{$customer->cp_name}} {{$customer->cp_insetion}} {{$customer->cp_lastname}}</td>
                     </tr>
                     <tr>
-                        <th>Email::</th>
+                        <th>Email:</th>
                         <td>{{$customer->mail}}</td>
                     </tr>
                 </table>
@@ -82,11 +82,11 @@
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
                     <tr>
-                        <th>Rekening:</th>
+                        <th>Banknumber:</th>
                         <td>{{$customer->banknumber}}</td>
                     </tr>
                     <tr>
-                        <th>Salod:</th>
+                        <th>Balance:</th>
                         <td>{{$customer->balance}}</td>
                     </tr>
                     <tr>
@@ -98,44 +98,44 @@
                         <td>{{$customer->ledgerbill}}</td>
                     </tr>
                     <tr>
-                        <th>BTW-code:</th>
+                        <th>VAT-code:</th>
                         <td>{{$customer->vat_code}}</td>
                     </tr>
                     <tr>
-                        <th>BKR:</th>
+                        <th>BCR:</th>
                         <td>
                             @switch($customer->bcr)
                                 @case(0)
-                                Nee
+                                No
                                 @break
                                 @case(1)
-                                Ja
+                                Yes
                                 @break
                             @endswitch
                         </td>
                     </tr>
                     <tr>
-                        <th>Credityworthy:</th>
+                        <th>Credityorthy:</th>
                         <td>
                             @switch($customer->creditworthy)
                                 @case(0)
-                                Nee
+                                No
                                 @break
                                 @case(1)
-                                Ja
+                                Yes
                                 @break
                             @endswitch
                         </td>
                     </tr>
                     <tr>
-                        <th>Pospect:</th>
+                        <th>Prospect:</th>
                         <td>
                             @switch($customer->prospect)
                                 @case(0)
-                                    Nee
+                                    No
                                 @break
                                 @case(1)
-                                    Ja
+                                    Yes
                                 @break
                             @endswitch
                         </td>
@@ -186,7 +186,7 @@
             <div class="col-md-12" >
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Offer's</h3>
+                        <h3 class="panel-title">Offers</h3>
                         <div class="pull-right">
                             <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
                         </div>
@@ -195,7 +195,7 @@
                         <table class="table table-hover text-center" id="invoices-table">
                             <thead>
                             <tr>
-                                <th class="text-center col-md-6">Offernubers</th>
+                                <th class="text-center col-md-6">Offernumbers</th>
                                 <th class="text-center col-md-6">Status</th>
                             </tr>
                             </thead>
@@ -224,7 +224,7 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Action's</h3>
+                    <h3 class="panel-title">Actions</h3>
                     <div class="pull-right">
                         <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addacctionmodal">Add Action</button>
                     </div>
@@ -254,18 +254,18 @@
     <div id="addoffermodal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
+            {{-- Modelbox voor het maken van de offertes. --}}
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Offer</h4>
+                    <h4 class="modal-title">Add offer</h4>
                 </div>
                 <div class="modal-body">
                     <form action="">
-                        <h4 class="text-center">{{"company name"}}</h4>
+                        <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <div class="form-group">
-                            <label for="offernumber">Offer number</label>
-                            <input class="form-control" type="text" id="offernumber" name="offernumber">
+                            <label for="offerBumber">Offer number</label>
+                            <input class="form-control" type="text" id="offerNumber" name="offerNumber">
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -283,19 +283,19 @@
     <div id="addacctionmodal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
+            {{-- Modelbox voor het maken van de acties. --}}
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Action</h4>
+                    <h4 class="modal-title">Add action</h4>
                 </div>
                 <div class="modal-body">
                     <form action="">
-                        <h4 class="text-center">{{"company name"}}</h4>
+                        <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <div class="form-group">
                             <label for="action">Action</label>
                             <select name="action" id="action" class="form-control">
-                                <option value="action">Next acction</option>
+                                <option value="action">Next action</option>
                                 <option value="action">Action</option>
                             </select>
                         </div>
