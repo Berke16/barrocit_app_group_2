@@ -8,7 +8,7 @@
 @endsection
 @section('content')
 
-<div class="container">
-    @include('templets.customerstabel')
-</div>
+    <div class="container">
+        @include('templets.customerstabel')
+    </div>
 @endsection

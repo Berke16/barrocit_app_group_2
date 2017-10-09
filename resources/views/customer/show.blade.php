@@ -146,7 +146,7 @@
     </div>
     <div class="container">
         <section class="col-md-12" style="padding: 0;">
-            <div class="row">
+            <div class="row" style="height: 200px">
                 <div class="col-md-3">
                     @php
                         $projects = $customer->projects;
