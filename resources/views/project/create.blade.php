@@ -1,52 +1,17 @@
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>add-project</title>
 
-    <!-- Bootstrap CSS served from a CDN -->
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+@extends('layout.master')
+@section('location')
+    Add project
+@endsection
 
-</head>
+@section('content')
 
-<body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Barroc IT.</a>
-                <a class="navbar-brand">Customer: {{"placeholder"}}</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Add Customer</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!--            <div class="form-group col-md-12">-->
-<!--                <label for="">asdasdas</label>-->
-<!--                <input type="text" class="form-control">-->
-<!--            </div>-->
+
+
 <div class="container well">
     <form action="" class="">
         <section class="col-md-4">
-            <!--
-            Project name
-            Description
-            Status
-            Start date
-            Deadline
-            Metaines cointract
-            -->         <div class="form-group">
+            <div class="form-group">
                 <label for="">Project-name</label>
                 <input type="text" class="form-control">
             </div>
@@ -67,12 +32,6 @@
             </div>
         </section>
         <section class="col-md-4">
-            <!--
-            Applications
-            Hardware
-            Operating system
-            Appointments
-            -->
             <div class="form-group">
                 <label for="">Opereting system</label>
                 <input type="text" class="form-control">
@@ -117,49 +76,9 @@
                 <input type="date" class="form-control" name="" id="">
             </div>
             <input type="submit" class="pull-right" value="Add Project">
-            <!--
-            Aantal termijnen
-            Totaal Project prijs
-            Termijnen Per (maand, 2 manden, kwartaal)
-            Datum eerste betaling
-
-            -->
         </section>
     </form>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/tabel_filter.js"></script>
-<script>
-    $(function(){
-        $('*[data-href]').click(function(){
-            window.location = $(this).data('href');
-            return false;
-        });
-    });
-</script>
-
-
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+@endsection

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class actions extends Model
+class Action extends Model
 {
-    //
+    protected $table = 'tbl_actions';
 }
