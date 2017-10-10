@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->tinyInteger('status')->default('0');
-            $table->boolean('maintained_contract');
+            $table->boolean('maintained_contract')->default('0');
             $table->text('applications');
             $table->text('hardware');
             $table->string('operating_system');
