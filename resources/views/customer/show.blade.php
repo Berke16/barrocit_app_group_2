@@ -11,7 +11,7 @@
                 <table class="table table-borderless col-xs-12">
 
                     <tr>
-                        <th>Company Name:</th>
+                        <th>Company name:</th>
                         <td>{{$customer->name}}</td>
                     </tr>
 
@@ -36,7 +36,7 @@
                     </tr>
 
                     <tr>
-                        <th>Zipcode</th>
+                        <th>Zipcode:</th>
                         <td>{{$customer->zip_code}}</td>
                     </tr>
 
@@ -46,7 +46,7 @@
                     </tr>
 
                     <tr>
-                        <th>Housenummber:</th>
+                        <th>Housenumber:</th>
                         <td>{{$customer->housenumber}}</td>
                     </tr>
 
@@ -78,7 +78,7 @@
                     </tr>
 
                     <tr>
-                        <th>Housenummber 2:</th>
+                        <th>Housenumber 2:</th>
                         @if($customer->extraaddress != NULL)
                             <td>{{$customer->extraaddress->housenumber}}</td>
                         @endif
@@ -130,24 +130,24 @@
                         <td>
                             @switch($customer->bcr)
                                 @case(0)
-                                NO
+                                No
                                 @break
                                 @case(1)
-                                YES
+                                Yes
                                 @break
                             @endswitch
                         </td>
                     </tr>
 
                     <tr>
-                        <th>Creditworthy:</th>
+                        <th>Credityorthy:</th>
                         <td>
                             @switch($customer->creditworthy)
                                 @case(0)
-                                NO
+                                No
                                 @break
                                 @case(1)
-                                YES
+                                Yes
                                 @break
                             @endswitch
                         </td>
@@ -158,10 +158,10 @@
                         <td>
                             @switch($customer->prospect)
                                 @case(0)
-                                NO
+                                    No
                                 @break
                                 @case(1)
-                                YES
+                                    Yes
                                 @break
                             @endswitch
                         </td>
@@ -264,7 +264,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Action's</h3>
+                        <h3 class="panel-title">Offers</h3>
                         <div class="pull-right">
                             <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addacctionmodal">Add Action</button>
                         </div>
@@ -273,8 +273,8 @@
                         <table class="table table-hover text-center" id="invoices-table">
                             <thead>
                             <tr>
-                                <th class="text-center col-md-3">Date</th>
-                                <th class="text-center col-md-9">Description</th>
+                                <th class="text-center col-md-6">Offernumbers</th>
+                                <th class="text-center col-md-6">Status</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -290,24 +290,46 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Actions</h3>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addacctionmodal">Add Action</button>
+                    </div>
+                </div>
+                <div style="height: 460px; overflow: scroll; overflow-x: hidden;">
+                    <table class="table table-hover text-center" id="invoices-table">
+                        <thead>
+                        <tr>
+                            <th class="text-center col-md-3">Date</th>
+                            <th class="text-center col-md-9">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($customer->actions->sortByDesc('date_of_action') as $action)
+                            <tr>
+                                <td>{{$action->date_of_action}}</td>
+                                <td>{{$action->description}}</td>
+                            </tr>
 
     </div>
     <div id="addoffermodal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
+            {{-- Modelbox voor het maken van de offertes. --}}
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Offer</h4>
+                    <h4 class="modal-title">Add offer</h4>
                 </div>
                 <div class="modal-body">
                     <form action="">
-                        <h4 class="text-center">{{"company name"}}</h4>
+                        <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <div class="form-group">
-                            <label for="offernumber">Offer number</label>
-                            <input class="form-control" type="text" id="offernumber" name="offernumber">
+                            <label for="offerBumber">Offer number</label>
+                            <input class="form-control" type="text" id="offerNumber" name="offerNumber">
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -325,19 +347,19 @@
     <div id="addacctionmodal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
+            {{-- Modelbox voor het maken van de acties. --}}
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Action</h4>
+                    <h4 class="modal-title">Add action</h4>
                 </div>
                 <div class="modal-body">
                     <form action="">
-                        <h4 class="text-center">{{"company name"}}</h4>
+                        <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <div class="form-group">
                             <label for="action">Action</label>
                             <select name="action" id="action" class="form-control">
-                                <option value="action">Next acction</option>
+                                <option value="action">Next action</option>
                                 <option value="action">Action</option>
                             </select>
                         </div>

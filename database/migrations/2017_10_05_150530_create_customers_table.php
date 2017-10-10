@@ -33,8 +33,8 @@ class CreateCustomersTable extends Migration
             $table->string('vat_code');
             $table->tinyInteger('prospect');
             $table->string('ledgerbill');
-            $table->tinyInteger('creditworthy');
-            $table->tinyInteger('bcr');
+            $table->tinyInteger('creditworthy')->default(0);
+            $table->tinyInteger('bcr')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
