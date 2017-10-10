@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
-use App\Invoice;
-use App\Project;
 use Illuminate\Http\Request;
 
-class homesController extends Controller
+class actionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -48,24 +45,7 @@ class homesController extends Controller
      */
     public function show($id)
     {
-
-        switch ($id){
-            case 'development':
-                return view('homes.development')
-                    ->with('customers', Customer::all())
-                    ->with('projects', Project::all());
-                break;
-            case 'finance':
-                return view('homes.finance')
-                    ->with('customers', Customer::all())
-                    ->with('projects', Project::all())
-                    ->with('invoices', Invoice::all());
-                break;
-            case 'sales':
-                return view('homes.sales')
-                    ->with('customers', Customer::all());
-                break;
-        }
+        //
     }
 
     /**
