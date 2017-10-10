@@ -20,7 +20,6 @@ class InvoicesTableSeeder extends Seeder
                 'description' => $faker->create()->sentence,
                 'price' => $faker->create()->numberBetween(100, 4000),
                 'date_of_sending' => $faker->create()->date,
-                'status' => $faker->create()->numberBetween(0,3)
             ]);
         }
     }

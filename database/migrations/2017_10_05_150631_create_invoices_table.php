@@ -14,13 +14,12 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('tbl_invoices', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id')->nullable();
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('tbl_projects');
             $table->text('description');
             $table->float('price');
             $table->timestamp('date_of_sending');
-            $table->tinyInteger('status')->default('0');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

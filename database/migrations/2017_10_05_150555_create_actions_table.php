@@ -17,7 +17,7 @@ class CreateActionsTable extends Migration
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('tbl_customers');
-            $table->timestamp('date_of_action');
+            $table->timestamp('date_of_action')->nullable();
             $table->text('description');
             $table->timestamp('next_action')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
