@@ -1,10 +1,10 @@
 
-    @extends('layout.master')
-    @section('location')
-        Add project
-    @endsection
+@extends('layout.master')
+@section('location')
+    Add project
+@endsection
 
-    @section('content')
+@section('content')
 
     <div class="container well">
         <form action="" class="" method="post">
@@ -78,4 +78,4 @@
             </section>
         </form>
     </div>
-    @endsection
+@endsection
