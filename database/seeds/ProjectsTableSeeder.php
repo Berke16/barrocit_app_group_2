@@ -20,7 +20,7 @@ class ProjectsTableSeeder extends Seeder
                 'name' => $faker->create()->catchPhrase,
                 'description' => $faker->create()->sentence,
                 'status' => $faker->create()->randomDigit,
-                'maintained_contract' => $faker->create()->randomDigit,
+                'maintained_contract' => $faker->create()->numberBetween(0,1),
                 'applications' => $faker->create()->sentence,
                 'hardware' => $faker->create()->sentence,
                 'operating_system' => $faker->create()->word,
