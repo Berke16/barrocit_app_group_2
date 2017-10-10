@@ -37,22 +37,23 @@ class Customer extends Model
     {
         if($this->saldo() > $this->limit)
         {
-            return 1;
+            return true;
         }
         else
-            return 0;
+            return false;
     }
     public function saldo()
     {
-        $count = 0;
-        foreach ($this->invoices() as $invoice)
+        $price = 0;
+        foreach ($this->invoices as $invoice)
         {
-            if($invoice->status == 2)
+            if($invoice->status() == 2)
             {
-                $count = +$invoice->price;
+                $price = $price + $invoice->price;
             }
-            return $count;
         }
+
+        return $price;
     }
 
 

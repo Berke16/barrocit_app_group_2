@@ -17,12 +17,4 @@ class Project extends Model
     {
         return $this->belongsTo('App\Customer');
     }
-    public function status()
-    {
-        if($this->stage = 1)
-        {
-
-        }
-        else;
-    }
 }

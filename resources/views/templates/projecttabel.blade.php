@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 @foreach($projects as $project)
-                    <tr data-href="../project/{{$project->id}}">
+                    <tr data-href="../project/{{$project->id}}" @if($project->customer->status()) class="bg-danger" @endif>
                         <td>{{$project->name}}</td>
                     </tr>
                 @endforeach
