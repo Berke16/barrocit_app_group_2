@@ -29,7 +29,7 @@
                     <td>{{$invoice->description}}</td>
                     <td>{{$invoice->price}}</td>
                     <td>
-                        @switch($invoice->status)
+                        @switch($invoice->status())
                             @case(0)
                             <span class="label label-default">Not Sended</span>
                             @break

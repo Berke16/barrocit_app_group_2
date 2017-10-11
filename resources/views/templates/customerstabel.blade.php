@@ -22,7 +22,7 @@
             </thead>
             <tbody>
             @foreach($customers as $customer)
-                <tr data-href="../customer/{{$customer->id}}">
+                <tr data-href="../customer/{{$customer->id}}" @if($customer->status()) class="bg-danger" @endif>
                     <th>{{$customer->id}}</th>
                     <th>{{$customer->name}}</th>
                     <th>{{$customer->cp_name}}</th>
