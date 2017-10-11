@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     @if($customer->status())
-        <p class="alert alert-danger">This customer is beyond limit!</p>
+        <p class="alert alert-danger text-center">This customer is beyond limit!</p>
     @endif
     <div class="container-fluid well">
         <div class="container">

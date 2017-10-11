@@ -14,19 +14,30 @@
         <table class="table table-hover" id="dev-table">
             <thead>
             <tr>
-                <th class="col-sm-3">Cusromer nr.</th>
+                <th class="col-sm-1">Customer nr.</th>
                 <th class="col-sm-3">Name</th>
                 <th class="col-sm-3">Contact person</th>
                 <th class="col-sm-3">Latest contact</th>
+                <th class="col-sm-2 text-center">Status</th>
             </tr>
             </thead>
             <tbody>
             @foreach($customers as $customer)
-                <tr data-href="../customer/{{$customer->id}}" @if($customer->status()) class="bg-danger" @endif>
+                <tr data-href="../customer/{{$customer->id}}">
                     <th>{{$customer->id}}</th>
                     <th>{{$customer->name}}</th>
                     <th>{{$customer->cp_name}}</th>
                     <th>dd-mm-yyyy</th>
+                    <th class="text-center">
+                        @switch($customer->status())
+                            @case(true)
+                            <span class="label label-success">Good</span>
+                            @break
+                            @case(false)
+                            <span class="label label-danger" >Beyond limit</span>
+                            @break
+                        @endswitch
+                    </th>
                 </tr>
             @endforeach
             </tbody>
