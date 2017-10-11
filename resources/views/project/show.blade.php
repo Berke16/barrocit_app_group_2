@@ -4,6 +4,9 @@
     Project: {{$project->name}}
 @endsection
 @section('content')
+    @if($project->customer->status())
+        <p class="alert alert-danger text-center">This customer of the following project is beyond limit!</p>
+    @endif
     <div class="container-fluid well">
         <div class="container">
             <section class="col-xs-4">
@@ -15,10 +18,6 @@
                     <tr>
                         <th>Description:</th>
                         <td>{{$project->description}}</td>
-                    </tr>
-                    <tr>
-                        <th>Status:</th>
-                        <td>{{$project->status}}</td>
                     </tr>
                     <tr>
                         <th>Start date:</th>
@@ -98,7 +97,7 @@
                             <td>{{$invoice->description}}</td>
                             <td>{{$invoice->price}}</td>
                             <td>
-                                @switch($invoice->status)
+                                @switch($invoice->status())
                                     @case(0)
                                     <span class="label label-default">Not Sended</span>
                                     @break
