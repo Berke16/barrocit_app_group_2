@@ -35,19 +35,26 @@ class Customer extends Model
 
     public function status()
     {
-        if ($this->balance <= $this->limit)
+        if($this->saldo() > $this->limit)
         {
             return true;
         }
-        return false;
-
+        else
+            return false;
     }
-
-    public function calculateSaldo()
+    public function saldo()
     {
-        //All open invoices
-        //Calculate Saldo
-        //Return Salod
+        $price = 0;
+        foreach ($this->invoices as $invoice)
+        {
+            if($invoice->status() == 2)
+            {
+                $price = $price + $invoice->price;
+            }
+        }
+
+        return $price;
     }
+
 
 }

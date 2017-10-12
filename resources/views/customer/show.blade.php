@@ -4,6 +4,9 @@
     Customer: {{$customer->name}}
 @endsection
 @section('content')
+    @if($customer->status())
+        <p class="alert alert-danger text-center">This customer is beyond limit!</p>
+    @endif
     <div class="container-fluid well">
         <div class="container">
             <section class="col-xs-4">
@@ -89,8 +92,8 @@
                         <td>{{$customer->ledgerbill}}</td>
                     </tr>
                     <tr>
-                        <th>Balance:</th>
-                        <td>{{$customer->balance}}</td>
+                        <th>Saldo:</th>
+                        <td>{{$customer->saldo()}}</td>
                     </tr>
                     <tr>
                         <th>Limit:</th>
@@ -153,7 +156,7 @@
             </div>
             <div class="col-md-9">
                 @php
-                    $invoices = $customer->invoices->sortBy('status');
+                    $invoices = $customer->invoices;
                 @endphp
                 @include('templates.invoicestable')
             </div>

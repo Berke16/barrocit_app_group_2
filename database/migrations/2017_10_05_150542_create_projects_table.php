@@ -24,6 +24,7 @@ class CreateProjectsTable extends Migration
             $table->text('applications');
             $table->text('hardware');
             $table->string('operating_system');
+            $table->boolean('completed')->nullable();
             $table->text('appointments');
             $table->string('internal_cp');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
