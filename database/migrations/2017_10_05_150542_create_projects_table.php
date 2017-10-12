@@ -21,12 +21,11 @@ class CreateProjectsTable extends Migration
             $table->text('description');
             $table->date('start_date');
             $table->date('deadline');
-            $table->boolean('maintained_contract')->default('0');
+            $table->boolean('maintained_contract')->nullable();
             $table->text('applications');
             $table->text('hardware');
             $table->string('operating_system');
             $table->boolean('completed')->nullable();
-            $table->string('internal_cp');
             $table->integer('price');
             $table->integer('amount');
             $table->tinyInteger('kind_of_terms');
