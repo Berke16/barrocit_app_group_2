@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\ExtraAddress;
+use App\Project;
 use Illuminate\Http\Request;
 
 class customersController extends Controller
@@ -83,6 +84,12 @@ class customersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function createProject($id)
+    {
+        return view('project.create')
+            ->with('customer', Customer::find($id));
     }
 
 }
