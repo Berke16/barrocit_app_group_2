@@ -29,14 +29,18 @@
                 </div>
                 <div class="form-group">
                     <label for="start_date">*Start date</label>
-                    <input type="date"class="form-control" name="start_date">
+                    <input type="date" class="form-control" name="start_date">
                 </div>
                 <div class="form-group">
                     <label for="deadline">*Deadline</label>
                     <input type="date" class="form-control" name="deadline">
                 </div>
-                <div class="checkbox">
-                    <label for="maintained_contract"><input type="checkbox" value="1">*Maintain Contract</label>
+                <div class="form-group">
+                    <label for="maintained_contract">*Maintain Contract</label>
+                    <select name="maintained_contract" class="form-control" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
                 </div>
             </section>
             <section class="col-md-4">

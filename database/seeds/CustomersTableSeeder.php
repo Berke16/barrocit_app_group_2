@@ -32,7 +32,6 @@ class CustomersTableSeeder extends Seeder
                 'fax_number' => $faker->create()->phoneNumber,
                 'mail' => $faker->create()->companyEmail,
                 'banknumber' => $faker->create()->iban('nl'),
-                'balance' => $faker->create()->numberBetween(1,401),
                 'limit' => $faker->create()->numberBetween(1,400),
                 'vat_code' => $fakerDutch->vat,
                 'prospect' => $faker->create()->numberBetween(0,1),

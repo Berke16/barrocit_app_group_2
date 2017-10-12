@@ -88,11 +88,7 @@
                         <td>{{$customer->banknumber}}</td>
                     </tr>
                     <tr>
-                        <th>Ledgerbill:</th>
-                        <td>{{$customer->ledgerbill}}</td>
-                    </tr>
-                    <tr>
-                        <th>Saldo:</th>
+                        <th>Balance:</th>
                         <td>{{$customer->saldo()}}</td>
                     </tr>
                     <tr>

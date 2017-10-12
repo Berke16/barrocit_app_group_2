@@ -43,14 +43,14 @@ class projectsController extends Controller
             'description' => 'required|string',
             'start_date' => 'required|date',
             'deadline' => 'required|date',
-            'maintained_contract' => 'max:2',
-            'operating_system' => 'required',
-            'applications' => 'required',
-            'hardware' => 'required',
-            'price' => 'required',
-            'amount' => 'required',
+            'maintained_contract' => 'required|max:1',
+            'operating_system' => 'required|string',
+            'applications' => 'required|string',
+            'hardware' => 'required|string',
+            'price' => 'required|numeric',
+            'amount' => 'required|numeric',
             'kind_of_terms' => 'required',
-            'first_payday' => 'required',
+            'first_payday' => 'required|date',
         ]);
 
         $project = new \App\Project();

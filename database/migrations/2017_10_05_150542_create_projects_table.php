@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
             $table->text('description');
             $table->date('start_date');
             $table->date('deadline');
-            $table->boolean('maintained_contract')->nullable();
+            $table->boolean('maintained_contract')->default(0);
             $table->text('applications');
             $table->text('hardware');
             $table->string('operating_system');
