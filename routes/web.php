@@ -14,10 +14,11 @@
 Route::get('/', function () {
     return view('index');
 });
-
+Route::put('offer/{id}/status', 'offersController@status');
 Route::resource('project' , 'projectsController');
 Route::resource('home' , 'homesController');
 Route::resource('customer' , 'customersController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

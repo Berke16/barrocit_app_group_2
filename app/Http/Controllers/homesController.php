@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Invoice;
 use App\Project;
+use App\Offer;
 use Illuminate\Http\Request;
 
 class homesController extends Controller
@@ -63,7 +64,8 @@ class homesController extends Controller
                 break;
             case 'sales':
                 return view('homes.sales')
-                    ->with('customers', Customer::all());
+                    ->with('customers', Customer::all())
+                    ->with('offers', Offer::all());
                 break;
         }
     }

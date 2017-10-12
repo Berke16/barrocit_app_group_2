@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Offer;
 use Illuminate\Http\Request;
 
 class offersController extends Controller
@@ -68,7 +69,7 @@ class offersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -80,5 +81,21 @@ class offersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function status($id)
+    {
+        $offer = Offer::find($id);
+
+        if($offer->status == 1)
+        {
+            $offer->status = 0;
+        }
+        else
+            $offer->status = 1;
+        $offer->save();
+        return back();
+
+
     }
 }

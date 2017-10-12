@@ -15,4 +15,9 @@ class Offer extends Model
     {
         return $this->belongsTo('App\Customer');
     }
+
+    public function status()
+    {
+
+    }
 }

@@ -16,6 +16,8 @@ class Invoice extends Model
 
 
     /*
+     * Checks the date of sending of a invoice and returns diffrent status for:
+     *
      * Return 0 when : Not Sended
      * Return 1 when : Invoice in progress
      * Return 2 when : Invoice not payed
