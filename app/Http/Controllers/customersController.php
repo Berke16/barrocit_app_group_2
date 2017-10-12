@@ -86,10 +86,4 @@ class customersController extends Controller
         //
     }
 
-    public function createProject($id)
-    {
-        return view('project.create')
-            ->with('customer', Customer::find($id));
-    }
-
 }

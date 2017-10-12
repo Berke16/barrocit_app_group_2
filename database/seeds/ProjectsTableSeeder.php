@@ -25,7 +25,6 @@ class ProjectsTableSeeder extends Seeder
                 'applications' => $faker->create()->sentence,
                 'hardware' => $faker->create()->sentence,
                 'operating_system' => $faker->create()->word,
-                'internal_cp' => $faker->create()->name,
                 'price' => $faker->create()->numberBetween(800,9856),
                 'amount' => $faker->create()->numberBetween(1,36),
                 'kind_of_terms' => $faker->create()->numberBetween(0,2),

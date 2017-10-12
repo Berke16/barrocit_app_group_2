@@ -3,7 +3,6 @@
 @section('location')
     Add project
 @endsection
-
 @section('content')
     <h1>Create Post</h1>
     @if ($errors->any())
@@ -18,6 +17,7 @@
     <div class="container well">
         <form action="{{ action('projectsController@store')}}" class="" method="post">
             {{ csrf_field() }}
+            <input type="hidden" name="customerid" value="{{$customer->id}}">
             <section class="col-md-4">
                 <div class="form-group">
                     <label for="name">*Project name</label>

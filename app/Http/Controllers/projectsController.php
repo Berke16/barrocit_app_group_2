@@ -23,9 +23,10 @@ class projectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('project.create');
+        return view('project.create')
+            ->with('customer', Customer::find($id));
     }
 
     /**
@@ -38,6 +39,7 @@ class projectsController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string',
+            'customerid' => 'required',
             'description' => 'required|string',
             'start_date' => 'required|date',
             'deadline' => 'required|date',
@@ -53,6 +55,7 @@ class projectsController extends Controller
 
         $project = new \App\Project();
         $project->name = $request->name;
+        $project->customer_id = $request->customerid;
         $project->description = $request->description;
         $project->start_date = $request->start_date;
         $project->deadline = $request->deadline;
@@ -66,7 +69,7 @@ class projectsController extends Controller
         $project->first_payday = $request->first_payday;
         $project->save();
 
-        return redirect('project/'.Project::all()->sortByDesc('created_at')->first()->id);
+        return redirect('project/'.Project::latest()->first()->id);
 
     }
 

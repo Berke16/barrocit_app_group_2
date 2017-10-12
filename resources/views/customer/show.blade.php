@@ -144,6 +144,7 @@
                     </tr>
                 </table>
             </section>
+            <a href="{{action('projectsController@create', $customer->id)}}" class="btn">Add project</a>
         </div>
     </div>
     <div class="container">
@@ -177,8 +178,10 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{{$customer->actions->sortByDesc('created_at')->last()->date_of_action}}</td>
-                                <td>{{$customer->actions->last()->description}}</td>
+                                @if($customer->actions == NULL)
+                                    <td>{{$customer->actions->sortByDesc('created_at')->last()->date_of_action}}</td>
+                                    <td>{{$customer->actions->last()->description}}</td>
+                                @endif
                             </tr>
                             </tbody>
                         </table>

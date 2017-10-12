@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('customer/{id}/project/create', 'customersController@createProject');
+
 Route::resource('project' , 'projectsController');
+Route::get('customer/{id}/project/create', 'projectsController@create');
 Route::resource('home' , 'homesController');
 Route::resource('customer' , 'customersController');
 Auth::routes();
