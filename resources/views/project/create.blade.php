@@ -4,16 +4,6 @@
     Add project
 @endsection
 @section('content')
-    <h1>Create Post</h1>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <div class="container well">
         <form action="{{ action('projectsController@store')}}" class="" method="post">
             {{ csrf_field() }}

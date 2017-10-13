@@ -34,7 +34,20 @@ class offersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'offerNumber' => 'required|numeric',
+            'description' => 'required|string',
+        ]);
+
+        $offer = new \App\Offer();
+        $offer->customer_id = $request->customerid;
+        $offer->number = $request->offerNumber;
+        $offer->description = $request->description;
+        $request->status = 0;
+
+        $offer->save();
+
+        return back();
     }
 
     /**
