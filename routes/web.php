@@ -11,7 +11,12 @@
 |
 */
 
+
 Route::get('/', function () {
+    if (Auth::check())
+    {
+        return redirect('/home');
+    }
     return view('index');
 });
 
@@ -25,5 +30,3 @@ Route::resource('home' , 'homesController');
 Route::resource('customer' , 'customersController');
 Route::resource('invoice' , 'invoicesController');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

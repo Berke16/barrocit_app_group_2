@@ -27,7 +27,7 @@
                     <th>{{$customer->id}}</th>
                     <th>{{$customer->name}}</th>
                     <th>{{$customer->cp_name}}</th>
-                    <th>dd-mm-yyyy</th>
+                    <th>@if($customer->actions->count() > 0){{$customer->actions->last()->date_of_action}}@endif</th>
                     <th class="text-center">
                         @switch($customer->status())
                             @case(false)

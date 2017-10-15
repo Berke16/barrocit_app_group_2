@@ -4,15 +4,6 @@
     Add customer
 @endsection
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
     <!-- This is a form that an employee needs to fill to create a customer. This "new" customer can't get a project immediately, a finance employee needs to do a BCR check first to see if the customer is worth to get a project. -->
     <div class="container well">
         <form action="{{action('customersController@store')}}" class="" method="post">

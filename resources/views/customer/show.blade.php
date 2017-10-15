@@ -4,15 +4,6 @@
     Customer: {{$customer->name}}
 @endsection
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     @if($customer->status())
         <p class="alert alert-danger text-center">This customer is beyond limit!</p>
     @endif
@@ -189,7 +180,7 @@
                             <tbody>
                             <tr>
                                 @if($customer->actions->count() > 0)
-                                    <td>{{$customer->actions->first()->date_of_action}}</td>
+                                    <td>{{$customer->actions->last()->date_of_action}}</td>
                                     <td>{{$customer->actions->last()->description}}</td>
                                     @else
                                 @endif

@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class homesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,24 @@ class homesController extends Controller
      */
     public function index()
     {
-        //
+        switch (\Auth::user()->type){
+            case 'development':
+                return view('homes.development')
+                    ->with('customers', Customer::all())
+                    ->with('projects', Project::all());
+                break;
+            case 'finance':
+                return view('homes.finance')
+                    ->with('customers', Customer::all())
+                    ->with('projects', Project::all())
+                    ->with('invoices', Invoice::all());
+                break;
+            case 'sales':
+                return view('homes.sales')
+                    ->with('customers', Customer::all());
+                break;
+        }
+        return view('index');
     }
 
     /**
@@ -49,23 +70,6 @@ class homesController extends Controller
     public function show($id)
     {
 
-        switch ($id){
-            case 'development':
-                return view('homes.development')
-                    ->with('customers', Customer::all())
-                    ->with('projects', Project::all());
-                break;
-            case 'finance':
-                return view('homes.finance')
-                    ->with('customers', Customer::all())
-                    ->with('projects', Project::all())
-                    ->with('invoices', Invoice::all());
-                break;
-            case 'sales':
-                return view('homes.sales')
-                    ->with('customers', Customer::all());
-                break;
-        }
     }
 
     /**
