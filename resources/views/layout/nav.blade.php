@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Barroc-IT.') }}
+                {{ config('app.name', 'Barroc-IT.') }}  @yield('location')
             </a>
         </div>
 
@@ -53,3 +53,12 @@
         </div>
     </div>
 </nav>
+@if ($errors->any())
+    <div class="alert alert-danger text-center">
+        <ul class="">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif

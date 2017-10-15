@@ -4,6 +4,15 @@
     Customer: {{$customer->name}}
 @endsection
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if($customer->status())
         <p class="alert alert-danger text-center">This customer is beyond limit!</p>
     @endif
@@ -88,11 +97,7 @@
                         <td>{{$customer->banknumber}}</td>
                     </tr>
                     <tr>
-                        <th>Ledgerbill:</th>
-                        <td>{{$customer->ledgerbill}}</td>
-                    </tr>
-                    <tr>
-                        <th>Saldo:</th>
+                        <th>Balance:</th>
                         <td>{{$customer->saldo()}}</td>
                     </tr>
                     <tr>
@@ -144,6 +149,12 @@
                     </tr>
                 </table>
             </section>
+            <div class="btn-group pull-right">
+                <a href="{{action('projectsController@create', $customer->id)}}" class="btn btn-default">Add project</a>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add Invoice</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add Action</button>
+            </div>
         </div>
     </div>
     <div class="container">
@@ -177,8 +188,11 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{{$customer->actions->sortByDesc('created_at')->last()->date_of_action}}</td>
-                                <td>{{$customer->actions->last()->description}}</td>
+                                @if($customer->actions->count() > 0)
+                                    <td>{{$customer->actions->first()->date_of_action}}</td>
+                                    <td>{{$customer->actions->last()->description}}</td>
+                                    @else
+                                @endif
                             </tr>
                             </tbody>
                         </table>
@@ -190,7 +204,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Offers</h3>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
+
                         </div>
                     </div>
                     <div style="height: 200px; overflow: scroll; overflow-x: hidden ;">
@@ -226,9 +240,9 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Actions</h3>
+                    <h3 class="panel-title">Appointments</h3>
                     <div class="pull-right">
-                        <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addacctionmodal">Add Action</button>
+
                     </div>
                 </div>
                 <div style="height: 460px; overflow: scroll; overflow-x: hidden;">
@@ -264,8 +278,8 @@
                     <h4 class="modal-title">Add offer</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" class="">
-                        {{ csrf_field() }}
+                    <form action="{{action('offersController@store')}}" method="post" class="">
+                        {{ csrf_field()}}
                         <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <div class="form-group">
                             <label for="offerNumber">*Offer number</label>
@@ -275,6 +289,63 @@
                             <label for="description">*Description</label>
                             <input type="text" class="form-control" id="description" name="description" required>
                         </div>
+                        <div class="form-group">
+                            <label for="price">*Total project price</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">€</span>
+                                <input type="text" class="form-control" aria-label="amount" name="price">
+                                <span class="input-group-addon">.00</span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="customerid" value="{{$customer->id}}">
+                        <div class="modal-footer">
+                            <input type="submit" value="Add" class="btn pull-right">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modelbox voor het maken van de invoices. -->
+
+    <div id="invoicemodal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add offer</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ action('invoicesController@store')}}" method="post" class="">
+                        {{ csrf_field()}}
+                        <h4 class="text-center">{{$customer->name.":"}}</h4>
+                        <div class="form-group">
+                            <label for="description">*Description</label>
+                            <input type="text" class="form-control" id="description" name="description" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">*Price</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">€</span>
+                                <input type="text" class="form-control" aria-label="amount" name="price">
+                                <span class="input-group-addon">.00</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="payday">*Pay day</label>
+                            <input type="date" class="form-control" name="payday">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_of_sending">*Date of sending</label>
+                            <input type="date" class="form-control" name="date_of_sending" required>
+                        </div>
+                        <label for="projectid">Project:</label>
+                        <select class="form-control" name="projectid" id="projectid">
+                            @foreach($customer->projects as $project)
+                                <option value="{{$project->id}}">{{$project->name}}</option>
+                                @endforeach
+                        </select>
                         <div class="modal-footer">
                             <input type="submit" value="Add" class="btn pull-right">
                         </div>
@@ -291,21 +362,23 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add action</h4>
+                    <h4 class="modal-title">Add appointment</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" class="">
+                    <form action="{{action('actionsController@store')}}" method="post" class="">
                         {{ csrf_field() }}
                         <h4 class="text-center">{{$customer->name.":"}}</h4>
+                        <input type="hidden" name="customerid" value="{{$customer->id}}">
                         <div class="form-group">
-                            <label for="action">*Action</label>
-                            <select name="action" id="action" class="form-control" required>
-                                <option value="action">Next action</option>
-                                <option value="action">Action</option>
-                            </select>
+                            <label for="date_of_action">*Date:</label>
+                            <input type="date" class="form-control" id="date_of_action" name="date_of_action" required>
                         </div>
                         <div class="form-group">
-                            <label for="description">*Description</label>
+                            <label for="time_of_action">*Time:</label>
+                            <input type="time" class="form-control" id="time_of_action" name="time_of_action" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">*Description:</label>
                             <input type="text" class="form-control" id="description" name="description" required>
                         </div>
                         <div class="modal-footer">

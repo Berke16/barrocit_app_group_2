@@ -14,7 +14,7 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('tbl_invoices', function (Blueprint $table) {
-            $table->integer('id')->nullable();
+            $table->increments('id');
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('tbl_projects');
             $table->text('description');

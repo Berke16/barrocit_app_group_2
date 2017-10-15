@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,10 @@ class projectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('project.create');
+        return view('project.create')
+            ->with('customer', Customer::find($id));
     }
 
     /**
@@ -35,7 +37,40 @@ class projectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'customerid' => 'required',
+            'description' => 'required|string',
+            'start_date' => 'required|date',
+            'deadline' => 'required|date',
+            'maintained_contract' => 'required|max:1',
+            'operating_system' => 'required|string',
+            'applications' => 'required|string',
+            'hardware' => 'required|string',
+            'price' => 'required|numeric',
+            'amount' => 'required|numeric',
+            'kind_of_terms' => 'required',
+            'first_payday' => 'required|date',
+        ]);
+
+        $project = new \App\Project();
+        $project->name = $request->name;
+        $project->customer_id = $request->customerid;
+        $project->description = $request->description;
+        $project->start_date = $request->start_date;
+        $project->deadline = $request->deadline;
+        $project->maintained_contract = $request->maintained_contract;
+        $project->operating_system = $request->operating_system;
+        $project->applications = $request->applications;
+        $project->hardware = $request->hardware;
+        $project->price = $request->price;
+        $project->amount = $request->amount;
+        $project->kind_of_terms = $request->kind_of_terms;
+        $project->first_payday = $request->first_payday;
+        $project->save();
+
+        return redirect('project/'.Project::latest()->first()->id);
+
     }
 
     /**

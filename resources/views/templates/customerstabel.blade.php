@@ -30,10 +30,10 @@
                     <th>dd-mm-yyyy</th>
                     <th class="text-center">
                         @switch($customer->status())
-                            @case(true)
+                            @case(false)
                             <span class="label label-success">Good</span>
                             @break
-                            @case(false)
+                            @case(true)
                             <span class="label label-danger" >Beyond limit</span>
                             @break
                         @endswitch
