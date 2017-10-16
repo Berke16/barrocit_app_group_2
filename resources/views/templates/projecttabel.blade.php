@@ -15,7 +15,7 @@
             <thead>
                 <tr>
                     <th class="text-center">Name</th>
-                    <th class="status">Status</th>
+                    <th class="text-center">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +25,7 @@
                         <td>
                             @switch($project->status())
                                 @case(0)
-                                <span class="label label-default">Normal</span>
+                                <span class="label label-default ">Normal</span>
                                 @break
                                 @case(1)
                                 <span class="label label-danger">RedTube</span>

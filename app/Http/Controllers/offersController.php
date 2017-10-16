@@ -97,7 +97,8 @@ class offersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Offer::destroy($id);
+        return redirect('/home');
     }
 
     public function status($id)

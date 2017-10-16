@@ -14,7 +14,7 @@
         <table class="table table-hover" id="dev-table">
             <thead>
             <tr>
-                <th class="col-sm-1">Customer nr.</th>
+                <th class="col-sm-1">Nr.</th>
                 <th class="col-sm-3">Name</th>
                 <th class="col-sm-3">Contact person</th>
                 <th class="col-sm-3">Latest contact</th>

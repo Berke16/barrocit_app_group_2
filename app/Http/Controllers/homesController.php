@@ -35,6 +35,7 @@ class homesController extends Controller
                 break;
             case 'sales':
                 return view('homes.sales')
+                    ->with('offers', Offer::all())
                     ->with('customers', Customer::all());
                 break;
         }

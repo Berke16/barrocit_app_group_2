@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::resource('project' , 'projectsController');
 Route::get('customer/{id}/project/create', 'projectsController@create');
 Route::get('customer/{id}/invoice/create', 'invoicesController@create');
+Route::put('offer/{id}', 'offersController@status');
 Route::resource('offer' , 'offersController');
 Route::resource('action' , 'actionsController');
 Route::resource('home' , 'homesController');

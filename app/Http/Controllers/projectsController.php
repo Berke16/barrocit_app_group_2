@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class projectsController extends Controller
 {
+
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -120,6 +122,7 @@ class projectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::destroy($id);
+        return redirect('/home');
     }
 }

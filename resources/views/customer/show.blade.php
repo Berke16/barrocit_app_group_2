@@ -190,42 +190,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12" >
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Offers</h3>
-                        <div class="pull-right">
+            <div class="col-md-12">
 
-                        </div>
-                    </div>
-                    <div style="height: 200px; overflow: scroll; overflow-x: hidden ;">
-                        <table class="table table-hover text-center" id="invoices-table">
-                            <thead>
-                            <tr>
-                                <th class="text-center col-md-6">Offernumbers</th>
-                                <th class="text-center col-md-6">Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($customer->offers as $offer)
-                                <tr>
-                                    <td>{{$offer->number}}</td>
-                                    <td>
-                                        @switch($offer->status)
-                                            @case(0)
-                                            <span class="label label-default">Not Accepted</span>
-                                            @break
-                                            @case(1)
-                                            <span class="label label-success">Accepted</span>
-                                            @break
-                                        @endswitch
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                @php $offers = $customer->offers; @endphp
+                @include('templates.offerTable')
+
             </div>
         </section>
         <div class="col-md-6">

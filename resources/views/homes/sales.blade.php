@@ -18,7 +18,5 @@
                     @include('templates.offerTable')
                 </div>
             </div>
-
-
     </div>
 @endsection

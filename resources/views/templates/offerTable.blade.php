@@ -5,13 +5,13 @@
             <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
         </div>
     </div>
-    <div style="height: 250px; overflow: scroll; overflow-x: hidden ;">
+    <div style="height: 200px; overflow: scroll; overflow-x: hidden ;">
         <table class="table table-hover text-center" id="invoices-table">
             <thead>
             <tr>
                 <th class="text-center col-md-6">Offernumbers</th>
                 <th class="text-center col-md-6">Status</th>
-                <th class="text-center col-md-6">change status</th>
+
             </tr>
             </thead>
             <tbody>
@@ -19,26 +19,29 @@
                 <tr>
                     <td>{{$offer->number}}</td>
                     <td>
-                        @switch($offer->status)
-                            @case(0)
-                            <span class="label label-default">Not Accepted</span>
-                            @break
-                            @case(1)
-                            <span class="label label-success">Accepted</span>
-                            @break
-                        @endswitch
-                    </td>
-                    <td>
-                        <form action="{{action('offersController@status', $offer->id)}}" method="post">
+                        <form action="{{action('offersController@status', $offer->id)}}" method="post" style="margin: 0;">
                             {{csrf_field()}}
                             {{method_field('PUT')}}
-                            @if($offer->status == 1)
-                                <button class="btn btn-success glyphicon glyphicon-thumbs-up"></button>
-                            @elseif($offer->status == 0)
-                            <button class="btn btn-danger glyphicon glyphicon-thumbs-down"></button>
-                                @endif
+                            @switch($offer->status)
+                                @case(0)
+                                <button type="submit" class="btn btn-danger btn-xs">Not accepted</button>
+                                @break
+                                @case(1)
+                                <button type="submit" class="btn btn-success btn-xs">Accepted</button>
+                                @break
+                            @endswitch
                         </form>
                     </td>
+                    <td>
+                        <form action="{{action('offersController@destroy', $offer->id)}}" method="post">
+                            {{csrf_field()}}
+                            {{method_field('DELETE')}}
+                            <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                        </form>
+                    </td>
+
+
+
 
                 </tr>
             @endforeach

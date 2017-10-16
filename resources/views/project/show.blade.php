@@ -66,56 +66,57 @@
                 </table>
             </section>
         </div>
+            <form action="{{action('projectsController@destroy', $project->id)}}" method="post" class="btn-group pull-right">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add Invoice</button>
+                {{csrf_field()}}
+                {{method_field('DELETE')}}
+                <input class="btn btn-default" type="submit" value="Delete project">
+            </form>
     </div>
     <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Invoices</h3>
-                <div class="pull-right">
-                <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-                    <i class="glyphicon glyphicon-filter"></i>
-                </span>
+       @php $invoices = $project->invoices @endphp
+        @include('templates.invoicestable')
+    </div>
+
+    <!-- Modelbox voor het maken van de invoices. -->
+
+    <div id="invoicemodal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add offer</h4>
                 </div>
-            </div>
-            <div class="panel-body">
-                <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Invoces Table">
-            </div>
-            <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
-                <table class="table table-hover text-center" id="invoices-table">
-                    <thead>
-                    <tr>
-                        <th class="text-center">Invoice nr.</th>
-                        <th class="text-center">Description</th>
-                        <th class="text-center">Total</th>
-                        <th class="text-center">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($project->invoices as $invoice)
-                        <tr>
-                            <td>{{$invoice->id}}</td>
-                            <td>{{$invoice->description}}</td>
-                            <td>{{$invoice->price}}</td>
-                            <td>
-                                @switch($invoice->status())
-                                    @case(0)
-                                    <span class="label label-default">Not Sended</span>
-                                    @break
-                                    @case(1)
-                                    <span class="label label-warning">Sended</span>
-                                    @break
-                                    @case(2)
-                                    <span class="label label-danger">Late</span>
-                                    @break
-                                    @case(3)
-                                    <span class="label label-success">Payed</span>
-                                    @break
-                                @endswitch
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <div class="modal-body">
+                    <form action="{{ action('invoicesController@store')}}" method="post" class="">
+                        {{ csrf_field()}}
+                        <h4 class="text-center">{{$project->customer->name.":"}}</h4>
+                        <div class="form-group">
+                            <label for="description">*Description</label>
+                            <input type="text" class="form-control" id="description" name="description" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">*Price</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">€</span>
+                                <input type="text" class="form-control" aria-label="amount" name="price">
+                                <span class="input-group-addon">.00</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="payday">*Pay day</label>
+                            <input type="date" class="form-control" name="payday">
+                        </div>
+                        <div class="form-group">
+                            <label for="date_of_sending">*Date of sending</label>
+                            <input type="date" class="form-control" name="date_of_sending" required>
+                        </div>
+                        <input type="hidden" name="projectid" value="{{$project->id}}">
+                        <div class="modal-footer">
+                            <input type="submit" value="Add" class="btn pull-right">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
