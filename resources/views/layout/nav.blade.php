@@ -11,8 +11,8 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Barroc-IT.') }}
+            <a class="navbar-brand" href="@guest {{url('/')}} @else {{url('/home')}} @endguest">
+                {{ config('app.name', 'Barroc-IT.') }}  @yield('location')
             </a>
         </div>
 
@@ -26,15 +26,17 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @guest
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
                             <ul class="dropdown-menu" role="menu">
+                                @if(Auth::user()->type == 'sales')
+                                    <li>
+                                        <a href="{{action('customersController@create')}}">Make Customer</a>
+                                    </li>
+                                @endif
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -53,3 +55,12 @@
         </div>
     </div>
 </nav>
+@if ($errors->any())
+    <div class="alert alert-danger text-center">
+        <ul class="">
+            @foreach ($errors->all() as $error)
+                <li class="list-unstyled">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif

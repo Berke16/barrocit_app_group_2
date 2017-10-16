@@ -11,14 +11,22 @@
 |
 */
 
+
 Route::get('/', function () {
+    if (Auth::check())
+    {
+        return redirect('/home');
+    }
     return view('index');
 });
-Route::put('offer/{id}/status', 'offersController@status');
+
+
 Route::resource('project' , 'projectsController');
+Route::get('customer/{id}/project/create', 'projectsController@create');
+Route::get('customer/{id}/invoice/create', 'invoicesController@create');
+Route::resource('offer' , 'offersController');
+Route::resource('action' , 'actionsController');
 Route::resource('home' , 'homesController');
 Route::resource('customer' , 'customersController');
-
+Route::resource('invoice' , 'invoicesController');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -16,10 +16,10 @@ class CreateExtraaddressTable extends Migration
         Schema::create('tbl_extra_address', function (Blueprint $table) {
             $table->integer('customer_id')->unsigned()->unique();
             $table->foreign('customer_id')->references('id')->on('tbl_customers');
-            $table->string('street');
-            $table->string('housenumber');
-            $table->string('zip_code');
-            $table->string('residence');
+            $table->string('street')->nullable();
+            $table->string('housenumber')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('residence')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
