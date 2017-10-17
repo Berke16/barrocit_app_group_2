@@ -4,8 +4,9 @@
     Project: {{$project->name}}
 @endsection
 @section('content')
-
-
+    @if($project->customer->status())
+        <p class="alert alert-danger text-center">This customer of the following project is beyond limit!</p>
+    @endif
     <div class="container-fluid well">
         <div class="container">
             <section class="col-xs-4">
@@ -19,10 +20,6 @@
                         <td>{{$project->description}}</td>
                     </tr>
                     <tr>
-                        <th>Status:</th>
-                        <td>{{$project->status}}</td>
-                    </tr>
-                    <tr>
                         <th>Start date:</th>
                         <td>dd-mm-yyyy</td>
                     </tr>
@@ -31,7 +28,7 @@
                         <td>dd-mm-yyyy</td>
                     </tr>
                     <tr>
-                        <th>Mentained contract:</th>
+                        <th>Maintained contract:</th>
                         <td>{{$project->maintained_contract}}</td>
                     </tr>
                 </table>
@@ -81,15 +78,15 @@
                 </div>
             </div>
             <div class="panel-body">
-                <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Invoces Table" />
+                <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Invoces Table">
             </div>
             <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
                 <table class="table table-hover text-center" id="invoices-table">
                     <thead>
                     <tr>
-                        <th class="text-center">Invoice Nr.</th>
+                        <th class="text-center">Invoice nr.</th>
                         <th class="text-center">Description</th>
-                        <th class="text-center">Totaal</th>
+                        <th class="text-center">Total</th>
                         <th class="text-center">Status</th>
                     </tr>
                     </thead>
@@ -100,7 +97,7 @@
                             <td>{{$invoice->description}}</td>
                             <td>{{$invoice->price}}</td>
                             <td>
-                                @switch($invoice->status)
+                                @switch($invoice->status())
                                     @case(0)
                                     <span class="label label-default">Not Sended</span>
                                     @break
@@ -122,5 +119,4 @@
             </div>
         </div>
     </div>
-
 @endsection
