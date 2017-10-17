@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label for="applications">*Applications</label>
-                    <textarea class="form-control noresize" name="applications" id="" rows="3" required>CSV (app,app,...)</textarea>
+                    <textarea class="form-control noresize" name="applications" id="" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="hardware">*Hardware</label>
