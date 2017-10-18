@@ -19,7 +19,7 @@
                 <th class="col-sm-3">Contact person</th>
                 <th class="col-sm-3">Latest contact</th>
                 <th class="col-sm-1 text-center">Status</th>
-                <th class="col-sm-1">Remove</th>
+                <th class="col-sm-1"></th>
 
             </tr>
             </thead>
@@ -28,7 +28,7 @@
                 <tr>
                     <th>{{$customer->id}}</th>
                     <th data-href="../customer/{{$customer->id}}">{{$customer->name}}</th>
-                    <th>{{$customer->cp_name}}</th>
+                    <th>{{$customer->cp_name}} {{$customer->cp_insertion}} {{$customer->lastname}}</th>
                     <th>@if($customer->actions->count() > 0){{$customer->actions->last()->date_of_action}}@endif</th>
                     <th class="text-center">
                         @switch($customer->status())
@@ -40,7 +40,7 @@
                             @break
                         @endswitch
                     </th>
-                    <th>
+                    <th class="text-center">
                         <form action="{{action('CustomersController@destroy',$customer->id)}}" method="post" style="z-index: 100; margin: 0;">
                             {{csrf_field()}}
                             {{method_field('DELETE')}}

@@ -28,46 +28,45 @@ class customersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'companyName' => 'required|string',
-            'Name' => 'nullable|string',
-            'Insertion' => 'nullable|string',
-            'Lastname' => 'nullable|string',
-            'Email' => 'nullable|email',
-            'Telephonenumber' => 'required|numeric',
-            'Telephonenumber2' => 'nullable|numeric',
-            'FaxNumber' => 'nullable|numeric',
-            'Street' => 'nullable|string',
-            'Zipcode' => 'nullable|string',
-            'Housenumber' => 'nullable|numeric',
-            'Residence' => 'nullable|string',
-            'Street2' => 'nullable|string',
-            'Zipcode2' => 'nullable|string',
-            'Housenumber2' => 'nullable|string',
-            'Residence2' => 'nullable|string',
-            'Banknumber' => 'nullable|string',
-            'VATCode' => 'nullable|numeric',
+            'companyName'               => 'required|string',
+            'Name'                      => 'nullable|string',
+            'Insertion'                 => 'nullable|string',
+            'Lastname'                  => 'nullable|string',
+            'Email'                     => 'nullable|email',
+            'Telephonenumber'           => 'required|numeric',
+            'Telephonenumber2'          => 'nullable|numeric',
+            'FaxNumber'                 => 'nullable|numeric',
+            'Street'                    => 'nullable|string',
+            'Zipcode'                   => 'nullable|string',
+            'Housenumber'               => 'nullable|numeric',
+            'Residence'                 => 'nullable|string',
+            'Street2'                   => 'nullable|string',
+            'Zipcode2'                  => 'nullable|string',
+            'Housenumber2'              => 'nullable|string',
+            'Residence2'                => 'nullable|string',
+            'Banknumber'                => 'nullable|string',
+            'VATCode'                   => 'nullable|numeric',
         ]);
 
-
         $customer = new \App\Customer();
-            $customer->name = $request->companyName;
-            $customer->street = $request->Street;
-            $customer->housenumber = $request->Housenumber;
-            $customer->zip_code = $request->Zipcode;
-            $customer->residence = $request->Residence;
-            $customer->street2 = $request->Street2;
-            $customer->housenumber2 = $request->Housenumber2;
-            $customer->zip_code2 = $request->Zipcode2;
-            $customer->residence2 = $request->Residence2;
-            $customer->cp_name = $request->Name;
-            $customer->cp_lastname = $request->Lastname;
-            $customer->cp_insertion = $request->Insertion;
-            $customer->tele = $request->Telephonenumber;
-            $customer->tele2 = $request->Telephonenumber2;
-            $customer->fax_number = $request->FaxNumber;
-            $customer->mail = $request->Email;
-            $customer->vat_code = $request->VATCode;
-            $customer->banknumber = $request->Banknumber;
+            $customer->name             = $request->companyName;
+            $customer->street           = $request->Street;
+            $customer->housenumber      = $request->Housenumber;
+            $customer->zip_code         = $request->Zipcode;
+            $customer->residence        = $request->Residence;
+            $customer->street2          = $request->Street2;
+            $customer->housenumber2     = $request->Housenumber2;
+            $customer->zip_code2        = $request->Zipcode2;
+            $customer->residence2       = $request->Residence2;
+            $customer->cp_name          = $request->Name;
+            $customer->cp_lastname      = $request->Lastname;
+            $customer->cp_insertion     = $request->Insertion;
+            $customer->tele             = $request->Telephonenumber;
+            $customer->tele2            = $request->Telephonenumber2;
+            $customer->fax_number       = $request->FaxNumber;
+            $customer->mail             = $request->Email;
+            $customer->vat_code         = $request->VATCode;
+            $customer->banknumber       = $request->Banknumber;
         $customer->save();
 
         return redirect(action('CustomersController@show', $customer->id));
