@@ -1,7 +1,7 @@
 
 @extends('layout.master')
 @section('location')
-    Add customer
+Add customer
 @endsection
 @section('content')
 <!-- This is a form that an employee needs to fill to create a customer. This "new" customer can't get a project immediately, a finance employee needs to do a BCR check first to see if the customer is worth to get a project. -->
