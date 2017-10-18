@@ -57,27 +57,19 @@
                     </tr>
                     <tr>
                         <th>Address 2:</th>
-                        @if($customer->extraaddress != NULL)
-                            <td>{{$customer->extraaddress->street}}</td>
-                        @endif
+                        <td>{{$customer->street2}}</td>
                     </tr>
                     <tr>
                         <th>Zipcode 2:</th>
-                        @if($customer->extraaddress != NULL)
-                            <td>{{$customer->extraaddress->zip_code}}</td>
-                        @endif
+                        <td>{{$customer->zip_code2}}</td>
                     </tr>
                     <tr>
                         <th>Housenumber 2:</th>
-                        @if($customer->extraaddress != NULL)
-                            <td>{{$customer->extraaddress->housenumber}}</td>
-                        @endif
+                        <td>{{$customer->housenumber2}}</td>
                     </tr>
                     <tr>
                         <th>Residence 2:</th>
-                        @if($customer->extraaddress != NULL)
-                            <td>{{$customer->extraaddress->residence}}</td>
-                        @endif
+                        <td>{{$customer->residence2}}</td>
                     </tr>
                 </table>
             </section>
@@ -141,7 +133,7 @@
                 </table>
             </section>
             <div class="btn-group pull-right">
-                <a href="{{action('projectsController@create', $customer->id)}}" class="btn btn-default">Add project</a>
+                <a href="{{action('ProjectsController@create', $customer->id)}}" class="btn btn-default">Add project</a>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add Invoice</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add Appointment</button>
@@ -219,7 +211,7 @@
                                 <td>{{$action->date_of_action}}</td>
                                 <td>{{$action->description}}</td>
                                 <td>
-                                    <form action="{{action('actionsController@destroy', $action->id)}}" method="post">
+                                    <form action="{{action('ActionsController@destroy', $action->id)}}" method="post">
                                         {{csrf_field()}}
                                         {{method_field('DELETE')}}
                                         <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
@@ -245,7 +237,7 @@
                     <h4 class="modal-title">Add offer</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{action('offersController@store')}}" method="post" class="">
+                    <form action="{{action('OffersController@store')}}" method="post" class="">
                         {{ csrf_field()}}
                         <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <div class="form-group">
@@ -284,7 +276,7 @@
                     <h4 class="modal-title">Add offer</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('invoicesController@store')}}" method="post" class="">
+                    <form action="{{ action('InvoicesController@store')}}" method="post" class="">
                         {{ csrf_field()}}
                         <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <div class="form-group">
@@ -332,7 +324,7 @@
                     <h4 class="modal-title">Add appointment</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{action('actionsController@store')}}" method="post" class="">
+                    <form action="{{action('ActionsController@store')}}" method="post" class="">
                         {{ csrf_field() }}
                         <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <input type="hidden" name="customerid" value="{{$customer->id}}">

@@ -8,31 +8,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Customer extends Model
 {
     use softDeletes;
-    protected $table = "tbl_customers";
-
-    public function extraaddress()
-    {
-        return $this->hasOne('App\ExtraAddress');
-    }
 
     public function projects()
     {
-        return $this->hasMany('App\Project');
+        return $this->hasMany(Project::class);
     }
 
     public function offers()
     {
-        return $this->hasMany('App\Offer');
+        return $this->hasMany(Offer::class);
     }
 
     public function actions()
     {
-        return $this->hasMany('App\Action');
+        return $this->hasMany(Action::class);
     }
 
     public function invoices()
     {
-        return $this->hasManyThrough('App\Invoice', 'App\Project');
+        return $this->hasManyThrough(Invoice::class, Project::class);
     }
 
 /*
@@ -41,9 +35,6 @@ class Customer extends Model
  * else if returns false and it sets it to beyond limit
  *
  */
-
-
-
     public function status()
     {
         if($this->saldo() > $this->limit)
@@ -56,9 +47,6 @@ class Customer extends Model
 
     /*
      * checks the invoice status and if the status is 2 it shows you the invoice price
-     *
-     *
-     *
      */
     public function saldo()
     {

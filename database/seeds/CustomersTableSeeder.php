@@ -18,7 +18,7 @@ class CustomersTableSeeder extends Seeder
 
         for ($i = 0; $i < 50; $i++)
         {
-            DB::table('tbl_customers')->insert([
+            DB::table('customers')->insert([
                 'name' => $faker->create()->company,
                 'street' => $faker->create()->streetName,
                 'housenumber' => $faker->create()->buildingNumber,

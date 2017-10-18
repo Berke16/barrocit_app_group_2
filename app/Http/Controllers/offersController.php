@@ -11,25 +11,6 @@ class offersController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -56,40 +37,6 @@ class offersController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -98,20 +45,21 @@ class offersController extends Controller
     public function destroy($id)
     {
         Offer::destroy($id);
-        return redirect('/home');
+        return back();
     }
 
     public function statusChange($id)
     {
         $offer = Offer::find($id);
 
-        if($offer->status == 1)
+        if($offer->status == true)
         {
-            $offer->status = 0;
+            $offer->status = false;
         }
         else
-            $offer->status = 1;
+            $offer->status = true;
         $offer->save();
+
         return back();
 
 

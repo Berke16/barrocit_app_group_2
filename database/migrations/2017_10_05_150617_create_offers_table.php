@@ -13,13 +13,13 @@ class CreateOffersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_offers', function (Blueprint $table) {
+        Schema::create('offers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
-            $table->foreign('customer_id')->references('id')->on('tbl_customers');
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->integer('number');
             $table->text('description');
-            $table->tinyInteger('status')->default('0');
+            $table->boolean('status')->default(false);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
@@ -33,6 +33,6 @@ class CreateOffersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_offers');
+        Schema::dropIfExists('offers');
     }
 }

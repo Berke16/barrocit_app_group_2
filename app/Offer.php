@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Offer extends Model
 {
-    protected $table = 'tbl_offers';
-
 
     use SoftDeletes;
     /**
@@ -16,11 +14,6 @@ class Offer extends Model
      */
     public function customer()
     {
-        return $this->belongsTo('App\Customer');
-    }
-
-    public function status()
-    {
-
+        return $this->belongsTo(Customer::class);
     }
 }

@@ -8,16 +8,14 @@ class Project extends Model
 {
     use SoftDeletes;
 
-    protected $table = "tbl_projects";
-
     public function invoices()
     {
-        return $this->hasMany('App\Invoice');
+        return $this->hasMany(Invoice::class);
     }
 
     public function customer()
     {
-        return $this->belongsTo('App\Customer');
+        return $this->belongsTo(Customer::class);
     }
 
     /* if project completed is true, dont tell status... weirdo*/
@@ -29,7 +27,7 @@ class Project extends Model
      */
     public function status()
     {
-        if ($this->completed != 1)
+        if ($this->completed != true)
         {
             return $this->customer->status();
         }

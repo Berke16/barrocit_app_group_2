@@ -5,7 +5,7 @@
 @endsection
 @section('menu')
     <li>
-        <a href="../customer/create">Add customer</a>
+        <a href="{{'CustomersController@create'}}">Add customer</a>
     </li>
 @endsection
 @section('content')

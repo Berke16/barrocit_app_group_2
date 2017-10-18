@@ -9,13 +9,11 @@ class Action extends Model
 {
     use softDeletes;
 
-    protected $table = 'tbl_actions';
-
     /**
      * @return string
      */
     public function customer()
     {
-        return $this->belongsTo("App\Customer");
+        return $this->belongsTo(Customer::class);
     }
 }

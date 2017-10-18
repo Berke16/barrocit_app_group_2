@@ -65,13 +65,13 @@
                     </tr>
                 </table>
             </section>
-        </div>
-            <form action="{{action('projectsController@destroy', $project->id)}}" method="post" class="btn-group pull-right">
+            <form action="{{action('ProjectsController@destroy', $project->id)}}" method="post" class="btn-group pull-right">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add Invoice</button>
                 {{csrf_field()}}
                 {{method_field('DELETE')}}
                 <input class="btn btn-default" type="submit" value="Delete project">
             </form>
+        </div>
     </div>
     <div class="container">
        @php $invoices = $project->invoices @endphp
@@ -88,7 +88,7 @@
                     <h4 class="modal-title">Add offer</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('invoicesController@store')}}" method="post" class="">
+                    <form action="{{ action('InvoicesController@store')}}" method="post" class="">
                         {{ csrf_field()}}
                         <h4 class="text-center">{{$project->customer->name.":"}}</h4>
                         <div class="form-group">

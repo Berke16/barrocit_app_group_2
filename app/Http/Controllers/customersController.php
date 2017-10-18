@@ -13,21 +13,7 @@ class customersController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('customer.create');
@@ -69,6 +55,10 @@ class customersController extends Controller
             $customer->housenumber = $request->Housenumber;
             $customer->zip_code = $request->Zipcode;
             $customer->residence = $request->Residence;
+            $customer->street2 = $request->Street2;
+            $customer->housenumber2 = $request->Housenumber2;
+            $customer->zip_code2 = $request->Zipcode2;
+            $customer->residence2 = $request->Residence2;
             $customer->cp_name = $request->Name;
             $customer->cp_lastname = $request->Lastname;
             $customer->cp_insertion = $request->Insertion;
@@ -80,19 +70,7 @@ class customersController extends Controller
             $customer->banknumber = $request->Banknumber;
         $customer->save();
 
-        if ($request->Street2 != null|| $request->Housenumber2 != null|| $request->Zipcode2 != null|| $request->Residence2 != null)
-        {
-            $extraaders = new ExtraAddress();
-            $extraaders->customer_id = Customer::latest()->first()->id;
-            $extraaders->street = $request->Street2;
-            $extraaders->housenumber = $request->Housenumber2;
-            $extraaders->zip_code = $request->Zipcode2;
-            $extraaders->residence = $request->Residence2;
-            $extraaders->save();
-        }
-
-
-        return redirect('customer/'.Customer::latest()->first()->id);
+        return redirect(action('CustomersController@show', $customer->id));
     }
 
     /**
@@ -101,10 +79,9 @@ class customersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Customer $customer)
     {
-        return view('customer.show')
-            ->with('customer' , Customer::find($id));
+        return view('customer.show', compact('customer', $customer));
     }
 
     /**

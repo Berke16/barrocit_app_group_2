@@ -13,10 +13,10 @@ class CreateActionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_actions', function (Blueprint $table) {
+        Schema::create('actions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
-            $table->foreign('customer_id')->references('id')->on('tbl_customers');
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->date('date_of_action');
             $table->time('time_of_action');
             $table->text('description');
@@ -33,6 +33,6 @@ class CreateActionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_actions');
+        Schema::dropIfExists('actions');
     }
 }

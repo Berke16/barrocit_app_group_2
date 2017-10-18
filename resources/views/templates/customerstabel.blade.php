@@ -41,7 +41,7 @@
                         @endswitch
                     </th>
                     <th>
-                        <form action="{{action('customersController@destroy',$customer->id)}}" method="post" style="z-index: 100; margin: 0;">
+                        <form action="{{action('CustomersController@destroy',$customer->id)}}" method="post" style="z-index: 100; margin: 0;">
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
                             <button  type="submit" class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
