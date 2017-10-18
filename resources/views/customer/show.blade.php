@@ -1,5 +1,5 @@
 
-@extends('layout.master')
+@extends('layouts.master')
 @section('location')
 Customer: {{$customer->name}}
 @endsection
@@ -249,7 +249,7 @@ Customer: {{$customer->name}}
                         <label for="price">*Total project price</label>
                         <div class="input-group">
                             <span class="input-group-addon">€</span>
-                            <input type="text" class="form-control" aria-label="amount" name="price">
+                            <input type="text" id="price" class="form-control" aria-label="amount" name="price">
                             <span class="input-group-addon">.00</span>
                         </div>
                     </div>
