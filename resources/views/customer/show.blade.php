@@ -144,7 +144,7 @@
                 <a href="{{action('projectsController@create', $customer->id)}}" class="btn btn-default">Add project</a>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add Invoice</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add Action</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add Appointment</button>
             </div>
         </div>
     </div>
@@ -218,6 +218,13 @@
                             <tr>
                                 <td>{{$action->date_of_action}}</td>
                                 <td>{{$action->description}}</td>
+                                <td>
+                                    <form action="{{action('actionsController@destroy', $action->id)}}" method="post">
+                                        {{csrf_field()}}
+                                        {{method_field('DELETE')}}
+                                        <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                                    </form>
+                                </td>
                             </tr>
 
                         @endforeach

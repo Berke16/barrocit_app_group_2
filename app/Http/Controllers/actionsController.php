@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Action;
 
 class actionsController extends Controller
 {
@@ -97,6 +98,7 @@ class actionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Action::destroy($id);
+        return redirect('/home');
     }
 }

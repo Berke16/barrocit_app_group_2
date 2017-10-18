@@ -138,7 +138,8 @@ class customersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Customer::destroy($id);
+        return redirect('/home');
     }
 
 }

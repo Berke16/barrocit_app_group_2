@@ -19,6 +19,7 @@
                 <th class="col-sm-3">Contact person</th>
                 <th class="col-sm-3">Latest contact</th>
                 <th class="col-sm-2 text-center">Status</th>
+
             </tr>
             </thead>
             <tbody>
@@ -37,6 +38,13 @@
                             <span class="label label-danger" >Beyond limit</span>
                             @break
                         @endswitch
+                    </th>
+                    <th>
+                        <form action="{{action('customersController@destroy',$customer->id)}}" method="post">
+                            {{csrf_field()}}
+                            {{method_field('DELETE')}}
+                            <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                        </form>
                     </th>
                 </tr>
             @endforeach
