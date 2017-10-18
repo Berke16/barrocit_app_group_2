@@ -14,17 +14,16 @@
         <table class="table table-hover text-center" id="invoices-table">
             <thead>
             <tr>
-                <th class="text-center">Project</th>
                 <th class="text-center">Invoice Nr.</th>
                 <th class="text-center">Description</th>
                 <th class="text-center">Total</th>
                 <th class="text-center">Status</th>
+                <th class="text-center">Payed</th>
             </tr>
             </thead>
             <tbody>
             @foreach($invoices as $invoice)
                 <tr>
-                    <td>{{$invoice->project->name}}</td>
                     <td>{{$invoice->id}}</td>
                     <td>{{$invoice->description}}</td>
                     <td>{{$invoice->price}}</td>
@@ -43,6 +42,15 @@
                             <span class="label label-success">Payed</span>
                             @break
                         @endswitch
+                    </td>
+                    <td>
+                        @if($invoice->status() != 3)
+                            <form action="{{action('invoicesController@payed', $invoice->id)}}" method="post" style="margin: 0;">
+                                {{csrf_field()}}
+                                {{method_field('PUT')}}
+                                <button class="glyphicon glyphicon-ok btn-xs btn-danger"></button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach

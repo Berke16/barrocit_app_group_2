@@ -21,15 +21,23 @@
                     </tr>
                     <tr>
                         <th>Start date:</th>
-                        <td>dd-mm-yyyy</td>
+                        <td>{{$project->start_date}}</td>
                     </tr>
                     <tr>
                         <th>Deadline:</th>
-                        <td>dd-mm-yyyy</td>
+                        <td>{{$project->deadline}}</td>
                     </tr>
                     <tr>
                         <th>Maintained contract:</th>
-                        <td>{{$project->maintained_contract}}</td>
+                        <td>
+                        @switch($project->maintained_contract)
+                            @case(1)
+                                Yes
+                            @break
+                            @case(0)
+                                No
+                        @endswitch
+                        </td>
                     </tr>
                 </table>
             </section>
@@ -47,10 +55,6 @@
                         <th>Operating system:</th>
                         <td>{{$project->operating_system}}</td>
                     </tr>
-                    <tr>
-                        <th>Appointments:</th>
-                        <td>{{$project->appointments}}</td>
-                    </tr>
                 </table>
             </section>
             <section class="col-xs-4">
@@ -66,7 +70,7 @@
                 </table>
             </section>
             <form action="{{action('ProjectsController@destroy', $project->id)}}" method="post" class="btn-group pull-right">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add Invoice</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add invoice</button>
                 {{csrf_field()}}
                 {{method_field('DELETE')}}
                 <input class="btn btn-default" type="submit" value="Delete project">
@@ -85,31 +89,31 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add offer</h4>
+                    <h4 class="modal-title">Add invoice:</h4>
                 </div>
                 <div class="modal-body">
                     <form action="{{ action('InvoicesController@store')}}" method="post" class="">
                         {{ csrf_field()}}
-                        <h4 class="text-center">{{$project->customer->name.":"}}</h4>
+                        <h4 class="text-center">Project: {{$project->name}}</h4>
                         <div class="form-group">
-                            <label for="description">*Description</label>
+                            <label for="description">Description:<span style="color: red">*</span></label>
                             <input type="text" class="form-control" id="description" name="description" required>
                         </div>
                         <div class="form-group">
-                            <label for="price">*Price</label>
+                            <label for="price">Price:<span style="color: red">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon">€</span>
-                                <input type="text" class="form-control" aria-label="amount" name="price">
+                                <input type="text" id="price" class="form-control" aria-label="amount" name="price">
                                 <span class="input-group-addon">.00</span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="payday">*Pay day</label>
-                            <input type="date" class="form-control" name="payday">
+                            <label for="payday">Pay day:<span style="color: red">*</span></label>
+                            <input type="date" id="payday" class="form-control" name="payday">
                         </div>
                         <div class="form-group">
-                            <label for="date_of_sending">*Date of sending</label>
-                            <input type="date" class="form-control" name="date_of_sending" required>
+                            <label for="date_of_sending">Date of sending:<span style="color: red">*</span></label>
+                            <input type="date" id="date_of_sending" class="form-control" name="date_of_sending" required>
                         </div>
                         <input type="hidden" name="projectid" value="{{$project->id}}">
                         <div class="modal-footer">

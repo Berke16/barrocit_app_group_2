@@ -46,6 +46,6 @@ class actionsController extends Controller
     public function destroy($id)
     {
         Action::destroy($id);
-        return redirect('/home');
+        return back();
     }
 }

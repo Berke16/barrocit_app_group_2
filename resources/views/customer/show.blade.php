@@ -133,10 +133,10 @@
                 </table>
             </section>
             <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add appointment</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addoffermodal">Add offer</button>
                 <a href="{{action('ProjectsController@create', $customer->id)}}" class="btn btn-default">Add project</a>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add Invoice</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add Appointment</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add invoice</button>
             </div>
         </div>
     </div>
@@ -166,14 +166,14 @@
                             <thead>
                             <tr>
                                 <th class="text-center col-md-3">Date</th>
-                                <th class="text-center col-md-9">Description</th>
+                                <th class="text-center col-md-8">Description</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 @if($customer->actions->count() > 0)
                                     <td>{{$customer->actions->last()->date_of_action}}</td>
-                                    <td>{{$customer->actions->last()->description}}</td>
+                                    <td class="col-md-9">{{$customer->actions->last()->description}}</td>
                                     @else
                                 @endif
                             </tr>
@@ -202,14 +202,15 @@
                         <thead>
                         <tr>
                             <th class="text-center col-md-3">Date</th>
-                            <th class="text-center col-md-9">Description</th>
+                            <th class="text-center col-md-8">Description</th>
+                            <th class="text-center col-md-1"></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($customer->actions->sortByDesc('date_of_action') as $action)
                             <tr>
                                 <td>{{$action->date_of_action}}</td>
-                                <td>{{$action->description}}</td>
+                                <td class="col-md-9">{{$action->description}}</td>
                                 <td>
                                     <form action="{{action('ActionsController@destroy', $action->id)}}" method="post">
                                         {{csrf_field()}}
@@ -234,18 +235,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add offer</h4>
+                    <h4 class="modal-title">Add offer:</h4>
                 </div>
                 <div class="modal-body">
                     <form action="{{action('OffersController@store')}}" method="post" class="">
                         {{ csrf_field()}}
-                        <h4 class="text-center">{{$customer->name.":"}}</h4>
+                        <h4 class="text-center">Customer: {{$customer->name}}</h4>
                         <div class="form-group">
-                            <label for="offerNumber">*Offer number</label>
-                            <input class="form-control" type="text" id="offerNumber" name="offerNumber" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="description">*Description</label>
+                            <label for="description">Description</label>
                             <input type="text" class="form-control" id="description" name="description" required>
                         </div>
                         <div class="form-group">
@@ -273,12 +270,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add offer</h4>
+                    <h4 class="modal-title">Add invoice:</h4>
                 </div>
                 <div class="modal-body">
                     <form action="{{ action('InvoicesController@store')}}" method="post" class="">
                         {{ csrf_field()}}
-                        <h4 class="text-center">{{$customer->name.":"}}</h4>
+                        <h4 class="text-center">Customer: {{$customer->name}}</h4>
                         <div class="form-group">
                             <label for="description">*Description</label>
                             <input type="text" class="form-control" id="description" name="description" required>
@@ -321,12 +318,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add appointment</h4>
+                    <h4 class="modal-title">Add appointment:</h4>
                 </div>
                 <div class="modal-body">
                     <form action="{{action('ActionsController@store')}}" method="post" class="">
                         {{ csrf_field() }}
-                        <h4 class="text-center">{{$customer->name.":"}}</h4>
+                        <h4 class="text-center">Customer: {{$customer->name}}</h4>
                         <input type="hidden" name="customerid" value="{{$customer->id}}">
                         <div class="form-group">
                             <label for="date_of_action">*Date:</label>
