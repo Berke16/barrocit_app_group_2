@@ -1,5 +1,5 @@
 
-@extends('layout.master')
+@extends('layouts.master')
 @section('location')
 Add project
 @endsection
