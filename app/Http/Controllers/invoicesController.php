@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\invoice;
 
 class invoicesController extends Controller
 {
@@ -46,7 +47,8 @@ class invoicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        invoice::destroy($id);
+        return redirect('/home');
     }
 
 }
