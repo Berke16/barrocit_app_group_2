@@ -101,7 +101,7 @@ class offersController extends Controller
         return redirect('/home');
     }
 
-    public function status($id)
+    public function statusChange($id)
     {
         $offer = Offer::find($id);
 

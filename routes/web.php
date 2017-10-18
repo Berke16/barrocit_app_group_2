@@ -12,22 +12,29 @@
 */
 
 
-Route::get('/', function () {
-    if (Auth::check())
-    {
-        return redirect('/home');
-    }
-    return view('index');
-});
+Route::get('/', 'pagesController@index');
 
 
 Route::resource('project' , 'projectsController');
-Route::get('customer/{id}/project/create', 'projectsController@create');
-Route::get('customer/{id}/invoice/create', 'invoicesController@create');
-Route::put('offer/{id}', 'offersController@status');
+Route::get('customer/{id}/project', 'projectsController@create');
+Route::get('customer/{id}/invoice', 'invoicesController@create');
+
+
+Route::put('offer/{id}', 'offersController@statusChange');
 Route::resource('offer' , 'offersController');
 Route::resource('action' , 'actionsController');
 Route::resource('home' , 'homesController');
 Route::resource('customer' , 'customersController');
 Route::resource('invoice' , 'invoicesController');
-Auth::routes();
+
+
+
+
+/*
+ * Routes for //Auth::routes();
+ */
+
+Route::get('login', 'pagesController@index');
+Route::post('login','Auth\LoginController@login')->name('login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
