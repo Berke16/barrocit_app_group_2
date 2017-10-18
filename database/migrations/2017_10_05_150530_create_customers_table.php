@@ -13,13 +13,17 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_customers', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('street')->nullable();
             $table->string('housenumber')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('residence')->nullable();
+            $table->string('street2')->nullable();
+            $table->string('housenumber2')->nullable();
+            $table->string('zip_code2')->nullable();
+            $table->string('residence2')->nullable();
             $table->string('cp_name')->nullable();
             $table->string('cp_lastname')->nullable();
             $table->string('cp_insertion')->nullable();
@@ -35,6 +39,7 @@ class CreateCustomersTable extends Migration
             $table->tinyInteger('bcr')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->softDeletes();
         });
     }
 
@@ -45,6 +50,6 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_customers');
+        Schema::dropIfExists('customers');
     }
 }

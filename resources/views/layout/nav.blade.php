@@ -34,7 +34,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 @if(Auth::user()->type == 'sales')
                                     <li>
-                                        <a href="{{action('customersController@create')}}">Make Customer</a>
+                                        <a href="{{action('CustomersController@create')}}">Make Customer</a>
                                     </li>
                                 @endif
                                 <li>

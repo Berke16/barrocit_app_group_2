@@ -57,27 +57,19 @@
                     </tr>
                     <tr>
                         <th>Address 2:</th>
-                        @if($customer->extraaddress != NULL)
-                            <td>{{$customer->extraaddress->street}}</td>
-                        @endif
+                        <td>{{$customer->street2}}</td>
                     </tr>
                     <tr>
                         <th>Zipcode 2:</th>
-                        @if($customer->extraaddress != NULL)
-                            <td>{{$customer->extraaddress->zip_code}}</td>
-                        @endif
+                        <td>{{$customer->zip_code2}}</td>
                     </tr>
                     <tr>
                         <th>Housenumber 2:</th>
-                        @if($customer->extraaddress != NULL)
-                            <td>{{$customer->extraaddress->housenumber}}</td>
-                        @endif
+                        <td>{{$customer->housenumber2}}</td>
                     </tr>
                     <tr>
                         <th>Residence 2:</th>
-                        @if($customer->extraaddress != NULL)
-                            <td>{{$customer->extraaddress->residence}}</td>
-                        @endif
+                        <td>{{$customer->residence2}}</td>
                     </tr>
                 </table>
             </section>
@@ -141,10 +133,10 @@
                 </table>
             </section>
             <div class="btn-group pull-right">
-                <a href="{{action('projectsController@create', $customer->id)}}" class="btn btn-default">Add project</a>
+                <a href="{{action('ProjectsController@create', $customer->id)}}" class="btn btn-default">Add project</a>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add Invoice</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addoffermodal">Add Offer</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add Action</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add Appointment</button>
             </div>
         </div>
     </div>
@@ -190,42 +182,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12" >
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Offers</h3>
-                        <div class="pull-right">
+            <div class="col-md-12">
 
-                        </div>
-                    </div>
-                    <div style="height: 200px; overflow: scroll; overflow-x: hidden ;">
-                        <table class="table table-hover text-center" id="invoices-table">
-                            <thead>
-                            <tr>
-                                <th class="text-center col-md-6">Offernumbers</th>
-                                <th class="text-center col-md-6">Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($customer->offers as $offer)
-                                <tr>
-                                    <td>{{$offer->number}}</td>
-                                    <td>
-                                        @switch($offer->status)
-                                            @case(0)
-                                            <span class="label label-default">Not Accepted</span>
-                                            @break
-                                            @case(1)
-                                            <span class="label label-success">Accepted</span>
-                                            @break
-                                        @endswitch
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                @php $offers = $customer->offers; @endphp
+                @include('templates.offerTable')
+
             </div>
         </section>
         <div class="col-md-6">
@@ -249,6 +210,13 @@
                             <tr>
                                 <td>{{$action->date_of_action}}</td>
                                 <td>{{$action->description}}</td>
+                                <td>
+                                    <form action="{{action('ActionsController@destroy', $action->id)}}" method="post">
+                                        {{csrf_field()}}
+                                        {{method_field('DELETE')}}
+                                        <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                                    </form>
+                                </td>
                             </tr>
 
                         @endforeach
@@ -269,7 +237,7 @@
                     <h4 class="modal-title">Add offer</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{action('offersController@store')}}" method="post" class="">
+                    <form action="{{action('OffersController@store')}}" method="post" class="">
                         {{ csrf_field()}}
                         <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <div class="form-group">
@@ -308,7 +276,7 @@
                     <h4 class="modal-title">Add offer</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('invoicesController@store')}}" method="post" class="">
+                    <form action="{{ action('InvoicesController@store')}}" method="post" class="">
                         {{ csrf_field()}}
                         <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <div class="form-group">
@@ -356,7 +324,7 @@
                     <h4 class="modal-title">Add appointment</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{action('actionsController@store')}}" method="post" class="">
+                    <form action="{{action('ActionsController@store')}}" method="post" class="">
                         {{ csrf_field() }}
                         <h4 class="text-center">{{$customer->name.":"}}</h4>
                         <input type="hidden" name="customerid" value="{{$customer->id}}">

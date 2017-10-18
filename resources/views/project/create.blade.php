@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="container well">
-        <form action="{{ action('projectsController@store')}}" class="" method="post">
+        <form action="{{ action('ProjectsController@store')}}" class="" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="customerid" value="{{$customer->id}}">
             <section class="col-md-4">

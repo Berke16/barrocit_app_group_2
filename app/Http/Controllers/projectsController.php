@@ -8,18 +8,11 @@ use Illuminate\Http\Request;
 
 class projectsController extends Controller
 {
+
+
     public function __construct()
     {
         $this->middleware('auth');
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
     }
 
     /**
@@ -73,7 +66,7 @@ class projectsController extends Controller
         $project->first_payday = $request->first_payday;
         $project->save();
 
-        return redirect('project/'.Project::latest()->first()->id);
+        return redirect(action('ProjectsController@show', $project->id));
 
     }
 
@@ -83,10 +76,9 @@ class projectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        return view('project.show')
-            ->with('project', Project::find($id));
+        return view('project.show', compact('project', $project));
     }
 
     /**
@@ -120,6 +112,7 @@ class projectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::destroy($id);
+        return redirect('/home');
     }
 }

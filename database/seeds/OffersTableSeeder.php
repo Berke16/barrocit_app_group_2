@@ -16,7 +16,7 @@ class OffersTableSeeder extends Seeder
 
         for ($i = 0; $i < 45; $i++)
         {
-            DB::table('tbl_offers')->insert([
+            DB::table('offers')->insert([
                 'customer_id' => $faker->create()->numberBetween(1,50),
                 'number' => $faker->create()->numberBetween(1,54),
                 'description' => $faker->create()->text(50),

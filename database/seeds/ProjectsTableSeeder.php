@@ -15,7 +15,7 @@ class ProjectsTableSeeder extends Seeder
 
         for ($i = 0; $i < 40; $i++)
         {
-            DB::table('tbl_projects')->insert([
+            DB::table('projects')->insert([
                 'customer_id' => $faker->create()->numberBetween(1,50),
                 'name' => $faker->create()->catchPhrase,
                 'description' => $faker->create()->sentence,

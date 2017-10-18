@@ -6,7 +6,7 @@
 @section('content')
     <!-- This is a form that an employee needs to fill to create a customer. This "new" customer can't get a project immediately, a finance employee needs to do a BCR check first to see if the customer is worth to get a project. -->
     <div class="container well">
-        <form action="{{action('customersController@store')}}" class="" method="post">
+        <form action="{{action('CustomersController@store')}}" class="" method="post">
             {{ csrf_field() }}
             <div class="form-group col-lg-4">
                 <label for="companyName">*Company name:</label>
