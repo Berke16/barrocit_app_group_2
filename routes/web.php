@@ -11,11 +11,31 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::get('/', 'pagesController@index');
 
 
-Route::resource('project' , 'projectsController');
-Route::resource('home' , 'homesController');
-Route::resource('customer' , 'customersController');
+Route::resource('project' , 'ProjectsController');
+Route::get('customer/{id}/project', 'ProjectsController@create');
+Route::get('customer/{id}/invoice', 'InvoicesController@create');
+
+
+Route::put('offer/{id}', 'OffersController@statusChange');
+Route::resource('offer' , 'OffersController');
+Route::resource('action' , 'ActionsController');
+Route::resource('home' , 'HomesController');
+Route::resource('customer' , 'CustomersController');
+Route::put('invoice/{invoice}/payed' , 'invoicesController@payed');
+Route::resource('invoice' , 'InvoicesController');
+
+
+
+
+/*
+ * Routes for //Auth::routes();
+ */
+
+Route::get('login', 'PagesController@index');
+Route::post('login','Auth\LoginController@login')->name('login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+

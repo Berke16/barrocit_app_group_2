@@ -15,12 +15,11 @@ class InvoicesTableSeeder extends Seeder
 
         for ($i = 0; $i < 30; $i++)
         {
-            DB::table('tbl_invoices')->insert([
+            DB::table('invoices')->insert([
                 'project_id' => $faker->create()->numberBetween(1,29),
                 'description' => $faker->create()->sentence,
                 'price' => $faker->create()->numberBetween(100, 4000),
                 'date_of_sending' => $faker->create()->date,
-                'status' => $faker->create()->numberBetween(0,3)
             ]);
         }
     }
