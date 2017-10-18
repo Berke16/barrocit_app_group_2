@@ -16,7 +16,7 @@ class CustomersTableSeeder extends Seeder
         $fakerDutch = new Faker\Generator();
         $fakerDutch->addProvider(new Faker\Provider\nl_NL\Company($fakerDutch));
 
-        for ($i = 0; $i < 50; $i++)
+        for ($i = 0; $i < 250; $i++)
         {
             DB::table('customers')->insert([
                 'name' => $faker->create()->company,
@@ -35,7 +35,6 @@ class CustomersTableSeeder extends Seeder
                 'limit' => $faker->create()->numberBetween(1,400),
                 'vat_code' => $fakerDutch->vat,
                 'prospect' => $faker->create()->numberBetween(0,1),
-                'ledgerbill' => $faker->create()->randomNumber,
                 'creditworthy' => $faker->create()->numberBetween(0,1),
                 'bcr' => $faker->create()->numberBetween(0,1),
             ]);

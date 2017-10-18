@@ -13,7 +13,7 @@ class InvoicesTableSeeder extends Seeder
     {
         $faker = new \Faker\Factory();
 
-        for ($i = 0; $i < 30; $i++)
+        for ($i = 0; $i < 600; $i++)
         {
             DB::table('invoices')->insert([
                 'project_id' => $faker->create()->numberBetween(1,29),

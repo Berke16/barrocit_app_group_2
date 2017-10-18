@@ -13,7 +13,7 @@ class ProjectsTableSeeder extends Seeder
     {
         $faker = new \Faker\Factory();
 
-        for ($i = 0; $i < 40; $i++)
+        for ($i = 0; $i < 100; $i++)
         {
             DB::table('projects')->insert([
                 'customer_id' => $faker->create()->numberBetween(1,50),
