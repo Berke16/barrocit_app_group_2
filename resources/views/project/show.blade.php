@@ -79,7 +79,7 @@ Project: {{$project->name}}
 </div>
 <div class="container">
  @php $invoices = $project->invoices @endphp
- @include('templates.invoicestable')
+ @include('tables.invoicestable')
 </div>
 
 <!-- Modelbox voor het maken van de invoices. -->

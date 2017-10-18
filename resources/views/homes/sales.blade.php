@@ -12,10 +12,10 @@ Home: Sales
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            @include('templates.customerstabel')
+            @include('tables.customerstabel')
         </div>
         <div class="col-md-4">
-            @include('templates.offerTable')
+            @include('tables.offerTable')
         </div>
     </div>
 </div>

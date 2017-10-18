@@ -146,13 +146,13 @@ Customer: {{$customer->name}}
             @php
             $projects = $customer->projects;
             @endphp
-            @include('templates.projecttabel')
+            @include('tables.projecttabel')
         </div>
         <div class="col-md-9">
             @php
             $invoices = $customer->invoices;
             @endphp
-            @include('templates.invoicestable')
+            @include('tables.invoicestable')
         </div>
     </section>
     <section class="col-md-6" style="padding: 0;">
@@ -185,7 +185,7 @@ Customer: {{$customer->name}}
         <div class="col-md-12">
 
             @php $offers = $customer->offers; @endphp
-            @include('templates.offerTable')
+            @include('tables.offerTable')
 
         </div>
     </section>

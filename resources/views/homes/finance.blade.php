@@ -6,14 +6,14 @@ Home: Finance
 @section('content')
 <div class="container">
     <div class="col-md-9">
-        @include('templates.invoicestable')
+        @include('tables.invoicestable')
     </div>
 
     <div class="col-md-3">
-        @include('templates.projecttabel')
+        @include('tables.projecttabel')
     </div>
     <div class="col-md-12">
-        @include('templates.customerstabel')
+        @include('tables.customerstabel')
     </div>
 </div>
 @endsection
