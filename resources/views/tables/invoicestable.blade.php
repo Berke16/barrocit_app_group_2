@@ -52,6 +52,13 @@
                             </form>
                         @endif
                     </td>
+                    <td>
+                        <form action="{{action('InvoicesController@destroy', $invoice->id)}}" method="post" style="margin: 0;">
+                            {{csrf_field()}}
+                            {{method_field('DELETE')}}
+                            <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

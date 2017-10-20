@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.master')
 @section('content')
 <div class="container">
     <form method="POST" action="{{ route('login') }}" class="col-md-4 col-md-offset-4">

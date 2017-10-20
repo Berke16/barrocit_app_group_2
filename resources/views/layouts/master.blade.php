@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    @include('layout.nav')
+    @include('layouts.nav')
     @yield('content')
 
     <footer>
@@ -24,6 +24,6 @@
         <p class="text-center">&copy; BARROC IT |  2017</p>
     </footer>
 
-    @include('layout.scripts')
+    @include('layouts.scripts')
 </body>
 </html>
