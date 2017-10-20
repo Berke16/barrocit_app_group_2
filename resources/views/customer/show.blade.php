@@ -9,6 +9,7 @@ Customer: {{$customer->name}}
 @endif
 <div class="container-fluid well">
     <div class="container">
+        <div class="row">
         <section class="col-xs-4">
             <table class="table table-borderless col-xs-12">
                 <tr>
@@ -49,6 +50,7 @@ Customer: {{$customer->name}}
                 </tr>
             </table>
         </section>
+            @if(Auth::user()->type == 'finance' || Auth::user()->type == 'sales')
         <section class="col-xs-4">
             <table class="table table-borderless col-xs-12">
                 <tr>
@@ -73,6 +75,8 @@ Customer: {{$customer->name}}
                 </tr>
             </table>
         </section>
+            @endif
+            @if(Auth::user()->type == 'finance')
         <section class="col-xs-4">
             <table class="table table-borderless col-xs-12">
                 <tr>
@@ -132,6 +136,8 @@ Customer: {{$customer->name}}
                 </tr>
             </table>
         </section>
+                @endif
+        </div>
         <div class="btn-group pull-right">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add appointment</button>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addoffermodal">Add offer</button>
@@ -212,7 +218,7 @@ Customer: {{$customer->name}}
                             <td>{{$action->date_of_action}}</td>
                             <td class="col-md-9">{{$action->description}}</td>
                             <td>
-                                <form action="{{action('ActionsController@destroy', $action->id)}}" method="post">
+                                <form action="{{action('ActionsController@destroy', $action->id)}}" method="post" style="margin: 0;">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
                                     <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
@@ -242,14 +248,14 @@ Customer: {{$customer->name}}
                     {{ csrf_field()}}
                     <h4 class="text-center">Customer: {{$customer->name}}</h4>
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" class="form-control" id="description" name="description" required>
+                        <label for="description">Description:<span style="color: red">*</span></label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{old('description')}}" required>
                     </div>
                     <div class="form-group">
-                        <label for="price">*Total project price</label>
+                        <label for="total_project_price">Total project price:<span style="color: red">*</span></label>
                         <div class="input-group">
                             <span class="input-group-addon">€</span>
-                            <input type="text" id="price" class="form-control" aria-label="amount" name="price">
+                            <input type="text" id="total_project_price" class="form-control" aria-label="amount" name="total_project_price" value="{{old('total_project_price')}}" required>
                             <span class="input-group-addon">.00</span>
                         </div>
                     </div>
@@ -277,26 +283,26 @@ Customer: {{$customer->name}}
                     {{ csrf_field()}}
                     <h4 class="text-center">Customer: {{$customer->name}}</h4>
                     <div class="form-group">
-                        <label for="description">*Description</label>
-                        <input type="text" class="form-control" id="description" name="description" required>
+                        <label for="description">Description:<span style="color: red">*</span></label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{old('description')}}" required>
                     </div>
                     <div class="form-group">
-                        <label for="price">*Price</label>
+                        <label for="price">Price:<span style="color: red">*</span></label>
                         <div class="input-group">
                             <span class="input-group-addon">€</span>
-                            <input type="text" class="form-control" aria-label="amount" name="price">
+                            <input type="text" id="price" class="form-control" aria-label="amount" name="price" value="{{old('price')}}">
                             <span class="input-group-addon">.00</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="payday">*Pay day</label>
-                        <input type="date" class="form-control" name="payday">
+                        <label for="payday">Pay day:<span style="color: red">*</span></label>
+                        <input type="date" id="payday" class="form-control" name="payday" value="{{old('payday')}}">
                     </div>
                     <div class="form-group">
-                        <label for="date_of_sending">*Date of sending</label>
-                        <input type="date" class="form-control" name="date_of_sending" required>
+                        <label for="date_of_sending">Date of sending:<span style="color: red">*</span></label>
+                        <input type="date" id="date_of_sending" class="form-control" name="date_of_sending" value="{{old('date_of_sending')}}" required>
                     </div>
-                    <label for="projectid">Project:</label>
+                    <label for="projectid">Project:<span style="color: red">*</span></label>
                     <select class="form-control" name="projectid" id="projectid">
                         @foreach($customer->projects as $project)
                         <option value="{{$project->id}}">{{$project->name}}</option>
@@ -326,16 +332,16 @@ Customer: {{$customer->name}}
                     <h4 class="text-center">Customer: {{$customer->name}}</h4>
                     <input type="hidden" name="customerid" value="{{$customer->id}}">
                     <div class="form-group">
-                        <label for="date_of_action">*Date:</label>
-                        <input type="date" class="form-control" id="date_of_action" name="date_of_action" required>
+                        <label for="date_of_action">Date:<span style="color: red">*</span></label>
+                        <input type="date" class="form-control" id="date_of_action" name="date_of_action" value="{{old('date_of_action')}}" required>
                     </div>
                     <div class="form-group">
-                        <label for="time_of_action">*Time:</label>
-                        <input type="time" class="form-control" id="time_of_action" name="time_of_action" required>
+                        <label for="time_of_action">Time:<span style="color: red">*</span></label>
+                        <input type="time" class="form-control" id="time_of_action" name="time_of_action" value="{{old('time_of_action')}}" required>
                     </div>
                     <div class="form-group">
-                        <label for="description">*Description:</label>
-                        <input type="text" class="form-control" id="description" name="description" required>
+                        <label for="description">Description:<span style="color: red">*</span></label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{old('description')}}" required>
                     </div>
                     <div class="modal-footer">
                         <input type="submit" value="Add" class="btn pull-right">

@@ -21,12 +21,14 @@ class offersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'description' => 'required|string',
+            'description'           => 'required|string',
+            'total_project_price'   => 'required|numeric'
         ]);
 
         $offer = new \App\Offer();
-        $offer->customer_id = $request->customerid;
-        $offer->description = $request->description;
+        $offer->customer_id          = $request->customerid;
+        $offer->description          = $request->description;
+        $offer->total_project_price  = $request->total_project_price;
         $request->status = 0;
 
         $offer->save();

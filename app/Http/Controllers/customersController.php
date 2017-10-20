@@ -28,14 +28,14 @@ class customersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'company_name'               => 'required|string',
+            'company_name'              => 'required|string',
             'name'                      => 'nullable|string',
             'insertion'                 => 'nullable|string',
             'lastname'                  => 'nullable|string',
             'email'                     => 'nullable|email',
             'telephonenumber'           => 'required|numeric',
             'telephonenumber2'          => 'nullable|numeric',
-            'fax_number'                 => 'nullable|numeric',
+            'fax_number'                => 'nullable|numeric',
             'street'                    => 'nullable|string',
             'zipcode'                   => 'nullable|string',
             'housenumber'               => 'nullable|numeric',
@@ -45,7 +45,7 @@ class customersController extends Controller
             'housenumber2'              => 'nullable|string',
             'residence2'                => 'nullable|string',
             'banknumber'                => 'nullable|string',
-            'vat_code'                  => 'nullable|numeric',
+            'vat_code'                  => 'nullable|string',
         ]);
 
         $customer = new \App\Customer();
