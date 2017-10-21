@@ -10,6 +10,7 @@ class offersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('sales')->only('store', 'create', 'statusChange', 'destroy');
     }
 
     /**

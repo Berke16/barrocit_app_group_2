@@ -147,176 +147,84 @@ Customer: {{$customer->name}}
     </div>
 </div>
 <div class="container">
-    <section class="col-md-12" style="padding: 0;">
-        <div class="col-md-3">
-            @php
-            $projects = $customer->projects;
-            @endphp
-            @include('tables.projecttabel')
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Latest contact</h3>
         </div>
-        <div class="col-md-9">
-            @php
-            $invoices = $customer->invoices;
-            @endphp
-            @include('tables.invoicestable')
-        </div>
-    </section>
-    <section class="col-md-6" style="padding: 0;">
-        <div class="col-md-12" >
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Latest contact</h3>
-                </div>
-                <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
-                    <table class="table table-hover text-center" id="invoices-table">
-                        <thead>
-                            <tr>
-                                <th class="text-center col-md-3">Date</th>
-                                <th class="text-center col-md-8">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                @if($customer->actions->count() > 0)
-                                <td>{{$customer->actions->last()->date_of_action}}</td>
-                                <td class="col-md-9">{{$customer->actions->last()->description}}</td>
-                                @else
-                                @endif
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <table class="table table-hover text-center" id="invoices-table">
+            <thead>
+            <tr>
+                <th class="text-center col-md-3">Date</th>
+                <th class="text-center col-md-8">Description</th>
+                <th class="col-md-1"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                @if($customer->actions->count() > 0)
+                    <td>{{$customer->actions->last()->date_of_action}}</td>
+                    <td class="col-md-9">{{$customer->actions->last()->description}}</td>
+                @else
+                @endif
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    @switch(Auth::User()->type)
+        @case('sales')
+            @include('customer.show_templates.sales')
+        @break
+        @case('development')
+            @include('customer.show_templates.development')
+        @break
+        @case('finance')
+            @include('customer.show_templates.finance')
+        @break
+        @endswitch
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Appointments</h3>
+            <div class="pull-right">
+
             </div>
         </div>
-        <div class="col-md-12">
+        <div style="height: 400px; overflow: scroll; overflow-x: hidden;">
+            <table class="table table-hover text-center" id="invoices-table">
+                <thead>
+                <tr>
+                    <th class="text-center col-md-3">Date</th>
+                    <th class="text-center col-md-8">Description</th>
+                    <th class="text-center col-md-1"></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($customer->actions->sortByDesc('date_of_action') as $action)
+                    <tr>
+                        <td>{{$action->date_of_action}}</td>
+                        <td class="col-md-9">{{$action->description}}</td>
+                        <td>
+                            <form action="{{action('ActionsController@destroy', $action->id)}}" method="post" style="margin: 0;">
+                                {{csrf_field()}}
+                                {{method_field('DELETE')}}
+                                <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                            </form>
+                        </td>
+                    </tr>
 
-            @php $offers = $customer->offers; @endphp
-            @include('tables.offerTable')
-
-        </div>
-    </section>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Appointments</h3>
-                <div class="pull-right">
-
-                </div>
-            </div>
-            <div style="height: 460px; overflow: scroll; overflow-x: hidden;">
-                <table class="table table-hover text-center" id="invoices-table">
-                    <thead>
-                        <tr>
-                            <th class="text-center col-md-3">Date</th>
-                            <th class="text-center col-md-8">Description</th>
-                            <th class="text-center col-md-1"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($customer->actions->sortByDesc('date_of_action') as $action)
-                        <tr>
-                            <td>{{$action->date_of_action}}</td>
-                            <td class="col-md-9">{{$action->description}}</td>
-                            <td>
-                                <form action="{{action('ActionsController@destroy', $action->id)}}" method="post" style="margin: 0;">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
-                                </form>
-                            </td>
-                        </tr>
-
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<!-- Modelbox voor het maken van de offertes. -->
-
-<div id="addoffermodal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add offer:</h4>
-            </div>
-            <div class="modal-body">
-                <form action="{{action('OffersController@store')}}" method="post" class="">
-                    {{ csrf_field()}}
-                    <h4 class="text-center">Customer: {{$customer->name}}</h4>
-                    <div class="form-group">
-                        <label for="description">Description:<span style="color: red">*</span></label>
-                        <input type="text" class="form-control" id="description" name="description" value="{{old('description')}}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="total_project_price">Total project price:<span style="color: red">*</span></label>
-                        <div class="input-group">
-                            <span class="input-group-addon">€</span>
-                            <input type="text" id="total_project_price" class="form-control" aria-label="amount" name="total_project_price" value="{{old('total_project_price')}}" required>
-                            <span class="input-group-addon">.00</span>
-                        </div>
-                    </div>
-                    <input type="hidden" name="customerid" value="{{$customer->id}}">
-                    <div class="modal-footer">
-                        <input type="submit" value="Add" class="btn pull-right">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
-
-<!-- Modelbox voor het maken van de invoices. -->
-
-<div id="invoicemodal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add invoice:</h4>
-            </div>
-            <div class="modal-body">
-                <form action="{{ action('InvoicesController@store')}}" method="post" class="">
-                    {{ csrf_field()}}
-                    <h4 class="text-center">Customer: {{$customer->name}}</h4>
-                    <div class="form-group">
-                        <label for="description">Description:<span style="color: red">*</span></label>
-                        <input type="text" class="form-control" id="description" name="description" value="{{old('description')}}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price:<span style="color: red">*</span></label>
-                        <div class="input-group">
-                            <span class="input-group-addon">€</span>
-                            <input type="text" id="price" class="form-control" aria-label="amount" name="price" value="{{old('price')}}">
-                            <span class="input-group-addon">.00</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="payday">Pay day:<span style="color: red">*</span></label>
-                        <input type="date" id="payday" class="form-control" name="payday" value="{{old('payday')}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="date_of_sending">Date of sending:<span style="color: red">*</span></label>
-                        <input type="date" id="date_of_sending" class="form-control" name="date_of_sending" value="{{old('date_of_sending')}}" required>
-                    </div>
-                    <label for="projectid">Project:<span style="color: red">*</span></label>
-                    <select class="form-control" name="projectid" id="projectid">
-                        @foreach($customer->projects as $project)
-                        <option value="{{$project->id}}">{{$project->name}}</option>
-                        @endforeach
-                    </select>
-                    <div class="modal-footer">
-                        <input type="submit" value="Add" class="btn pull-right">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Modelbox voor het maken van de acties. -->
 
 <div id="addacctionmodal" class="modal fade" role="dialog">
@@ -351,4 +259,5 @@ Customer: {{$customer->name}}
         </div>
     </div>
 </div>
+
 @endsection

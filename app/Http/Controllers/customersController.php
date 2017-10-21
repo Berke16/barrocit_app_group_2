@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
-use App\ExtraAddress;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -12,6 +11,7 @@ class customersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('sales')->only('store', 'create');
     }
 
     public function create()
