@@ -4,18 +4,21 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Invoice extends Model
 {
-    protected $table = 'tbl_invoices';
+    use softDeletes;
 
     public function project()
     {
-        return $this->belongsTo('App\Project');
+        return $this->belongsTo(Project::class);
     }
 
 
     /*
+     * Checks the date of sending of a invoice and returns diffrent status for:
+     *
      * Return 0 when : Not Sended
      * Return 1 when : Invoice in progress
      * Return 2 when : Invoice not payed

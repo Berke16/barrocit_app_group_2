@@ -1,69 +1,47 @@
-
-@extends('layout.master')
+@extends('layouts.master')
 @section('content')
-    {{--<div class="container">--}}
-    {{--<div class="row">--}}
-    {{--<div class="col-lg-offset-4 col-lg-4">--}}
-    {{--<h2 class="text-muted">Login Barroc IT.</h2>--}}
-    {{--<form action="" method="post">--}}
-    {{--<div class="form-group">--}}
-    {{--<input type="text" class="form-control" placeholder="Username">--}}
-    {{--</div>--}}
-    {{--<div class="form-group">--}}
-    {{--<input type="password" class="form-control" placeholder="********">--}}
-    {{--</div>--}}
-    {{--<div class="form-group">--}}
-    {{--<input type="checkbox" id="s"> <label for="s" >Stay logged-in</label>--}}
-    {{--</div>--}}
-    {{--<div class="form-group">--}}
-    {{--<input type="submit" class="btn btn-primary" value="Login">--}}
-    {{--</div>--}}
-    {{--</form>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    <div class="container">
+<div class="container">
     <form method="POST" action="{{ route('login') }}" class="col-md-4 col-md-offset-4">
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <label for="email" class="control-label">E-Mail Address</label>
 
-                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
-                @if ($errors->has('email'))
-                    <span class="help-block">
+            @if ($errors->has('email'))
+            <span class="help-block">
                 <strong>{{ $errors->first('email') }}</strong>
             </span>
-                @endif
+            @endif
         </div>
 
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label for="password" class="control-label">Password</label>
 
-                <input id="password" type="password" class="form-control" name="password" required>
+            <input id="password" type="password" class="form-control" name="password" required>
 
-                @if ($errors->has('password'))
-                    <span class="help-block">
+            @if ($errors->has('password'))
+            <span class="help-block">
                 <strong>{{ $errors->first('password') }}</strong>
             </span>
-                @endif
-            </div>
-
-        <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                    </label>
-                </div>
+            @endif
         </div>
 
         <div class="form-group">
-                <button type="submit" class="btn btn-primary">
-                    Login
-                </button>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                </label>
             </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+                Login
+            </button>
+        </div>
     </form>
-    </div>
+</div>
 
 @endsection

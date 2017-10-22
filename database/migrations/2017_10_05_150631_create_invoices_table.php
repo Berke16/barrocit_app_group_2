@@ -13,16 +13,17 @@ class CreateInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_invoices', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id')->unsigned();
-            $table->foreign('project_id')->references('id')->on('tbl_projects');
+            $table->foreign('project_id')->references('id')->on('projects');
             $table->text('description');
             $table->float('price');
             $table->date('payday2')->nullable();
             $table->date('date_of_sending')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +34,6 @@ class CreateInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_invoices');
+        Schema::dropIfExists('invoices');
     }
 }
