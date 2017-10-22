@@ -77,11 +77,12 @@ Project: {{$project->name}}
         </form>
     </div>
 </div>
+
+@if(Auth::User()->type == 'finance')
 <div class="container">
  @php $invoices = $project->invoices @endphp
  @include('tables.invoicestable')
 </div>
-
 <!-- Modelbox voor het maken van de invoices. -->
 
 <div id="invoicemodal" class="modal fade" role="dialog">
@@ -124,4 +125,7 @@ Project: {{$project->name}}
         </div>
     </div>
 </div>
+@endif
+
+
 @endsection

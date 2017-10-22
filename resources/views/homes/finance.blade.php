@@ -10,7 +10,7 @@ Home: Finance
     </div>
 
     <div class="col-md-3">
-        @include('tables.projecttabel')
+        @include('tables.projectstabel')
     </div>
     <div class="col-md-12">
         @include('tables.customerstabel')

@@ -19,6 +19,7 @@
                 <th class="text-center">Total</th>
                 <th class="text-center">Status</th>
                 <th class="text-center">Payed</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -48,16 +49,18 @@
                             <form action="{{action('invoicesController@payed', $invoice->id)}}" method="post" style="margin: 0;">
                                 {{csrf_field()}}
                                 {{method_field('PUT')}}
-                                <button class="glyphicon glyphicon-ok btn-xs btn-danger"></button>
+                                <button class="glyphicon glyphicon-ok btn-xs btn-success"></button>
                             </form>
                         @endif
                     </td>
                     <td>
+                        @if($invoice->status() != 3)
                         <form action="{{action('InvoicesController@destroy', $invoice->id)}}" method="post" style="margin: 0;">
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
                             <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
                         </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach

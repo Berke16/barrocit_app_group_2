@@ -6,9 +6,11 @@
         <table class="table table-hover text-center" id="invoices-table">
             <thead>
             <tr>
-                <th class="text-center col-md-6">Offernumbers</th>
-                <th class="text-center col-md-5">Status</th>
-                <th class="text-center col-md-1"></th>
+                <th class="text-center">Offernumbers</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Status</th>
+                <th class="text-center"></th>
 
             </tr>
             </thead>
@@ -16,6 +18,8 @@
             @foreach($offers as $offer)
                 <tr>
                     <td>{{$offer->id}}</td>
+                    <td>{{$offer->description}}</td>
+                    <td>€ {{$offer->total_project_price}}</td>
                     <td>
                         <form action="{{action('OffersController@statusChange', $offer->id)}}" method="post" style="margin: 0;">
                             {{csrf_field()}}
@@ -30,16 +34,16 @@
                             @endswitch
                         </form>
                     </td>
-                    <td >
+
+                    <td>
+                        @if($offer->status == 0)
                         <form action="{{action('OffersController@destroy', $offer->id)}}" method="post" style="margin: 0;">
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
                             <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
                         </form>
+                        @endif
                     </td>
-
-
-
 
                 </tr>
             @endforeach
