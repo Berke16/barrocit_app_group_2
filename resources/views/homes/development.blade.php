@@ -9,7 +9,7 @@ Home: Development
 		@include('tables.customerstabel')
 	</div>
 	<div class="col-md-3">
-		@include('tables.projecttabel')
+		@include('tables.projectstabel')
 	</div>
 </div>
 @endsection

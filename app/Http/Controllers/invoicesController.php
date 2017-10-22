@@ -11,6 +11,7 @@ class invoicesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('finance')->only('store', 'destroy', 'payed');
     }
 
     /**
@@ -20,20 +21,19 @@ class invoicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            'payday'                => 'nullable|date',
-            'date_of_sending'       => 'required|date',
-            'description'           => 'required|string',
-            'price'                 => 'required|numeric',
-        ]);
+        {
+            $this->validate($request, [
+                'payday'                => 'nullable|date',
+                'date_of_sending'       => 'required|date',
+                'description'           => 'required|string',
+                'price'                 => 'required|numeric',
+            ]);
 
-        $invoice = new Invoice();
-        $invoice->description       = $request->description;
-        $invoice->price             = $request->price;
-        $invoice->date_of_sending   = $request->date_of_sending;
-        $invoice->project_id        = $request->projectid;
-
+            $invoice = new Invoice();
+            $invoice->description       = $request->description;
+            $invoice->price             = $request->price;
+            $invoice->date_of_sending   = $request->date_of_sending;
+            $invoice->project_id        = $request->projectid;
         $invoice->save();
 
         return back();

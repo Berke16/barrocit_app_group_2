@@ -15,6 +15,7 @@ class projectsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('sales')->only('create', 'store', 'destroy');
     }
 
     /**
