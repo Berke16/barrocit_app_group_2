@@ -25,6 +25,9 @@ Route::resource('offer' , 'OffersController');
 Route::resource('action' , 'ActionsController');
 Route::resource('home' , 'HomesController');
 Route::resource('customer' , 'CustomersController');
+
+Route::post('edit/{id}', 'CustomersController@update');
+
 Route::put('invoice/{invoice}/payed' , 'invoicesController@payed');
 Route::resource('invoice' , 'InvoicesController');
 
