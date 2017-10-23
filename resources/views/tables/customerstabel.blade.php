@@ -13,18 +13,18 @@
     <div class="table_style">
         <table class="table table-hover" id="dev-table">
             <thead>
-            <tr>
-                <th class="col-sm-1">Nr.</th>
-                <th class="col-sm-3">Name</th>
-                <th class="col-sm-3">Contact person</th>
-                <th class="col-sm-3">Latest contact</th>
-                <th class="col-sm-1 text-center">Status</th>
-                <th class="col-sm-1"></th>
+                <tr>
+                    <th class="col-sm-1">Nr.</th>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Contact person</th>
+                    <th class="col-sm-3">Latest contact</th>
+                    <th class="col-sm-1 text-center">Status</th>
+                    <th class="col-sm-1"></th>
 
-            </tr>
+                </tr>
             </thead>
             <tbody>
-            @foreach($customers as $customer)
+                @foreach($customers as $customer)
                 <tr>
                     <th>{{$customer->id}}</th>
                     <th data-href="../customer/{{$customer->id}}">{{$customer->name}}</th>
@@ -32,12 +32,12 @@
                     <th>@if($customer->actions->count() > 0){{$customer->actions->last()->date_of_action}}@endif</th>
                     <th class="text-center">
                         @switch($customer->status())
-                            @case(false)
-                            <span class="label label-success">Good</span>
-                            @break
-                            @case(true)
-                            <span class="label label-danger" >Beyond limit</span>
-                            @break
+                        @case(false)
+                        <span class="label label-success">Good</span>
+                        @break
+                        @case(true)
+                        <span class="label label-danger" >Beyond limit</span>
+                        @break
                         @endswitch
                     </th>
                     <th class="text-center">
@@ -48,7 +48,7 @@
                         </form>
                     </th>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>

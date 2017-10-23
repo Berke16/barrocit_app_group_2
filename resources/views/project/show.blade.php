@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 @section('location')
 Project: {{$project->name}}
@@ -72,7 +71,7 @@ Project: {{$project->name}}
         <form action="{{action('ProjectsController@destroy', $project->id)}}" method="post" class="btn-group pull-right">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add invoice</button>
             @if(Auth::user()->type == 'development' || Auth::user()->type == 'sales'  || Auth::user()->type == 'user')
-                <a href="{{action('ProjectsController@edit', $project->id)}}" class="btn btn-default">edit Project</a>
+            <a href="{{action('ProjectsController@edit', $project->id)}}" class="btn btn-default">edit Project</a>
             @endif
             {{csrf_field()}}
             {{method_field('DELETE')}}
@@ -86,8 +85,8 @@ Project: {{$project->name}}
 
 @if(Auth::User()->type == 'finance' || 'admin')
 <div class="container">
- @php $invoices = $project->invoices @endphp
- @include('tables.invoicestable')
+   @php $invoices = $project->invoices @endphp
+   @include('tables.invoicestable')
 </div>
 <!-- Modelbox voor het maken van de invoices. -->
 

@@ -23,13 +23,6 @@ class Project extends Model
         return $this->belongsTo(Customer::class)->withTrashed();
     }
 
-    /* if project completed is true, dont tell status... weirdo*/
-    /*
-     * niet gestart X
-     * Bezig !
-     * Stop !
-     * Fisnish !
-     */
     public function status()
     {
         if ($this->completed != true)

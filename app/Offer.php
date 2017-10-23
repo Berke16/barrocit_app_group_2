@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Offer extends Model
 {
 
-    use SoftDeletes;
+	use SoftDeletes;
     /**
      * @return string
      */
     public function customer()
     {
-        return $this->belongsTo(Customer::class)->withTrashed();
+    	return $this->belongsTo(Customer::class)->withTrashed();
     }
 }

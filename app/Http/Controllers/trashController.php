@@ -30,11 +30,11 @@ class trashController extends Controller
     public function index()
     {
         return view('trash.index')
-            ->with('customers', Customer::onlyTrashed()->get())
-            ->with('projects', Project::onlyTrashed()->get())
-            ->with('invoices', Invoice::onlyTrashed()->get())
-            ->with('offers', Offer::onlyTrashed()->get())
-            ->with('users', User::onlyTrashed()->get());
+        ->with('customers', Customer::onlyTrashed()->get())
+        ->with('projects', Project::onlyTrashed()->get())
+        ->with('invoices', Invoice::onlyTrashed()->get())
+        ->with('offers', Offer::onlyTrashed()->get())
+        ->with('users', User::onlyTrashed()->get());
     }
 
 

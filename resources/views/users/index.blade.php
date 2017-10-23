@@ -1,15 +1,12 @@
-
 @extends('layouts.master')
 @section('location')
-    Add user
+Users
 @endsection
 @section('content')
-<!-- this is a form that an employee needs to fill to create a customer. this "new" customer can't get a project immediately, a finance employee needs to do a bcr check first to see if the customer is worth to get a project. -->
 <div class="container well">
-
     <form action="{{action('UsersController@store')}}" method="post">
-
         {{csrf_field()}}
+
         {{method_field('PUT')}}
 
         <div class="form-group col-lg-4">
@@ -43,18 +40,18 @@
         <div class="form-group pull-right col-lg-2">
             <input type="submit" class="btn btn-primary col-lg-12" value="Add user">
         </div>
-
     </form>
 </div>
+
 <div class="container">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Users</h3>
                 <div class="pull-right">
-                <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-                    <i class="glyphicon glyphicon-filter"></i>
-                </span>
+                    <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                        <i class="glyphicon glyphicon-filter"></i>
+                    </span>
                 </div>
             </div>
             <div class="panel-body">
@@ -63,32 +60,32 @@
             <div class="table_style">
                 <table class="table table-hover text-center" id="invoices-table">
                     <thead>
-                    <tr>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Department type</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center"></th>
-                        <th class="text-center"></th>
-                    </tr>
+                        <tr>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Department type</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach($users as $user)
+                        @foreach($users as $user)
                         @if($user->id != Auth::User()->id)
-                            <tr>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->type}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>
-                                    <form action="{{action('UsersController@destroy', $user->id)}}" method="post" style="margin: 0;">
-                                        {{csrf_field()}}
-                                        {{method_field('DELETE')}}
-                                        <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <button data-href="{{action('UsersController@edit', $user->id)}}" class="glyphicon glyphicon-pencil btn-xs btn-warning"></button>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->type}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>
+                                <form action="{{action('UsersController@destroy', $user->id)}}" method="post" style="margin: 0;">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                    <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                                </form>
+                            </td>
+                            <td>
+                                <button data-href="{{action('UsersController@edit', $user->id)}}" class="glyphicon glyphicon-pencil btn-xs btn-warning"></button>
+                            </td>
+                        </tr>
                         @endif
                         @endforeach
                     </tbody>
