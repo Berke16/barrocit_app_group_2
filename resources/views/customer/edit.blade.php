@@ -10,6 +10,7 @@
         <form action="{{action('CustomersController@update', $customer->id)}}" method="post">
 
             {{csrf_field()}}
+            {{method_field('PUT')}}
             {{--sales can change this--}}
             @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance')
             <div class="form-group col-lg-4">
