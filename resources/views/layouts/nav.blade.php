@@ -55,6 +55,9 @@
     </div>
 </div>
 </nav>
+@if (Session::has('message'))
+    <div class="alert alert-success text-center">{{ Session::get('message') }}</div>
+@endif
 @if ($errors->any())
 <div class="alert alert-danger text-center">
     <ul class="">
