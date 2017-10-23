@@ -71,10 +71,15 @@ Project: {{$project->name}}
         </section>
         <form action="{{action('ProjectsController@destroy', $project->id)}}" method="post" class="btn-group pull-right">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add invoice</button>
+            @if(Auth::user()->type == 'development' || Auth::user()->type == 'sales' )
+                <a href="{{action('ProjectsController@edit', $project->id)}}" class="btn btn-default">edit Project</a>
+            @endif
             {{csrf_field()}}
             {{method_field('DELETE')}}
             <input class="btn btn-default" type="submit" value="Delete project">
+
         </form>
+
     </div>
 </div>
 

@@ -112,7 +112,10 @@ class projectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('project.edit')
+            ->with('project', project::find($id))
+            ->with('customer', customer::find($id));
+
     }
 
     /**
@@ -124,7 +127,31 @@ class projectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'                      => 'required|string',
+            'customerid'                => 'required',
+            'description'               => 'required|string',
+            'start_date'                => 'required|date',
+            'deadline'                  => 'required|date|after:start_date',
+            'maintained_contract'       => 'required|max:1',
+            'operating_system'          => 'required|string',
+            'applications'              => 'required|string',
+            'hardware'                  => 'required|string',
+        ]);
+        $project= project::find($id);
+        $project->name                  = $request->name;
+        $project->customer_id           = $request->customerid;
+        $project->description           = $request->description;
+        $project->start_date            = $request->start_date;
+        $project->deadline              = $request->deadline;
+        $project->maintained_contract   = $request->maintained_contract;
+        $project->operating_system      = $request->operating_system;
+        $project->applications          = $request->applications;
+        $project->hardware              = $request->hardware;
+        $project->save();
+
+        return redirect(action('ProjectsController@show', $project->id));
+
     }
 
     /**
