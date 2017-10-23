@@ -160,6 +160,11 @@
                 <label for="vat_code">VAT-code:</label>
                 <input type="text" name="vat_code" id="vat_code" class="form-control" value="{{$customer->vat_code}}">
             </div>
+                
+                <div class="form-group col-lg-2">
+                    <label for="limit">Limit:</label>
+                    <input type="number" name="limit" id="limit" class="form-control" value="{{$customer->limit}}" min="50" max="10000">
+                </div>
 
 
 
