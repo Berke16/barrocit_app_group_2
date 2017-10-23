@@ -5,18 +5,33 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
+/**
+ * Class usersController
+ * @package App\Http\Controllers
+ */
 class usersController extends Controller
 {
+    /**
+     * usersController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('admin');
     }
 
+    /**
+     * @return $this
+     */
     public function index(){
         return view('users.index')
             ->with('users', User::all());
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request){
         $this->validate($request, [
             'name' => 'required|string|max:255',
@@ -35,18 +50,31 @@ class usersController extends Controller
         return redirect(action('UsersController@index'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
         User::destroy($id);
         return back();
     }
 
+    /**
+     * @param User $user
+     * @return $this
+     */
     public function edit(User $user)
     {
         return view('users.edit')
             ->with('user', $user);
     }
 
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update(Request $request, User $user)
     {
         $this->validate($request, [

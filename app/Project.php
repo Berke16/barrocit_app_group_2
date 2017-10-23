@@ -4,6 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * Class Project
+ * @package App
+ */
 class Project extends Model
 {
     use SoftDeletes;

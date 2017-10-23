@@ -9,14 +9,24 @@ use App\Project;
 use App\User;
 use Illuminate\Http\Request;
 
+/**
+ * Class trashController
+ * @package App\Http\Controllers
+ */
 class trashController extends Controller
 {
+    /**
+     * trashController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('admin');
     }
 
+    /**
+     * @return mixed
+     */
     public function index()
     {
         return view('trash.index')
@@ -28,6 +38,10 @@ class trashController extends Controller
     }
 
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function restoreCustomer($id)
     {
         $customer = Customer::onlyTrashed()->find($id);
@@ -35,6 +49,10 @@ class trashController extends Controller
         return redirect(action('CustomersController@show' , $customer->id));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function restoreProject($id)
     {
         $project = Project::onlyTrashed()->find($id);
@@ -42,6 +60,10 @@ class trashController extends Controller
         return redirect(action('ProjectsController@show' , $project->id));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function restoreInvoice($id)
     {
         $invoice = Invoice::onlyTrashed()->find($id);
@@ -49,6 +71,10 @@ class trashController extends Controller
         return redirect(action('ProjectsController@show' , $invoice->id));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function restoreOffer($id)
     {
         $invoice = Offer::onlyTrashed()->find($id);
@@ -56,6 +82,10 @@ class trashController extends Controller
         return redirect (action('CustomersController@show' , $invoice->id));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function restoreUser($id){
         $user = User::onlyTrashed()->find($id);
         $user->restore();
