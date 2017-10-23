@@ -30,7 +30,7 @@ Route::resource('customer' , 'CustomersController');
 Route::put('invoice/{invoice}/payed' , 'invoicesController@payed');
 Route::resource('invoice' , 'InvoicesController');
 
-
+Route::get('user/create' , 'pagesController@userCreate');
 
 
 /*
@@ -40,4 +40,5 @@ Route::resource('invoice' , 'InvoicesController');
 Route::get('login', 'PagesController@index');
 Route::post('login','Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::put('/register', 'Auth\RegisterController@register');
 
