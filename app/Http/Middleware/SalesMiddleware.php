@@ -16,7 +16,7 @@ class SalesMiddleware
     public function handle($request, Closure $next)
     {
         $user_type = $request->user()->type;
-        if ($user_type != 'sales' && $user_type != 'admin')
+        if ($user_type != 'sales' && $user_type != 'users')
         {
             return back()->withErrors(['Permission denied!!!']);
         }

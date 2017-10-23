@@ -36,6 +36,16 @@
                         <li>
                             <a href="{{action('CustomersController@create')}}">Make Customer</a>
                         </li>
+                            @elseif(Auth::user()->type == 'admin')
+                            <li>
+                                <a href="{{action('UsersController@index')}}">Users</a>
+                            </li>
+                            <li>
+                                <a href="{{action('CustomersController@create')}}">Make Customer</a>
+                            </li>
+                            <li>
+                                <a href="{{action('TrashController@index')}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                            </li>
                         @endif
                         <li>
                             <a href="{{ route('logout') }}"

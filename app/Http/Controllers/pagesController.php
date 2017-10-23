@@ -9,7 +9,7 @@ class pagesController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->only('index');
-        $this->middleware('admin')->only('create');
+        $this->middleware('user')->only('create');
     }
 
     public function index()
@@ -17,6 +17,6 @@ class pagesController extends Controller
         return view('index');
     }
     public function userCreate(){
-        return view('admin.create');
+        return view('user.create');
     }
 }

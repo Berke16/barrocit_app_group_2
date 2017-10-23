@@ -39,6 +39,13 @@ class homesController extends Controller
                     ->with('offers', Offer::all())
                     ->with('customers', Customer::all());
                 break;
+            case 'admin':
+                return view('homes.admin')
+                    ->with('customers', Customer::all())
+                    ->with('projects', Project::all())
+                    ->with('invoices', Invoice::all())
+                    ->with('offers', Offer::all());
+                break;
         }
         return view('index');
     }

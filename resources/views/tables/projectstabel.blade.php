@@ -20,18 +20,21 @@
             </thead>
             <tbody>
                 @foreach($projects as $project)
-                    <tr data-href="../project/{{$project->id}}">
-                        <td>{{$project->name}}</td>
+                    <tr>
+                        <td data-href="../project/{{$project->id}}">{{$project->name}}</td>
                         <td>
                             @switch($project->status())
                                 @case(0)
                                 <span class="label label-default ">Normal</span>
                                 @break
                                 @case(1)
-                                <span class="label label-danger">RedTube</span>
+                                <span class="label label-danger">Red</span>
                                 @break
                                 @case(2)
                                 <span class="label label-success">Finished</span>
+                                @break
+                                @case(3)
+                                <span class="label label-danger">DELETED</span>
                                 @break
                             @endswitch
                         </td>

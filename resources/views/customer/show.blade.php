@@ -177,13 +177,13 @@ Customer: {{$customer->name}}
 </div>
 
     @switch(Auth::User()->type)
-        @case('sales')
+        @case('sales' || 'users')
             @include('customer.show_templates.sales')
         @break
-        @case('development')
+        @case('development' || 'user')
             @include('customer.show_templates.development')
         @break
-        @case('finance')
+        @case('finance' || 'admin')
             @include('customer.show_templates.finance')
         @break
         @endswitch

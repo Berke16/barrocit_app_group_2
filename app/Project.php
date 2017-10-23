@@ -15,7 +15,7 @@ class Project extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class)->withTrashed();
     }
 
     /* if project completed is true, dont tell status... weirdo*/

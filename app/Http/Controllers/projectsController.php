@@ -164,7 +164,7 @@ class projectsController extends Controller
     public function destroy(Project $project)
     {
         Project::destroy($project->id);
-        Session::flash('message', "Project is deleted.");
+        Session::flash('message', "Project has been deleted.");
         return redirect('/home');
     }
 }
