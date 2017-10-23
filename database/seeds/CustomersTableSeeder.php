@@ -16,31 +16,9 @@ class CustomersTableSeeder extends Seeder
         $fakerDutch = new Faker\Generator();
         $fakerDutch->addProvider(new Faker\Provider\nl_NL\Company($fakerDutch));
 
-        for ($i = 0; $i < 250; $i++)
-        {
-            DB::table('customers')->insert([
-                'name'          => $faker->create()->company,
-                'street'        => $faker->create()->streetName,
-                'housenumber'   => $faker->create()->buildingNumber,
-                'zip_code'      => $faker->create()->postcode,
-                'residence'     => $faker->create()->country,
-                'cp_name'       => $faker->create()->firstName,
-                'cp_lastname'   => $faker->create()->lastName,
-                'cp_insertion'  => $faker->create()->lastName,
-                'tele'          => $faker->create()->phoneNumber,
-                'tele2'         => $faker->create()->phoneNumber,
-                'fax_number'    => $faker->create()->phoneNumber,
-                'mail'          => $faker->create()->companyEmail,
-                'banknumber'    => $faker->create()->iban('nl'),
-                'limit'         => $faker->create()->numberBetween(1,400),
-                'vat_code'      => $fakerDutch->vat,
-                'prospect'      => $faker->create()->numberBetween(0,1),
-                'creditworthy'  => $faker->create()->numberBetween(0,1),
-                'bcr'           => $faker->create()->numberBetween(0,1),
-            ]);
-        }
+
         //people form Breda
-        for ($i = 0; $i < 39; $i++)
+        for ($i = 0; $i < 40; $i++)
         {
             DB::table('customers')->insert([
                 'name'          => $faker->create()->company,
@@ -56,14 +34,15 @@ class CustomersTableSeeder extends Seeder
                 'fax_number'    => $faker->create()->phoneNumber,
                 'mail'          => $faker->create()->companyEmail,
                 'banknumber'    => $faker->create()->iban('nl'),
-                'limit'         => $faker->create()->numberBetween(1,400),
+                'limit'         => $faker->create()->numberBetween(2,400),
                 'vat_code'      => $fakerDutch->vat,
                 'prospect'      => $faker->create()->numberBetween(0,1),
                 'creditworthy'  => 1,
                 'bcr'           => 1,
             ]);
         }
-        for ($i = 0; $i < 9; $i++)
+        // people with the same name
+        for ($i = 0; $i < 10; $i++)
         {
             DB::table('customers')->insert([
                 'name'          => 'Ferrock',
@@ -79,15 +58,15 @@ class CustomersTableSeeder extends Seeder
                 'fax_number'    => $faker->create()->phoneNumber,
                 'mail'          => $faker->create()->companyEmail,
                 'banknumber'    => $faker->create()->iban('nl'),
-                'limit'         => $faker->create()->numberBetween(1,400),
+                'limit'         => $faker->create()->numberBetween(2,400),
                 'vat_code'      => $fakerDutch->vat,
                 'prospect'      => 0,
                 'creditworthy'  => 0,
                 'bcr'           => 0,
             ]);
         }
-
-        for ($i = 0; $i <9; $i++)
+    // people from oosterhoot with bcr check and creditworthy
+        for ($i = 0; $i <10; $i++)
         {
             DB::table('customers')->insert([
                 'name'          => $faker->create()->name,
@@ -103,14 +82,15 @@ class CustomersTableSeeder extends Seeder
                 'fax_number'    => $faker->create()->phoneNumber,
                 'mail'          => $faker->create()->companyEmail,
                 'banknumber'    => $faker->create()->iban('nl'),
-                'limit'         => $faker->create()->numberBetween(1,400),
+                'limit'         => $faker->create()->numberBetween(2,400),
                 'vat_code'      => $fakerDutch->vat,
                 'prospect'      => 1,
                 'creditworthy'  => 1,
                 'bcr'           => 1,
             ]);
         }
-        for ($i = 0; $i <9; $i++)
+        // people from oosterhoot without bcr check and creditworthy
+        for ($i = 0; $i <10; $i++)
         {
             DB::table('customers')->insert([
                 'name'          => $faker->create()->name,
@@ -126,14 +106,15 @@ class CustomersTableSeeder extends Seeder
                 'fax_number'    => $faker->create()->phoneNumber,
                 'mail'          => $faker->create()->companyEmail,
                 'banknumber'    => $faker->create()->iban('nl'),
-                'limit'         => $faker->create()->numberBetween(1,400),
+                'limit'         => $faker->create()->numberBetween(2,400),
                 'vat_code'      => $fakerDutch->vat,
                 'prospect'      => 0,
                 'creditworthy'  => 0,
                 'bcr'           => 0,
             ]);
         }
-        for ($i = 0; $i <4; $i++)
+        //people with the same streetname
+        for ($i = 0; $i < 5; $i++)
         {
             DB::table('customers')->insert([
                 'name'          => $faker->create()->name,
@@ -149,14 +130,15 @@ class CustomersTableSeeder extends Seeder
                 'fax_number'    => $faker->create()->phoneNumber,
                 'mail'          => $faker->create()->companyEmail,
                 'banknumber'    => $faker->create()->iban('nl'),
-                'limit'         => $faker->create()->numberBetween(1,400),
+                'limit'         => $faker->create()->numberBetween(2,400),
                 'vat_code'      => $fakerDutch->vat,
                 'prospect'      => 1,
                 'creditworthy'  => 1,
                 'bcr'           => 1,
             ]);
         }
-        for($i=0;$i<174;$i++)
+        // people with random name and
+        for($i=0;$i<175;$i++)
         {
             DB::table('customers')->insert([
                 'name'          => $faker->create()->name,
@@ -172,7 +154,7 @@ class CustomersTableSeeder extends Seeder
                 'fax_number'    => $faker->create()->phoneNumber,
                 'mail'          => $faker->create()->companyEmail,
                 'banknumber'    => $faker->create()->iban('nl'),
-                'limit'         => $faker->create()->numberBetween(1,400),
+                'limit'         => $faker->create()->numberBetween(2,400),
                 'vat_code'      => $fakerDutch->vat,
                 'prospect'      => 1,
                 'creditworthy'  => 1,
