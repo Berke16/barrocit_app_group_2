@@ -7,8 +7,7 @@
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <label for="email" class="control-label">E-Mail Address</label>
 
-            <input id="email" type="email" class="form-control " name="email" value="{{ old('email') }}" required autofocus>
-            <button class="glyphicon glyphicon-question-sign btn btn-circle" data-toggle="tooltip" data-placement="left" title="Fill here your account e-mailaddress" href="#"></button>
+            <input id="email" type="email" class="form-control " name="email" value="{{ old('email') }}"data-toggle="tooltip" data-placement="left" title="Fill here your account e-mailaddress"  required autofocus>
 
             @if ($errors->has('email'))
             <span class="help-block">
@@ -20,8 +19,7 @@
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label for="password" class="control-label">Password</label>
 
-            <input id="password" type="password" class="form-control" name="password" required>
-            <button class="glyphicon glyphicon-question-sign btn btn-circle" data-toggle="tooltip" data-placement="left" title="Fill here macthing password with your account" href="#"></button>
+            <input id="password" type="password" class="form-control" data-toggle="tooltip" data-placement="left" title="Fill here matching password with your account" name="password" required>
 
             @if ($errors->has('password'))
             <span class="help-block">
