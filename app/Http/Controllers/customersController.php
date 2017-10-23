@@ -47,6 +47,7 @@ class customersController extends Controller
             'residence2'                => 'nullable|string',
             'banknumber'                => 'nullable|string',
             'vat_code'                  => 'nullable|string',
+
         ]);
 
         $customer = new \App\Customer();
@@ -68,6 +69,7 @@ class customersController extends Controller
             $customer->mail             = $request->email;
             $customer->vat_code         = $request->vat_code;
             $customer->banknumber       = $request->banknumber;
+
         $customer->save();
 
         return redirect(action('CustomersController@show', $customer->id));
@@ -125,6 +127,7 @@ class customersController extends Controller
             'residence2'                => 'nullable|string',
             'banknumber'                => 'nullable|string',
             'vat_code'                  => 'nullable|string',
+            'limit'                     => 'nullable|numeric',
         ]);
 
         $customer= customer::find($id);
@@ -146,6 +149,7 @@ class customersController extends Controller
         $customer->mail             = $request->email;
         $customer->vat_code         = $request->vat_code;
         $customer->banknumber       = $request->banknumber;
+        $customer->limit            = $request->limit;
         $customer->save();
         return redirect(action('CustomersController@show', $customer->id));
     }
