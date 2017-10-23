@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -9,6 +10,7 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         DB::table('users')->insert([
@@ -17,5 +19,29 @@ class UsersTableSeeder extends Seeder
             'password'  => bcrypt('kaczka'),
             'type'      => 'sales'
             ]);
+
+        DB::table('users')->insert([
+            'name'      => 'sales',
+            'email'     => 'sales@barroc-it.nl',
+            'password'  => bcrypt('sales'),
+            'type'      => 'sales'
+        ]);
+        DB::table('users')->insert([
+           'name'       => 'development',
+           'email'      => 'development@barroc-it.nl',
+           'password'   => bcrypt('development'),
+           'type'       => 'development',
+        ]);
+
+        DB::table('users')->insert([
+           'name'       => 'finance',
+           'email'      => 'finance@barroc-it.nl',
+           'password'   => bcrypt('finance'),
+           'type'       => 'finance'
+        ]);
+
+
+
+
     }
 }
