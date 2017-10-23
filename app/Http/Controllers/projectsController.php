@@ -7,6 +7,7 @@ use App\Project;
 use App\Invoice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class projectsController extends Controller
 {
@@ -160,9 +161,10 @@ class projectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        Project::destroy($id);
+        Project::destroy($project->id);
+        Session::flash('message', "Project is deleted.");
         return redirect('/home');
     }
 }

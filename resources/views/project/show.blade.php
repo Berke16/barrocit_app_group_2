@@ -77,6 +77,7 @@ Project: {{$project->name}}
             {{csrf_field()}}
             {{method_field('DELETE')}}
             <input class="btn btn-default" type="submit" value="Delete project">
+            <a class="btn btn-default" href="javascript:window.print()">Info Print</a>
 
         </form>
 

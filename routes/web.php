@@ -17,9 +17,9 @@ Route::get('/', 'pagesController@index');
 
 Route::resource('project' , 'ProjectsController');
 Route::get('customer/{id}/project', 'ProjectsController@create');
-Route::get('customer/{id}/invoice', 'InvoicesController@create');
 
 
+Route::get('project/{id}/invoice', 'InvoicesController@create');
 Route::put('offer/{id}', 'OffersController@statusChange');
 Route::resource('offer' , 'OffersController');
 Route::resource('action' , 'ActionsController');

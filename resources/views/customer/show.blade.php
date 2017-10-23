@@ -144,6 +144,7 @@ Customer: {{$customer->name}}
             <a href="{{action('ProjectsController@create', $customer->id)}}" class="btn btn-default">Add project</a>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add invoice</button>
             <a href="{{action('CustomersController@edit', $customer->id)}}" class="btn btn-default">edit Customer</a>
+            <a class="btn btn-default" href="javascript:window.print()">Info Print</a>
         </div>
     </div>
 </div>
