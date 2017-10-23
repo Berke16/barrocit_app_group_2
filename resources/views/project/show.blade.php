@@ -1,122 +1,137 @@
 
-@extends('layout.master')
+@extends('layouts.master')
 @section('location')
-    Project: {{$project->name}}
+Project: {{$project->name}}
 @endsection
 @section('content')
-    @if($project->customer->status())
-        <p class="alert alert-danger text-center">This customer of the following project is beyond limit!</p>
-    @endif
-    <div class="container-fluid well">
-        <div class="container">
-            <section class="col-xs-4">
-                <table class="table table-borderless col-xs-12">
-                    <tr>
-                        <th>Project name:</th>
-                        <td>{{$project->name}}</td>
-                    </tr>
-                    <tr>
-                        <th>Description:</th>
-                        <td>{{$project->description}}</td>
-                    </tr>
-                    <tr>
-                        <th>Start date:</th>
-                        <td>dd-mm-yyyy</td>
-                    </tr>
-                    <tr>
-                        <th>Deadline:</th>
-                        <td>dd-mm-yyyy</td>
-                    </tr>
-                    <tr>
-                        <th>Maintained contract:</th>
-                        <td>{{$project->maintained_contract}}</td>
-                    </tr>
-                </table>
-            </section>
-            <section class="col-xs-4">
-                <table class="table table-borderless col-xs-12">
-                    <tr>
-                        <th>Applications:</th>
-                        <td>{{$project->applications}}</td>
-                    </tr>
-                    <tr>
-                        <th>Hardware:</th>
-                        <td>{{$project->hardware}}</td>
-                    </tr>
-                    <tr>
-                        <th>Operating system:</th>
-                        <td>{{$project->operating_system}}</td>
-                    </tr>
-                    <tr>
-                        <th>Appointments:</th>
-                        <td>{{$project->appointments}}</td>
-                    </tr>
-                </table>
-            </section>
-            <section class="col-xs-4">
-                <table class="table table-borderless col-xs-12">
-                    <tr>
-                        <th>Company name:</th>
-                        <td><a href="/customer/{{$project->customer->id}}">{{$project->customer->name}}</a></td>
-                    </tr>
-                    <tr>
-                        <th>Internal contact person:</th>
-                        <td>{{$project->customer->cp_name}} {{$project->customer->cp_insertion}} {{$project->customer->cp_lastname}}</td>
-                    </tr>
-                </table>
-            </section>
-        </div>
-    </div>
+@if($project->customer->status())
+<p class="alert alert-danger text-center">This customer of the following project is beyond limit!</p>
+@endif
+<div class="container-fluid well">
     <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Invoices</h3>
-                <div class="pull-right">
-                <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-                    <i class="glyphicon glyphicon-filter"></i>
-                </span>
-                </div>
+        <section class="col-xs-4">
+            <table class="table table-borderless col-xs-12">
+                <tr>
+                    <th>Project name:</th>
+                    <td>{{$project->name}}</td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td>{{$project->description}}</td>
+                </tr>
+                <tr>
+                    <th>Start date:</th>
+                    <td>{{$project->start_date}}</td>
+                </tr>
+                <tr>
+                    <th>Deadline:</th>
+                    <td>{{$project->deadline}}</td>
+                </tr>
+                <tr>
+                    <th>Maintained contract:</th>
+                    <td>
+                        @switch($project->maintained_contract)
+                        @case(1)
+                        Yes
+                        @break
+                        @case(0)
+                        No
+                        @endswitch
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section class="col-xs-4">
+            <table class="table table-borderless col-xs-12">
+                <tr>
+                    <th>Applications:</th>
+                    <td>{{$project->applications}}</td>
+                </tr>
+                <tr>
+                    <th>Hardware:</th>
+                    <td>{{$project->hardware}}</td>
+                </tr>
+                <tr>
+                    <th>Operating system:</th>
+                    <td>{{$project->operating_system}}</td>
+                </tr>
+            </table>
+        </section>
+        <section class="col-xs-4">
+            <table class="table table-borderless col-xs-12">
+                <tr>
+                    <th>Company name:</th>
+                    <td><a href="/customer/{{$project->customer->id}}">{{$project->customer->name}}</a></td>
+                </tr>
+                <tr>
+                    <th>Internal contact person:</th>
+                    <td>{{$project->customer->cp_name}} {{$project->customer->cp_insertion}} {{$project->customer->cp_lastname}}</td>
+                </tr>
+            </table>
+        </section>
+        <form action="{{action('ProjectsController@destroy', $project->id)}}" method="post" class="btn-group pull-right">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add invoice</button>
+            @if(Auth::user()->type == 'development' || Auth::user()->type == 'sales' )
+                <a href="{{action('ProjectsController@edit', $project->id)}}" class="btn btn-default">edit Project</a>
+            @endif
+            {{csrf_field()}}
+            {{method_field('DELETE')}}
+            <input class="btn btn-default" type="submit" value="Delete project">
+            <a class="btn btn-default" href="javascript:window.print()">Info Print</a>
+
+        </form>
+
+    </div>
+</div>
+
+@if(Auth::User()->type == 'finance')
+<div class="container">
+ @php $invoices = $project->invoices @endphp
+ @include('tables.invoicestable')
+</div>
+<!-- Modelbox voor het maken van de invoices. -->
+
+<div id="invoicemodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add invoice:</h4>
             </div>
-            <div class="panel-body">
-                <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Invoces Table">
-            </div>
-            <div style="height: 200px; overflow: scroll; overflow-x: hidden;">
-                <table class="table table-hover text-center" id="invoices-table">
-                    <thead>
-                    <tr>
-                        <th class="text-center">Invoice nr.</th>
-                        <th class="text-center">Description</th>
-                        <th class="text-center">Total</th>
-                        <th class="text-center">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($project->invoices as $invoice)
-                        <tr>
-                            <td>{{$invoice->id}}</td>
-                            <td>{{$invoice->description}}</td>
-                            <td>{{$invoice->price}}</td>
-                            <td>
-                                @switch($invoice->status())
-                                    @case(0)
-                                    <span class="label label-default">Not Sended</span>
-                                    @break
-                                    @case(1)
-                                    <span class="label label-warning">Sended</span>
-                                    @break
-                                    @case(2)
-                                    <span class="label label-danger">Late</span>
-                                    @break
-                                    @case(3)
-                                    <span class="label label-success">Payed</span>
-                                    @break
-                                @endswitch
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+            <div class="modal-body">
+                <form action="{{ action('InvoicesController@store')}}" method="post" class="">
+                    {{ csrf_field()}}
+                    <h4 class="text-center">Project: {{$project->name}}</h4>
+                    <div class="form-group">
+                        <label for="description">Description:<span style="color: red">*</span></label>
+                        <input type="text" class="form-control" id="description" name="description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:<span style="color: red">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-addon">€</span>
+                            <input type="text" id="price" class="form-control" aria-label="amount" name="price">
+                            <span class="input-group-addon">.00</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="payday">Pay day:<span style="color: red">*</span></label>
+                        <input type="date" id="payday" class="form-control" name="payday">
+                    </div>
+                    <div class="form-group">
+                        <label for="date_of_sending">Date of sending:<span style="color: red">*</span></label>
+                        <input type="date" id="date_of_sending" class="form-control" name="date_of_sending" required>
+                    </div>
+                    <input type="hidden" name="projectid" value="{{$project->id}}">
+                    <div class="modal-footer">
+                        <input type="submit" value="Add" class="btn pull-right">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+@endif
+
+
 @endsection

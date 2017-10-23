@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Offer;
 use Illuminate\Http\Request;
 
 class offersController extends Controller
@@ -9,25 +10,7 @@ class offersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $this->middleware('sales')->only('store', 'create', 'statusChange', 'destroy');
     }
 
     /**
@@ -39,53 +22,19 @@ class offersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'offerNumber' => 'required|numeric',
-            'description' => 'required|string',
+            'description'           => 'required|string',
+            'total_project_price'   => 'required|numeric'
         ]);
 
         $offer = new \App\Offer();
-        $offer->customer_id = $request->customerid;
-        $offer->number = $request->offerNumber;
-        $offer->description = $request->description;
+        $offer->customer_id          = $request->customerid;
+        $offer->description          = $request->description;
+        $offer->total_project_price  = $request->total_project_price;
         $request->status = 0;
 
         $offer->save();
 
         return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -96,6 +45,24 @@ class offersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Offer::destroy($id);
+        return back();
+    }
+
+    public function statusChange($id)
+    {
+        $offer = Offer::find($id);
+
+        if($offer->status == true)
+        {
+            $offer->status = false;
+        }
+        else
+            $offer->status = true;
+        $offer->save();
+
+        return back();
+
+
     }
 }

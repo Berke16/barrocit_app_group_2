@@ -16,28 +16,27 @@ class CustomersTableSeeder extends Seeder
         $fakerDutch = new Faker\Generator();
         $fakerDutch->addProvider(new Faker\Provider\nl_NL\Company($fakerDutch));
 
-        for ($i = 0; $i < 50; $i++)
+        for ($i = 0; $i < 250; $i++)
         {
-            DB::table('tbl_customers')->insert([
-                'name' => $faker->create()->company,
-                'street' => $faker->create()->streetName,
-                'housenumber' => $faker->create()->buildingNumber,
-                'zip_code' => $faker->create()->postcode,
-                'residence' => $faker->create()->country,
-                'cp_name' => $faker->create()->firstName,
-                'cp_lastname' => $faker->create()->lastName,
-                'cp_insertion' => $faker->create()->lastName,
-                'tele' => $faker->create()->phoneNumber,
-                'tele2' => $faker->create()->phoneNumber,
-                'fax_number' => $faker->create()->phoneNumber,
-                'mail' => $faker->create()->companyEmail,
-                'banknumber' => $faker->create()->iban('nl'),
-                'limit' => $faker->create()->numberBetween(1,400),
-                'vat_code' => $fakerDutch->vat,
-                'prospect' => $faker->create()->numberBetween(0,1),
-                'ledgerbill' => $faker->create()->randomNumber,
-                'creditworthy' => $faker->create()->numberBetween(0,1),
-                'bcr' => $faker->create()->numberBetween(0,1),
+            DB::table('customers')->insert([
+                'name'          => $faker->create()->company,
+                'street'        => $faker->create()->streetName,
+                'housenumber'   => $faker->create()->buildingNumber,
+                'zip_code'      => $faker->create()->postcode,
+                'residence'     => $faker->create()->country,
+                'cp_name'       => $faker->create()->firstName,
+                'cp_lastname'   => $faker->create()->lastName,
+                'cp_insertion'  => $faker->create()->lastName,
+                'tele'          => $faker->create()->phoneNumber,
+                'tele2'         => $faker->create()->phoneNumber,
+                'fax_number'    => $faker->create()->phoneNumber,
+                'mail'          => $faker->create()->companyEmail,
+                'banknumber'    => $faker->create()->iban('nl'),
+                'limit'         => $faker->create()->numberBetween(1,400),
+                'vat_code'      => $fakerDutch->vat,
+                'prospect'      => $faker->create()->numberBetween(0,1),
+                'creditworthy'  => $faker->create()->numberBetween(0,1),
+                'bcr'           => $faker->create()->numberBetween(0,1),
             ]);
         }
 

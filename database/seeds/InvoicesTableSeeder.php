@@ -13,13 +13,13 @@ class InvoicesTableSeeder extends Seeder
     {
         $faker = new \Faker\Factory();
 
-        for ($i = 0; $i < 30; $i++)
+        for ($i = 0; $i < 600; $i++)
         {
-            DB::table('tbl_invoices')->insert([
-                'project_id' => $faker->create()->numberBetween(1,29),
-                'description' => $faker->create()->sentence,
-                'price' => $faker->create()->numberBetween(100, 4000),
-                'date_of_sending' => $faker->create()->date,
+            DB::table('invoices')->insert([
+                'project_id'        => $faker->create()->numberBetween(1,29),
+                'description'       => $faker->create()->sentence,
+                'price'             => $faker->create()->numberBetween(100, 4000),
+                'date_of_sending'   => $faker->create()->date,
             ]);
         }
     }

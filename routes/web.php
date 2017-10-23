@@ -12,21 +12,32 @@
 */
 
 
-Route::get('/', function () {
-    if (Auth::check())
-    {
-        return redirect('/home');
-    }
-    return view('index');
-});
+Route::get('/', 'pagesController@index');
 
 
-Route::resource('project' , 'projectsController');
-Route::get('customer/{id}/project/create', 'projectsController@create');
-Route::get('customer/{id}/invoice/create', 'invoicesController@create');
-Route::resource('offer' , 'offersController');
-Route::resource('action' , 'actionsController');
-Route::resource('home' , 'homesController');
-Route::resource('customer' , 'customersController');
-Route::resource('invoice' , 'invoicesController');
-Auth::routes();
+Route::resource('project' , 'ProjectsController');
+Route::get('customer/{id}/project', 'ProjectsController@create');
+
+
+Route::get('project/{id}/invoice', 'InvoicesController@create');
+Route::put('offer/{id}', 'OffersController@statusChange');
+Route::resource('offer' , 'OffersController');
+Route::resource('action' , 'ActionsController');
+Route::resource('home' , 'HomesController');
+Route::resource('customer' , 'CustomersController');
+
+
+Route::put('invoice/{invoice}/payed' , 'invoicesController@payed');
+Route::resource('invoice' , 'InvoicesController');
+
+
+
+
+/*
+ * Routes for //Auth::routes();
+ */
+
+Route::get('login', 'PagesController@index');
+Route::post('login','Auth\LoginController@login')->name('login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+

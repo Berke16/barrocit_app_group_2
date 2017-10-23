@@ -14,19 +14,21 @@
         <table class="table table-hover" id="dev-table">
             <thead>
             <tr>
-                <th class="col-sm-1">Customer nr.</th>
+                <th class="col-sm-1">Nr.</th>
                 <th class="col-sm-3">Name</th>
                 <th class="col-sm-3">Contact person</th>
                 <th class="col-sm-3">Latest contact</th>
-                <th class="col-sm-2 text-center">Status</th>
+                <th class="col-sm-1 text-center">Status</th>
+                <th class="col-sm-1"></th>
+
             </tr>
             </thead>
             <tbody>
             @foreach($customers as $customer)
-                <tr data-href="../customer/{{$customer->id}}">
+                <tr>
                     <th>{{$customer->id}}</th>
-                    <th>{{$customer->name}}</th>
-                    <th>{{$customer->cp_name}}</th>
+                    <th data-href="../customer/{{$customer->id}}">{{$customer->name}}</th>
+                    <th>{{$customer->cp_name}} {{$customer->cp_insertion}} {{$customer->lastname}}</th>
                     <th>@if($customer->actions->count() > 0){{$customer->actions->last()->date_of_action}}@endif</th>
                     <th class="text-center">
                         @switch($customer->status())
@@ -37,6 +39,13 @@
                             <span class="label label-danger" >Beyond limit</span>
                             @break
                         @endswitch
+                    </th>
+                    <th class="text-center">
+                        <form action="{{action('CustomersController@destroy',$customer->id)}}" method="post" style="z-index: 100; margin: 0;">
+                            {{csrf_field()}}
+                            {{method_field('DELETE')}}
+                            <button  type="submit" class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                        </form>
                     </th>
                 </tr>
             @endforeach

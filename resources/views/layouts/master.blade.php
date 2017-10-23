@@ -16,14 +16,14 @@
 </head>
 <body>
 
-@include('layout.nav')
-@yield('content')
+    @include('layouts.nav')
+    @yield('content')
 
-<footer>
-    <h1 class="subhead text-center">SOFTWARE FOR REAL.</h1>
-    <p class="text-center">&copy; BARROC IT |  2017</p>
-</footer>
+    <footer>
+        <h1 class="subhead text-center">SOFTWARE FOR REAL.</h1>
+        <p class="text-center">&copy; BARROC IT |  2017</p>
+    </footer>
 
-@include('layout.scripts')
+    @include('layouts.scripts')
 </body>
 </html>
