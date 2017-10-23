@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class customersController extends Controller
 {
@@ -155,9 +156,10 @@ class customersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        Customer::destroy($id);
+        Customer::destroy($customer->id);
+        Session::flash('message', "Customer has been deleted.");
         return redirect('/home');
     }
 
