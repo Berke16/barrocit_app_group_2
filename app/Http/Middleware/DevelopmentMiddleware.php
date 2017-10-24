@@ -17,7 +17,7 @@ class DevelopmentMiddleware
     {
         $user_type = $request->user()->type;
 
-        if ($user_type != 'development' && $user_type != 'user')
+        if ($user_type != 'development' && $user_type != 'admin')
         {
             return back()->withErrors(['Permission denied!!!']);
         }

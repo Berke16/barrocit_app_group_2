@@ -30,15 +30,14 @@ Route::resource('customer' , 'CustomersController');
 Route::put('invoice/{invoice}/payed' , 'invoicesController@payed');
 Route::resource('invoice' , 'InvoicesController');
 
+
 Route::get('trash', 'TrashController@index');
 Route::post('trash/customer/{id}/restore', 'TrashController@restoreCustomer');
 Route::post('trash/project/{id}/restore', 'TrashController@restoreProject');
 Route::post('trash/invoice/{id}/restore', 'TrashController@restoreInvoice');
 Route::post('trash/offer/{id}/restore', 'TrashController@restoreOffer');
 Route::post('trash/user/{id}/restore', 'TrashController@restoreUser');
-/*
- * Routes for //Auth::routes();
- */
+
 
 Route::get('login', 'PagesController@index');
 Route::post('login','Auth\LoginController@login')->name('login');

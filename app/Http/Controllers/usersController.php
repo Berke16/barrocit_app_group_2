@@ -25,7 +25,7 @@ class usersController extends Controller
      */
     public function index(){
         return view('users.index')
-            ->with('users', User::all());
+        ->with('users', User::all());
     }
 
     /**
@@ -67,7 +67,7 @@ class usersController extends Controller
     public function edit(User $user)
     {
         return view('users.edit')
-            ->with('user', $user);
+        ->with('user', $user);
     }
 
     /**

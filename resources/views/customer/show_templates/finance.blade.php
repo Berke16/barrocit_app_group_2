@@ -1,13 +1,13 @@
 <div class="col-md-12">
     @php
-        $invoices = $customer->invoices;
+    $invoices = $customer->invoices;
     @endphp
     @include('tables.invoicestable')
 </div>
 
 <div class="col-md-12">
     @php
-        $projects = $customer->projects;
+    $projects = $customer->projects;
     @endphp
     @include('tables.projectstabel')
 </div>
@@ -46,7 +46,7 @@
                     <label for="projectid">Project:<span style="color: red">*</span></label>
                     <select class="form-control" name="projectid" id="projectid">
                         @foreach($customer->projects as $project)
-                            <option value="{{$project->id}}">{{$project->name}}</option>
+                        <option value="{{$project->id}}">{{$project->name}}</option>
                         @endforeach
                     </select>
                     <div class="modal-footer">

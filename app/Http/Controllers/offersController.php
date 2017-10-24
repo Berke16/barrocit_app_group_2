@@ -62,7 +62,5 @@ class offersController extends Controller
         $offer->save();
 
         return back();
-
-
     }
 }

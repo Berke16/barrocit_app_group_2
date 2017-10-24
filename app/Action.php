@@ -11,13 +11,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Action extends Model
 {
-    use softDeletes;
+	use softDeletes;
 
     /**
      * @return string
      */
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+    	return $this->belongsTo(Customer::class);
     }
 }

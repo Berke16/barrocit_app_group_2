@@ -34,23 +34,23 @@ class Customer extends Model
     }
 
 /*
- * checks if the saldo is higher then limit
- * if true it returns true and makes it good
- * else if returns false and it sets it to beyond limit
+ * Checks if the saldo is higher then limit
+ * If true it returns true and makes it good
+ * Else if returns false and it sets it to beyond limit
  *
  */
-    public function status()
+public function status()
+{
+    if($this->saldo() > $this->limit)
     {
-        if($this->saldo() > $this->limit)
-        {
-            return true;
-        }
-        else
-            return false;
+        return true;
     }
+    else
+        return false;
+}
 
     /*
-     * checks the invoice status and if the status is 2 it shows you the invoice price
+     * Checks the invoice status and if the status is 2 it shows you the invoice price
      */
     public function saldo()
     {
@@ -65,6 +65,4 @@ class Customer extends Model
 
         return $price;
     }
-
-
 }
