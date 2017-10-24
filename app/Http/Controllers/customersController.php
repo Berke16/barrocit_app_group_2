@@ -12,7 +12,7 @@ class customersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('sales')->only('store', 'create');
+        $this->middleware('sales')->only('store', 'create', 'destroy');
     }
 
     public function create()

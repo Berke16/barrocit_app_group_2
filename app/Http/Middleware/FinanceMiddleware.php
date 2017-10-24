@@ -17,7 +17,7 @@ class FinanceMiddleware
     {
         $user_type = $request->user()->type;
 
-        if ($user_type != 'finance' && $user_type != 'user')
+        if ($user_type != 'finance' && $user_type != 'admin')
         {
             return back()->withErrors(['Permission denied!!!']);
         }
