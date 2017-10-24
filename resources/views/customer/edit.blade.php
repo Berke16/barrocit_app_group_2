@@ -9,8 +9,8 @@ Edit customer
         {{csrf_field()}}
 
         {{method_field('PUT')}}
-
-        @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance'  || Auth::user()->type == 'admin')
+        {{--sales can change this--}}
+        @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance' || Auth::user()->type == 'admin')
         <div class="form-group col-lg-4">
             <label for="company_name">Company name:<span style="color: red">*</span></label>
             <input type="text" class="form-control" id="company_name" name="company_name" value="{{old('company_name', $customer->name)}}" required>
