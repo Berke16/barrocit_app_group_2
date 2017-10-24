@@ -47,7 +47,7 @@ class InvoicesTableSeeder extends Seeder
                         DB::table('invoices')->insert([
                             'project_id'        => $customer->projects->first()->id,
                             'description'       => $faker->create()->sentence,
-                            'price'             => $faker->create()->numberBetween(100, 400),
+                            'price'             => 500,//DAT WAS GENOEG
                             'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-09-20'),
                         ]);
                 }

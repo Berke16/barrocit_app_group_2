@@ -25,7 +25,7 @@ class CustomersTableSeeder extends Seeder
                 'street'        => $faker->create()->streetName,
                 'housenumber'   => $faker->create()->buildingNumber,
                 'zip_code'      => $faker->create()->postcode,
-                'residence'     => 'breda',
+                'residence'     => 'Breda',
                 'cp_name'       => $faker->create()->firstName,
                 'cp_lastname'   => $faker->create()->lastName,
                 'cp_insertion'  => $faker->create()->lastName,
@@ -49,7 +49,7 @@ class CustomersTableSeeder extends Seeder
                 'street'        => $faker->create()->streetName,
                 'housenumber'   => $faker->create()->buildingNumber,
                 'zip_code'      => $faker->create()->postcode,
-                'residence'     => $faker->create()->country,
+                'residence'     => $faker->creatne()->city,
                 'cp_name'       => $faker->create()->firstName,
                 'cp_lastname'   => $faker->create()->lastName,
                 'cp_insertion'  => $faker->create()->lastName,
@@ -60,9 +60,9 @@ class CustomersTableSeeder extends Seeder
                 'banknumber'    => $faker->create()->iban('nl'),
                 'limit'         => $faker->create()->numberBetween(2,400),
                 'vat_code'      => $fakerDutch->vat,
-                'prospect'      => 0,
-                'creditworthy'  => 0,
-                'bcr'           => 0,
+                'prospect'      => 1,
+                'creditworthy'  => 1,
+                'bcr'           => 1,
             ]);
         }
     // people from oosterhoot with bcr check and creditworthy
@@ -118,10 +118,10 @@ class CustomersTableSeeder extends Seeder
         {
             DB::table('customers')->insert([
                 'name'          => $faker->create()->name,
-                'street'        => 'terheidenseweg',
+                'street'        => 'Terheidenseweg',
                 'housenumber'   => $faker->create()->buildingNumber,
                 'zip_code'      => $faker->create()->postcode,
-                'residence'     => $faker->create()->country,
+                'residence'     => $faker->create()->city,
                 'cp_name'       => $faker->create()->firstName,
                 'cp_lastname'   => $faker->create()->lastName,
                 'cp_insertion'  => $faker->create()->lastName,
@@ -145,7 +145,7 @@ class CustomersTableSeeder extends Seeder
                 'street'        => $faker->create()->streetName,
                 'housenumber'   => $faker->create()->buildingNumber,
                 'zip_code'      => $faker->create()->postcode,
-                'residence'     => $faker->create()->country,
+                'residence'     => $faker->create()->city,
                 'cp_name'       => $faker->create()->firstName,
                 'cp_lastname'   => $faker->create()->lastName,
                 'cp_insertion'  => $faker->create()->lastName,
