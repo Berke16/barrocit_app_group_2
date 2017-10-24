@@ -33,9 +33,11 @@ Edit project
                 <label for="maintained_contract">Maintain Contract<span style="color: red">*</span></label>
                 <select name="maintained_contract" id="maintained_contract" class="form-control" required>
                     @if($project->maintained_contract == 0)
+                    <option value="0">No</option>
                     <option value="1">Yes</option>
                     @else
-                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>   
                     @endif
                 </select>
             </div>

@@ -40,6 +40,7 @@ class customersController extends Controller
             'street'                    => 'nullable|string',
             'zipcode'                   => 'nullable|string',
             'housenumber'               => 'nullable|numeric',
+            'housenumber2'              => 'nullable|numeric',
             'residence'                 => 'nullable|string',
             'street2'                   => 'nullable|string',
             'zipcode2'                  => 'nullable|string',

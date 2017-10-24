@@ -48,9 +48,9 @@ class projectsController extends Controller
             'operating_system'          => 'required|string',
             'applications'              => 'required|string',
             'hardware'                  => 'required|string',
-            'price'                     => 'required|numeric',
-            'amount'                    => 'required|numeric|min:100|max:50000',
-            'kind_of_terms'             => 'required|numeric',
+            'price'                     => 'required|numeric|min:100|max:999999',
+            'amount'                    => 'required|numeric|min:1',
+            'kind_of_terms'             => 'required|numeric:min:1|max:3',
             'first_payday'              => 'required|date',
         ]);
 
