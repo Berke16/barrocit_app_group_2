@@ -40,7 +40,7 @@
                         <form action="{{action('OffersController@destroy', $offer->id)}}" method="post" style="margin: 0;">
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
-                            <button class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                            <button class="glyphicon glyphicon-remove btn-xs btn-danger"  @if(Auth::User()->type != 'sales' && Auth::User()->type != 'admin') disabled @endif></button>
                         </form>
                         @endif
                     </td>

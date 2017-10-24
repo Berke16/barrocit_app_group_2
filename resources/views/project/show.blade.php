@@ -75,7 +75,7 @@ Project: {{$project->name}}
             @endif
             {{csrf_field()}}
             {{method_field('DELETE')}}
-            <input class="btn btn-default" type="submit" value="Delete project">
+            <input class="btn btn-default" type="submit" value="Delete project"  @if(Auth::User()->type != 'sales' && Auth::User()->type != 'admin') disabled @endif>
             <a class="btn btn-default" href="javascript:window.print()">Info Print</a>
 
         </form>
