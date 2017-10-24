@@ -36,6 +36,16 @@
                         <li>
                             <a href="{{action('CustomersController@create')}}">Make Customer</a>
                         </li>
+                        @elseif(Auth::user()->type == 'admin')
+                        <li>
+                            <a href="{{action('UsersController@index')}}">Users</a>
+                        </li>
+                        <li>
+                            <a href="{{action('CustomersController@create')}}">Make Customer</a>
+                        </li>
+                        <li>
+                            <a href="{{action('TrashController@index')}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                        </li>
                         @endif
                         <li>
                             <a href="{{ route('logout') }}"
@@ -56,7 +66,7 @@
 </div>
 </nav>
 @if (Session::has('message'))
-    <div class="alert alert-success text-center">{{ Session::get('message') }}</div>
+<div class="alert alert-success text-center">{{ Session::get('message') }}</div>
 @endif
 @if ($errors->any())
 <div class="alert alert-danger text-center">

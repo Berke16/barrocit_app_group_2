@@ -27,7 +27,7 @@ class projectsController extends Controller
     public function create($id)
     {
         return view('project.create')
-            ->with('customer', Customer::find($id));
+        ->with('customer', Customer::find($id));
     }
 
     /**
@@ -77,17 +77,17 @@ class projectsController extends Controller
         for ($i = 1; $i <= $project->amount; $i++)
         {
             $invoice = new Invoice();
-                $invoice->project_id        = $project->id;
-                $invoice->description       = 'Number '. $i .' invoice for project: '.$project->name;
-                $invoice->price             = $invoice_price;
-                if ($i > 1)
-                {
-                    $amount += $project->kind_of_terms;
-                    $invoice->date_of_sending   = Carbon::parse($project->first_payday)->addMonths($amount);
-                }
-                else{
-                    $invoice->date_of_sending   = Carbon::parse($project->first_payday);
-                }
+            $invoice->project_id        = $project->id;
+            $invoice->description       = 'Number '. $i .' invoice for project: '.$project->name;
+            $invoice->price             = $invoice_price;
+            if ($i > 1)
+            {
+                $amount += $project->kind_of_terms;
+                $invoice->date_of_sending   = Carbon::parse($project->first_payday)->addMonths($amount);
+            }
+            else{
+                $invoice->date_of_sending   = Carbon::parse($project->first_payday);
+            }
             $invoice->save();
         }
         return redirect(action('ProjectsController@show', $project->id));
@@ -114,8 +114,8 @@ class projectsController extends Controller
     public function edit($id)
     {
         return view('project.edit')
-            ->with('project', project::find($id))
-            ->with('customer', customer::find($id));
+        ->with('project', project::find($id))
+        ->with('customer', customer::find($id));
 
     }
 
@@ -164,7 +164,7 @@ class projectsController extends Controller
     public function destroy(Project $project)
     {
         Project::destroy($project->id);
-        Session::flash('message', "Project is deleted.");
+        Session::flash('message', "Project has been deleted.");
         return redirect('/home');
     }
 }

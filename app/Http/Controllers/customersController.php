@@ -50,25 +50,25 @@ class customersController extends Controller
 
         ]);
 
-        $customer = new \App\Customer();
-            $customer->name             = $request->company_name;
-            $customer->street           = $request->street;
-            $customer->housenumber      = $request->housenumber;
-            $customer->zip_code         = $request->zipcode;
-            $customer->residence        = $request->residence;
-            $customer->street2          = $request->street2;
-            $customer->housenumber2     = $request->housenumber2;
-            $customer->zip_code2        = $request->zipcode2;
-            $customer->residence2       = $request->residence2;
-            $customer->cp_name          = $request->name;
-            $customer->cp_lastname      = $request->lastname;
-            $customer->cp_insertion     = $request->insertion;
-            $customer->tele             = $request->telephonenumber;
-            $customer->tele2            = $request->telephonenumber2;
-            $customer->fax_number       = $request->fax_number;
-            $customer->mail             = $request->email;
-            $customer->vat_code         = $request->vat_code;
-            $customer->banknumber       = $request->banknumber;
+        $customer                       = new \App\Customer();
+        $customer->name                 = $request->company_name;
+        $customer->street               = $request->street;
+        $customer->housenumber          = $request->housenumber;
+        $customer->zip_code             = $request->zipcode;
+        $customer->residence            = $request->residence;
+        $customer->street2              = $request->street2;
+        $customer->housenumber2         = $request->housenumber2;
+        $customer->zip_code2            = $request->zipcode2;
+        $customer->residence2           = $request->residence2;
+        $customer->cp_name              = $request->name;
+        $customer->cp_lastname          = $request->lastname;
+        $customer->cp_insertion         = $request->insertion;
+        $customer->tele                 = $request->telephonenumber;
+        $customer->tele2                = $request->telephonenumber2;
+        $customer->fax_number           = $request->fax_number; 
+        $customer->mail                 = $request->email;
+        $customer->vat_code             = $request->vat_code;
+        $customer->banknumber           = $request->banknumber;
 
         $customer->save();
 
@@ -96,7 +96,7 @@ class customersController extends Controller
     {
         $customer = customer::find($id);
         return view('customer.edit')
-            ->with('customer', $customer);
+        ->with('customer', $customer);
     }
 
     /**
@@ -131,25 +131,25 @@ class customersController extends Controller
         ]);
 
         $customer= customer::find($id);
-        $customer->name             = $request->company_name;
-        $customer->street           = $request->street;
-        $customer->housenumber      = $request->housenumber;
-        $customer->zip_code         = $request->zipcode;
-        $customer->residence        = $request->residence;
-        $customer->street2          = $request->street2;
-        $customer->housenumber2     = $request->housenumber2;
-        $customer->zip_code2        = $request->zipcode2;
-        $customer->residence2       = $request->residence2;
-        $customer->cp_name          = $request->name;
-        $customer->cp_lastname      = $request->lastname;
-        $customer->cp_insertion     = $request->insertion;
-        $customer->tele             = $request->telephonenumber;
-        $customer->tele2            = $request->telephonenumber2;
-        $customer->fax_number       = $request->fax_number;
-        $customer->mail             = $request->email;
-        $customer->vat_code         = $request->vat_code;
-        $customer->banknumber       = $request->banknumber;
-        $customer->limit            = $request->limit;
+        $customer->name                 = $request->company_name;
+        $customer->street               = $request->street;
+        $customer->housenumber          = $request->housenumber;
+        $customer->zip_code             = $request->zipcode;
+        $customer->residence            = $request->residence;
+        $customer->street2              = $request->street2;
+        $customer->housenumber2         = $request->housenumber2;
+        $customer->zip_code2            = $request->zipcode2;
+        $customer->residence2           = $request->residence2;
+        $customer->cp_name              = $request->name;
+        $customer->cp_lastname          = $request->lastname;
+        $customer->cp_insertion         = $request->insertion;
+        $customer->tele                 = $request->telephonenumber;
+        $customer->tele2                = $request->telephonenumber2;
+        $customer->fax_number           = $request->fax_number;
+        $customer->mail                 = $request->email;
+        $customer->vat_code             = $request->vat_code;
+        $customer->banknumber           = $request->banknumber;
+        $customer->limit                = $request->limit;
         $customer->save();
         return redirect(action('CustomersController@show', $customer->id));
     }

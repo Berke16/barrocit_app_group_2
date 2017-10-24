@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class SalesMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SalesMiddleware
     public function handle($request, Closure $next)
     {
         $user_type = $request->user()->type;
-        if ($user_type != 'sales' && $user_type != 'users')
+        if ($user_type != 'admin')
         {
             return back()->withErrors(['Permission denied!!!']);
         }
