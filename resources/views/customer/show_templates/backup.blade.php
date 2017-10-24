@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 @section('location')
 Customer: {{$customer->name}}
@@ -10,133 +9,133 @@ Customer: {{$customer->name}}
 <div class="container-fluid well">
     <div class="container">
         <div class="row">
-        <section class="col-xs-4">
-            <table class="table table-borderless col-xs-12">
-                <tr>
-                    <th>Company name:</th>
-                    <td>{{$customer->name}}</td>
-                </tr>
-                <tr>
-                    <th>Contact person:</th>
-                    <td>{{$customer->cp_name}} {{$customer->cp_insetion}} {{$customer->cp_lastname}}</td>
-                </tr>
-                <tr>
-                    <th>E-mail:</th>
-                    <td>{{$customer->mail}}</td>
-                </tr>
-                <tr>
-                    <th>Telephonenumber:</th>
-                    <td>{{$customer->tele}}</td>
-                </tr>
-                <tr>
-                    <th>Faxnumber:</th>
-                    <td>{{$customer->fax_number}}</td>
-                </tr>
-                <tr>
-                    <th>Address:</th>
-                    <td>{{$customer->street}}</td>
-                </tr>
-                <tr>
-                    <th>Zipcode:</th>
-                    <td>{{$customer->zip_code}}</td>
-                </tr>
-                <tr>
-                    <th>Housenumber:</th>
-                    <td>{{$customer->housenumber}}</td>
-                </tr>
-                <tr>
-                    <th>Residence:</th>
-                    <td>{{$customer->residence}}</td>
-                </tr>
-            </table>
-        </section>
+            <section class="col-xs-4">
+                <table class="table table-borderless col-xs-12">
+                    <tr>
+                        <th>Company name:</th>
+                        <td>{{$customer->name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Contact person:</th>
+                        <td>{{$customer->cp_name}} {{$customer->cp_insetion}} {{$customer->cp_lastname}}</td>
+                    </tr>
+                    <tr>
+                        <th>E-mail:</th>
+                        <td>{{$customer->mail}}</td>
+                    </tr>
+                    <tr>
+                        <th>Telephonenumber:</th>
+                        <td>{{$customer->tele}}</td>
+                    </tr>
+                    <tr>
+                        <th>Faxnumber:</th>
+                        <td>{{$customer->fax_number}}</td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td>{{$customer->street}}</td>
+                    </tr>
+                    <tr>
+                        <th>Zipcode:</th>
+                        <td>{{$customer->zip_code}}</td>
+                    </tr>
+                    <tr>
+                        <th>Housenumber:</th>
+                        <td>{{$customer->housenumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Residence:</th>
+                        <td>{{$customer->residence}}</td>
+                    </tr>
+                </table>
+            </section>
             @if(Auth::user()->type == 'finance' || Auth::user()->type == 'sales')
-        <section class="col-xs-4">
-            <table class="table table-borderless col-xs-12">
-                <tr>
-                    <th>Telephonenumber 2:</th>
-                    <td>{{$customer->tele2}}</td>
-                </tr>
-                <tr>
-                    <th>Address 2:</th>
-                    <td>{{$customer->street2}}</td>
-                </tr>
-                <tr>
-                    <th>Zipcode 2:</th>
-                    <td>{{$customer->zip_code2}}</td>
-                </tr>
-                <tr>
-                    <th>Housenumber 2:</th>
-                    <td>{{$customer->housenumber2}}</td>
-                </tr>
-                <tr>
-                    <th>Residence 2:</th>
-                    <td>{{$customer->residence2}}</td>
-                </tr>
-            </table>
-        </section>
+            <section class="col-xs-4">
+                <table class="table table-borderless col-xs-12">
+                    <tr>
+                        <th>Telephonenumber 2:</th>
+                        <td>{{$customer->tele2}}</td>
+                    </tr>
+                    <tr>
+                        <th>Address 2:</th>
+                        <td>{{$customer->street2}}</td>
+                    </tr>
+                    <tr>
+                        <th>Zipcode 2:</th>
+                        <td>{{$customer->zip_code2}}</td>
+                    </tr>
+                    <tr>
+                        <th>Housenumber 2:</th>
+                        <td>{{$customer->housenumber2}}</td>
+                    </tr>
+                    <tr>
+                        <th>Residence 2:</th>
+                        <td>{{$customer->residence2}}</td>
+                    </tr>
+                </table>
+            </section>
             @endif
             @if(Auth::user()->type == 'finance')
-        <section class="col-xs-4">
-            <table class="table table-borderless col-xs-12">
-                <tr>
-                    <th>Banknumber:</th>
-                    <td>{{$customer->banknumber}}</td>
-                </tr>
-                <tr>
-                    <th>Balance:</th>
-                    <td>{{$customer->saldo()}}</td>
-                </tr>
-                <tr>
-                    <th>Limit:</th>
-                    <td>{{$customer->limit}}</td>
-                </tr>
-                <tr>
-                    <th>VAT-code:</th>
-                    <td>{{$customer->vat_code}}</td>
-                </tr>
-                <tr>
-                    <th>BCR:</th>
-                    <td>
-                        @switch($customer->bcr)
-                        @case(0)
-                        No
-                        @break
-                        @case(1)
-                        Yes
-                        @break
-                        @endswitch
-                    </td>
-                </tr>
-                <tr>
-                    <th>Creditworthy:</th>
-                    <td>
-                        @switch($customer->creditworthy)
-                        @case(0)
-                        No
-                        @break
-                        @case(1)
-                        Yes
-                        @break
-                        @endswitch
-                    </td>
-                </tr>
-                <tr>
-                    <th>Prospect:</th>
-                    <td>
-                        @switch($customer->prospect)
-                        @case(0)
-                        No
-                        @break
-                        @case(1)
-                        Yes
-                        @break
-                        @endswitch
-                    </td>
-                </tr>
-            </table>
-        </section>
-                @endif
+            <section class="col-xs-4">
+                <table class="table table-borderless col-xs-12">
+                    <tr>
+                        <th>Banknumber:</th>
+                        <td>{{$customer->banknumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Balance:</th>
+                        <td>{{$customer->saldo()}}</td>
+                    </tr>
+                    <tr>
+                        <th>Limit:</th>
+                        <td>{{$customer->limit}}</td>
+                    </tr>
+                    <tr>
+                        <th>VAT-code:</th>
+                        <td>{{$customer->vat_code}}</td>
+                    </tr>
+                    <tr>
+                        <th>BCR:</th>
+                        <td>
+                            @switch($customer->bcr)
+                            @case(0)
+                            No
+                            @break
+                            @case(1)
+                            Yes
+                            @break
+                            @endswitch
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Creditworthy:</th>
+                        <td>
+                            @switch($customer->creditworthy)
+                            @case(0)
+                            No
+                            @break
+                            @case(1)
+                            Yes
+                            @break
+                            @endswitch
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Prospect:</th>
+                        <td>
+                            @switch($customer->prospect)
+                            @case(0)
+                            No
+                            @break
+                            @case(1)
+                            Yes
+                            @break
+                            @endswitch
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            @endif
         </div>
         <div class="btn-group pull-right">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add appointment</button>
@@ -156,7 +155,7 @@ Customer: {{$customer->name}}
         </div>
         <div class="col-md-9">
             @php
-                $invoices = $customer->invoices;
+            $invoices = $customer->invoices;
             @endphp
             @include('tables.invoicestable')
         </div>
