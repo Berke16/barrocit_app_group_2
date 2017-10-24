@@ -161,8 +161,38 @@ Edit customer
 
 <div class="form-group col-lg-2">
     <label for="limit">Limit:</label>
-    <input type="number" name="limit" id="limit" class="form-control" value="{{old( 'limit',$customer->limit )}}" min="50" max="10000">
+    <input type="number" name="limit" id="limit" class="form-control" value="{{old( 'limit',$customer->limit )}}" min="0" max="10000">
 </div>
+    <div class="form-group">
+        <label for="bcr">Bcr:</label>
+        <select name="bcr" id="bcr">
+            @switch(old('bcr', $customer->bcr))
+                @case(false)
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+                @break
+                @case(true)
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+                @break
+                @endswitch
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="creditworthy">Creditworthy:</label>
+        <select name="creditworthy" id="creditworthy">
+            @switch(old('creditworthy', $customer->creditworthy))
+                @case(false)
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+                @break
+                @case(true)
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+                @break
+            @endswitch
+        </select>
+    </div>
 @endif
 <div class="form-group pull-right col-lg-2">
     <input type="submit" class="btn btn-primary col-lg-12" value="Edit customer">

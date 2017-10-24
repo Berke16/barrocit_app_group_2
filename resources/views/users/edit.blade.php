@@ -33,9 +33,9 @@ Edit user
         <div class="form-group col-lg-3">
             <label for="type">Type of department:</label>
             <select name="type" id="type" class="form-control">
-                <option value="sales" @if($user->type == 'sales') selected @endif>Sales</option>
-                <option value="finance" @if($user->type == 'finance') selected @endif>Finance</option>
-                <option value="development" @if($user->type == 'development') selected @endif>Development</option>
+                <option value="0" @if($user->type == 'sales') selected @endif>Sales</option>
+                <option value="1" @if($user->type == 'finance') selected @endif>Finance</option>
+                <option value="2" @if($user->type == 'development') selected @endif>Development</option>
             </select>
         </div>
         <div class="form-group pull-right col-lg-2">

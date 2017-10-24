@@ -37,14 +37,28 @@ class usersController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'type' => 'required'
+            'type' => 'required|min:0|max:2'
         ]);
+        switch ($request->type)
+        {
+            case(0);
+                $type = 'sales';
+                break;
+            case(1);
+                $type = 'finance';
+                break;
+            case(2);
+                $type = 'development';
+                break;
+            default;
+                $type = 'sales';
+        }
 
         User::create([
             'name'      => $request['name'],
             'email'     => $request['email'],
             'password'  => bcrypt($request['password']),
-            'type'      => $request['type'],
+            'type'      => $type
         ]);
 
         return redirect(action('UsersController@index'));
@@ -81,12 +95,26 @@ class usersController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'password' => 'nullable|string|min:6|confirmed',
-            'type' => 'required'
+            'type' => 'required|min:0|max:2'
         ]);
 
+        switch ($request->type)
+        {
+            case(0);
+                $type = 'sales';
+            break;
+            case(1);
+                $type = 'finance';
+                break;
+            case(2);
+                $type = 'development';
+                break;
+                default;
+                $type = 'sales';
+        }
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->type = $request->type;
+        $user->type = $type;
         if ($request->password != NULL)
         {
             $user->password = bcrypt($request->password);

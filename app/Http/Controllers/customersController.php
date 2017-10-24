@@ -127,6 +127,8 @@ class customersController extends Controller
             'banknumber'                => 'nullable|string',
             'vat_code'                  => 'nullable|string',
             'limit'                     => 'nullable|numeric',
+            'bcr'                       => 'required|numeric|min:0|max:1',
+            'creditworthy'              => 'required|numeric|min:0|max:1'
         ]);
 
         $customer= customer::find($id);
@@ -149,6 +151,8 @@ class customersController extends Controller
         $customer->vat_code             = $request->vat_code;
         $customer->banknumber           = $request->banknumber;
         $customer->limit                = $request->limit;
+        $customer->bcr                  = $request->bcr;
+        $customer->creditworthy         = $request->creditworthy;
         $customer->save();
         
         return redirect(action('CustomersController@show', $customer->id));
