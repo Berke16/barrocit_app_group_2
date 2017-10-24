@@ -3,7 +3,6 @@
 Edit user
 @endsection
 @section('content')
-<!-- this is a form that an employee needs to fill to create a customer. this "new" customer can't get a project immediately, a finance employee needs to do a bcr check first to see if the customer is worth to get a project. -->
 <div class="container well">
 
     <form action="{{action('UsersController@update', $user->id)}}" method="post">

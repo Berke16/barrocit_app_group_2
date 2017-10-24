@@ -10,7 +10,7 @@ Edit customer
         {{csrf_field()}}
         {{method_field('PUT')}}
         {{--sales can change this--}}
-        @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance')
+        @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance'  || Auth::user()->type == 'admin')
         <div class="form-group col-lg-4">
             <label for="company_name">Company name:<span style="color: red">*</span></label>
             <input type="text" class="form-control" id="company_name" name="company_name" value="{{old('company_name', $customer->name)}}" required>
@@ -91,7 +91,7 @@ Edit customer
             <input type="text" name="residence2" id="residence2" class="form-control" value="{{old('residence2',$customer->residence2 )}}">
         </div>
         @endif
-        @if(Auth::user()->type == 'development')
+        @if(Auth::user()->type == 'development' ||Auth::user()->type == 'admin')
         <div class="form-group col-lg-4">
            <label for="company_name">Company name:<span style="color: red">*</span></label>
            <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name', $customer->name)}}" required>
@@ -148,7 +148,7 @@ Edit customer
 </div>
 @endif
 
-@if(Auth::user()->type == 'finance')
+@if(Auth::user()->type == 'finance' || Auth::user()->type == 'admin')
 <div class="form-group col-lg-4">
     <label for="banknumber">Banknumber:</label>
     <input type="text" name="banknumber" id="banknumber" class="form-control" value="{{old('banknumber',$customer->banknumber)}}">
@@ -165,7 +165,7 @@ Edit customer
 </div>
 @endif
 <div class="form-group pull-right col-lg-2">
-    <input type="submit" class="btn btn-primary col-lg-12" value="edit customer">
+    <input type="submit" class="btn btn-primary col-lg-12" value="Edit customer">
 </div>
 </form>
 </div>

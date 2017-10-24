@@ -100,7 +100,7 @@ Add customer
         </div>
 
         <div class="form-group pull-right col-lg-2">
-            <input type="submit" class="btn btn-primary col-lg-12" value="add customer">
+            <input type="submit" class="btn btn-primary col-lg-12" value="Add customer">
         </div>
     </form>
 

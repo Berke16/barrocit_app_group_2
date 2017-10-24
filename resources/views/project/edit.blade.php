@@ -60,7 +60,7 @@ Edit project
         </section>
         <section class="col-md-12">
             <div class="form-group">
-                <input type="submit" class="pull-right" value="edit project">
+                <input type="submit" class="pull-right" value="Edit project">
             </div>
         </section>
     </form>

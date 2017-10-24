@@ -143,7 +143,7 @@ Customer: {{$customer->name}}
             <a href="{{action('ProjectsController@create', $customer->id)}}" class="btn btn-default"  @if(Auth::User()->type != 'sales' && Auth::User()->type != 'admin') disabled @endif>Add project</a>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal"  @if(Auth::User()->type != 'finance' && Auth::User()->type != 'admin') disabled @endif>Add invoice</button>
             <a href="{{action('CustomersController@edit', $customer->id)}}" class="btn btn-default">Edit customer</a>
-            <a class="btn btn-default" href="javascript:window.print()">Info Print</a>
+            <a class="btn btn-default" href="javascript:window.print()">Info print</a>
         </div>
     </div>
 </div>
@@ -176,10 +176,10 @@ Customer: {{$customer->name}}
     </div>
 
     @switch(Auth::User()->type)
-    @case('sales' || 'users')
+    @case('sales' || 'admin')
     @include('customer.show_templates.sales')
     @break
-    @case('development' || 'user')
+    @case('development' || 'admin')
     @include('customer.show_templates.development')
     @break
     @case('finance' || 'admin')

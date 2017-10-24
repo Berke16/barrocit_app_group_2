@@ -86,7 +86,7 @@ Add project
             </div>
 
             <div class="form-group">
-                <input type="submit" class="pull-right" value="Add project">
+                <input type="submit" class="btn btn-primary pull-right" value="Add project">
             </div>
 
         </section>
