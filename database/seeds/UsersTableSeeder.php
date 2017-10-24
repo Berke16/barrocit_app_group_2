@@ -40,6 +40,13 @@ class UsersTableSeeder extends Seeder
            'type'       => 'finance'
         ]);
 
+        DB::table('users')->insert([
+            'name'       => 'admin',
+            'email'      => 'admin@barroc-it.nl',
+            'password'   => bcrypt('admin'),
+            'type'       => 'admin'
+        ]);
+
 
 
 
