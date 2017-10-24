@@ -15,15 +15,12 @@
     <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
-
     @include('layouts.nav')
     @yield('content')
-
     <footer>
         <h1 class="subhead text-center">SOFTWARE FOR REAL.</h1>
         <p class="text-center">&copy; BARROC IT |  2017</p>
     </footer>
-
     @include('layouts.scripts')
 </body>
 </html>

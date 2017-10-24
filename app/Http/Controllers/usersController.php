@@ -92,6 +92,7 @@ class usersController extends Controller
             $user->password = bcrypt($request->password);
         }
         $user->save();
+        
         return redirect(action('UsersController@index'));
     }
 }

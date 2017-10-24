@@ -69,7 +69,6 @@ class customersController extends Controller
         $customer->mail                 = $request->email;
         $customer->vat_code             = $request->vat_code;
         $customer->banknumber           = $request->banknumber;
-
         $customer->save();
 
         return redirect(action('CustomersController@show', $customer->id));
@@ -151,6 +150,7 @@ class customersController extends Controller
         $customer->banknumber           = $request->banknumber;
         $customer->limit                = $request->limit;
         $customer->save();
+        
         return redirect(action('CustomersController@show', $customer->id));
     }
 

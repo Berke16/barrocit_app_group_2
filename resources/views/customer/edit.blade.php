@@ -3,7 +3,6 @@
 Edit customer
 @endsection
 @section('content')
-<!-- this is a form that an employee needs to fill to create a customer. this "new" customer can't get a project immediately, a finance employee needs to do a bcr check first to see if the customer is worth to get a project. -->
 <div class="container well">
 
     <form action="{{action('CustomersController@update', $customer->id)}}" method="post">
@@ -164,9 +163,6 @@ Edit customer
     <label for="limit">Limit:</label>
     <input type="number" name="limit" id="limit" class="form-control" value="{{old( 'limit',$customer->limit )}}" min="50" max="10000">
 </div>
-
-
-
 @endif
 <div class="form-group pull-right col-lg-2">
     <input type="submit" class="btn btn-primary col-lg-12" value="edit customer">
