@@ -40,7 +40,7 @@ class projectsController extends Controller
     {
         $this->validate($request, [
             'name'                      => 'required|string',
-            'customerid'                => 'required',
+            'customerid'                => 'required|numeric',
             'description'               => 'required|string',
             'start_date'                => 'required|date',
             'deadline'                  => 'required|date|after:start_date',
@@ -49,8 +49,8 @@ class projectsController extends Controller
             'applications'              => 'required|string',
             'hardware'                  => 'required|string',
             'price'                     => 'required|numeric',
-            'amount'                    => 'required|numeric',
-            'kind_of_terms'             => 'required',
+            'amount'                    => 'required|numeric|min:100|max:50000',
+            'kind_of_terms'             => 'required|numeric',
             'first_payday'              => 'required|date',
         ]);
 
@@ -130,7 +130,7 @@ class projectsController extends Controller
     {
         $this->validate($request, [
             'name'                      => 'required|string',
-            'customerid'                => 'required',
+            'customerid'                => 'required|numeric',
             'description'               => 'required|string',
             'start_date'                => 'required|date',
             'deadline'                  => 'required|date|after:start_date',

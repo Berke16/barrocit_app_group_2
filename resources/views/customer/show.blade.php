@@ -49,7 +49,7 @@ Customer: {{$customer->name}}
                     </tr>
                 </table>
             </section>
-            @if(Auth::user()->type == 'finance' || Auth::user()->type == 'sales')
+            @if(Auth::user()->type == 'finance' || Auth::user()->type == 'sales' || Auth::user()->type == 'admin')
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
                     <tr>
@@ -75,7 +75,7 @@ Customer: {{$customer->name}}
                 </table>
             </section>
             @endif
-            @if(Auth::user()->type == 'finance')
+            @if(Auth::user()->type == 'finance' || Auth::user()->type == 'admin')
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
                     <tr>
@@ -176,14 +176,19 @@ Customer: {{$customer->name}}
     </div>
 
     @switch(Auth::User()->type)
-    @case('sales' || 'admin')
+    @case('sales')
     @include('customer.show_templates.sales')
     @break
-    @case('development' || 'admin')
+    @case('development')
     @include('customer.show_templates.development')
     @break
-    @case('finance' || 'admin')
+    @case('finance')
     @include('customer.show_templates.finance')
+    @break
+    @case('admin')
+        @include('customer.show_templates.sales')
+        @include('customer.show_templates.development')
+        @include('customer.show_templates.finance')
     @break
     @endswitch
 
@@ -226,7 +231,6 @@ Customer: {{$customer->name}}
     </div>
 
 </div>
-<!-- Modelbox voor het maken van de acties. -->
 
 <div id="addacctionmodal" class="modal fade" role="dialog">
     <div class="modal-dialog">

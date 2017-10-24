@@ -21,7 +21,7 @@ class actionsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'time_of_action'    => 'required|',
+            'time_of_action'    => 'required|date',
             'date_of_action'    => 'required|date',
             'description'       => 'required|string',
         ]);

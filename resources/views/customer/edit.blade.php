@@ -6,10 +6,10 @@ Edit customer
 <div class="container well">
 
     <form action="{{action('CustomersController@update', $customer->id)}}" method="post">
-
         {{csrf_field()}}
+
         {{method_field('PUT')}}
-        {{--sales can change this--}}
+
         @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance'  || Auth::user()->type == 'admin')
         <div class="form-group col-lg-4">
             <label for="company_name">Company name:<span style="color: red">*</span></label>
@@ -91,7 +91,7 @@ Edit customer
             <input type="text" name="residence2" id="residence2" class="form-control" value="{{old('residence2',$customer->residence2 )}}">
         </div>
         @endif
-        @if(Auth::user()->type == 'development' ||Auth::user()->type == 'admin')
+        @if(Auth::user()->type == 'development')
         <div class="form-group col-lg-4">
            <label for="company_name">Company name:<span style="color: red">*</span></label>
            <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name', $customer->name)}}" required>
