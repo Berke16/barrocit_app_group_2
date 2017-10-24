@@ -49,7 +49,7 @@ Customer: {{$customer->name}}
                     </tr>
                 </table>
             </section>
-            @if(Auth::user()->type == 'finance' || Auth::user()->type == 'sales')
+            @if(Auth::user()->type == 'finance' || Auth::user()->type == 'sales' || Auth::user()->type == 'admin')
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
                     <tr>
@@ -75,7 +75,7 @@ Customer: {{$customer->name}}
                 </table>
             </section>
             @endif
-            @if(Auth::user()->type == 'finance')
+            @if(Auth::user()->type == 'finance' || Auth::user()->type == 'admin')
             <section class="col-xs-4">
                 <table class="table table-borderless col-xs-12">
                     <tr>
@@ -157,7 +157,8 @@ Customer: {{$customer->name}}
                 <thead>
                     <tr>
                         <th class="text-center col-md-3">Date</th>
-                        <th class="text-center col-md-8">Description</th>
+                        <th class="text-center col-md-3">Time</th>
+                        <th class="text-center col-md-5">Description</th>
                         <th class="col-md-1"></th>
                     </tr>
                 </thead>
@@ -165,6 +166,7 @@ Customer: {{$customer->name}}
                     <tr>
                         @if($customer->actions->count() > 0)
                         <td>{{$customer->actions->last()->date_of_action}}</td>
+                        <td>{{$customer->actions->last()->time_of_action}}</td>
                         <td class="col-md-9">{{$customer->actions->last()->description}}</td>
                         @else
                         @endif
@@ -205,7 +207,8 @@ Customer: {{$customer->name}}
                     <thead>
                         <tr>
                             <th class="text-center col-md-3">Date</th>
-                            <th class="text-center col-md-8">Description</th>
+                            <th class="text-center col-md-3">Time</th>
+                            <th class="text-center col-md-5">Description</th>
                             <th class="text-center col-md-1"></th>
                         </tr>
                     </thead>
@@ -213,6 +216,7 @@ Customer: {{$customer->name}}
                         @foreach($customer->actions->sortByDesc('date_of_action') as $action)
                         <tr>
                             <td>{{$action->date_of_action}}</td>
+                            <td>{{$action->time_of_action}}</td>
                             <td class="col-md-9">{{$action->description}}</td>
                             <td>
                                 <form action="{{action('ActionsController@destroy', $action->id)}}" method="post" style="margin: 0;">

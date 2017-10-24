@@ -11,7 +11,7 @@ Edit customer
         {{csrf_field()}}
         {{method_field('PUT')}}
         {{--sales can change this--}}
-        @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance')
+        @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance' || Auth::user()->type == 'admin')
         <div class="form-group col-lg-4">
             <label for="company_name">Company name:<span style="color: red">*</span></label>
             <input type="text" class="form-control" id="company_name" name="company_name" value="{{old('company_name', $customer->name)}}" required>
@@ -149,7 +149,7 @@ Edit customer
 </div>
 @endif
 
-@if(Auth::user()->type == 'finance')
+@if(Auth::user()->type == 'finance' || Auth::user()->type == 'admin')
 <div class="form-group col-lg-4">
     <label for="banknumber">Banknumber:</label>
     <input type="text" name="banknumber" id="banknumber" class="form-control" value="{{old('banknumber',$customer->banknumber)}}">
@@ -162,7 +162,7 @@ Edit customer
 
 <div class="form-group col-lg-2">
     <label for="limit">Limit:</label>
-    <input type="number" name="limit" id="limit" class="form-control" value="{{old( 'limit',$customer->limit )}}" min="50" max="10000">
+    <input type="number" name="limit" id="limit" class="form-control" value="{{old( 'limit',$customer->limit )}}" min="0" max="10000">
 </div>
 
 

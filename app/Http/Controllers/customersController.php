@@ -3,18 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Http\Requests\CustomerCreateForm;
+use App\Http\Requests\CustomerEditAdminFrom;
+use App\Http\Requests\CustomerEditDevelopmentForm;
+use App\Http\Requests\CustomerEditFinanceForm;
+use App\Http\Requests\CustomerEditSalesForm;
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class customersController
+ * @package App\Http\Controllers
+ */
 class customersController extends Controller
 {
+    /**
+     * customersController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('sales')->only('store', 'create', 'destroy');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('customer.create');
@@ -26,31 +42,9 @@ class customersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerCreateForm $request)
     {
-        $this->validate($request, [
-            'company_name'              => 'required|string',
-            'name'                      => 'nullable|string',
-            'insertion'                 => 'nullable|string',
-            'lastname'                  => 'nullable|string',
-            'email'                     => 'nullable|email',
-            'telephonenumber'           => 'required|numeric',
-            'telephonenumber2'          => 'nullable|numeric',
-            'fax_number'                => 'nullable|numeric',
-            'street'                    => 'nullable|string',
-            'zipcode'                   => 'nullable|string',
-            'housenumber'               => 'nullable|numeric',
-            'residence'                 => 'nullable|string',
-            'street2'                   => 'nullable|string',
-            'zipcode2'                  => 'nullable|string',
-            'housenumber2'              => 'nullable|string',
-            'residence2'                => 'nullable|string',
-            'banknumber'                => 'nullable|string',
-            'vat_code'                  => 'nullable|string',
-
-        ]);
-
-        $customer                       = new \App\Customer();
+        $customer                       = new Customer();
         $customer->name                 = $request->company_name;
         $customer->street               = $request->street;
         $customer->housenumber          = $request->housenumber;
@@ -65,11 +59,10 @@ class customersController extends Controller
         $customer->cp_insertion         = $request->insertion;
         $customer->tele                 = $request->telephonenumber;
         $customer->tele2                = $request->telephonenumber2;
-        $customer->fax_number           = $request->fax_number; 
+        $customer->fax_number           = $request->fax_number;
         $customer->mail                 = $request->email;
         $customer->vat_code             = $request->vat_code;
         $customer->banknumber           = $request->banknumber;
-
         $customer->save();
 
         return redirect(action('CustomersController@show', $customer->id));
@@ -99,60 +92,77 @@ class customersController extends Controller
         ->with('customer', $customer);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, [
-            'company_name'              => 'required|string',
-            'name'                      => 'nullable|string',
-            'insertion'                 => 'nullable|string',
-            'lastname'                  => 'nullable|string',
-            'email'                     => 'nullable|email',
-            'telephonenumber'           => 'required|numeric',
-            'telephonenumber2'          => 'nullable|numeric',
-            'fax_number'                => 'nullable|numeric',
-            'street'                    => 'nullable|string',
-            'zipcode'                   => 'nullable|string',
-            'housenumber'               => 'nullable|numeric',
-            'residence'                 => 'nullable|string',
-            'street2'                   => 'nullable|string',
-            'zipcode2'                  => 'nullable|string',
-            'housenumber2'              => 'nullable|string',
-            'residence2'                => 'nullable|string',
-            'banknumber'                => 'nullable|string',
-            'vat_code'                  => 'nullable|string',
-            'limit'                     => 'nullable|numeric',
-        ]);
 
-        $customer= customer::find($id);
-        $customer->name                 = $request->company_name;
-        $customer->street               = $request->street;
-        $customer->housenumber          = $request->housenumber;
-        $customer->zip_code             = $request->zipcode;
-        $customer->residence            = $request->residence;
-        $customer->street2              = $request->street2;
-        $customer->housenumber2         = $request->housenumber2;
-        $customer->zip_code2            = $request->zipcode2;
-        $customer->residence2           = $request->residence2;
-        $customer->cp_name              = $request->name;
-        $customer->cp_lastname          = $request->lastname;
-        $customer->cp_insertion         = $request->insertion;
-        $customer->tele                 = $request->telephonenumber;
-        $customer->tele2                = $request->telephonenumber2;
-        $customer->fax_number           = $request->fax_number;
-        $customer->mail                 = $request->email;
-        $customer->vat_code             = $request->vat_code;
-        $customer->banknumber           = $request->banknumber;
-        $customer->limit                = $request->limit;
-        $customer->save();
+    /**
+     * @param Customer $customer
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Customer $customer)
+    {
+        switch (Auth::user()->type)
+        {
+            case 'admin';
+                return $this->updateAsAdmin(CustomerEditAdminFrom::capture(), $customer);
+            break;
+            case 'sales';
+                return $this->updateAsSales(CustomerEditSalesForm::capture(), $customer);
+                break;
+            case 'finance';
+                return $this->updateAsFinance(CustomerEditFinanceForm::capture(), $customer);
+                break;
+            case 'development';
+                return $this->updateAsDevelopment(CustomerEditDevelopmentForm::capture(), $customer);
+                break;
+                default;
+                return back()->withErrors('Something went wrong try again!');
+        }
+    }
+
+    /**
+     * @param CustomerEditAdminFrom $request
+     * @param $customer
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updateAsAdmin(CustomerEditAdminFrom $request, $customer)
+    {
+        $request->persist($customer);
         return redirect(action('CustomersController@show', $customer->id));
     }
+
+    /**
+     * @param CustomerEditSalesForm $request
+     * @param $customer
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updateAsSales(CustomerEditSalesForm $request, $customer)
+    {
+        $request->persist($customer);
+        return redirect(action('CustomersController@show', $customer->id));
+    }
+
+    /**
+     * @param CustomerEditFinanceForm $request
+     * @param $customer
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updateAsFinance(CustomerEditFinanceForm $request, $customer)
+    {
+        $request->persist($customer);
+        return redirect(action('CustomersController@show', $customer->id));
+    }
+
+
+    /**
+     * @param CustomerEditDevelopmentForm $request
+     * @param $customer
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updateAsDevelopment(CustomerEditDevelopmentForm $request, $customer)
+    {
+        $request->persist($customer);
+        return redirect(action('CustomersController@show', $customer->id));
+    }
+
 
     /**
      * Remove the specified resource from storage.

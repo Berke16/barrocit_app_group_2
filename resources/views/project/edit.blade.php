@@ -6,6 +6,7 @@ Edit project
 <div class="container well">
     <form action="{{ action('ProjectsController@update', $project->id)}}" class="" method="post">
         {{ csrf_field() }}
+        {{method_field('PUT')}}
         <input type="hidden" name="customerid" value="{{$customer->id}}">
         <section class="col-md-4">
 
@@ -33,9 +34,11 @@ Edit project
                 <label for="maintained_contract">Maintain Contract<span style="color: red">*</span></label>
                 <select name="maintained_contract" id="maintained_contract" class="form-control" required>
                     @if($project->maintained_contract == 0)
+                    <option value="0">No</option>
                     <option value="1">Yes</option>
                     @else
                     <option value="0">No</option>
+                        <option value="1">Yes</option>
                     @endif
                 </select>
             </div>
