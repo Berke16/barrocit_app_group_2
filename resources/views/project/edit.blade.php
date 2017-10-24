@@ -7,7 +7,6 @@ Edit project
     <form action="{{ action('ProjectsController@update', $project->id)}}" class="" method="post">
         {{ csrf_field() }}
         {{method_field('PUT')}}
-        <input type="hidden" name="customerid" value="{{$customer->id}}">
         <section class="col-md-4">
 
             <div class="form-group">

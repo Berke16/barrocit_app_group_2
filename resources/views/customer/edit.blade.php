@@ -6,7 +6,22 @@ Edit customer
 <!-- this is a form that an employee needs to fill to create a customer. this "new" customer can't get a project immediately, a finance employee needs to do a bcr check first to see if the customer is worth to get a project. -->
 <div class="container well">
 
-    <form action="{{action('CustomersController@update', $customer->id)}}" method="post">
+    <form action="
+            @switch(Auth::User()->type)
+                @case('sales')
+                    {{action('CustomersController@updateAsSales',$customer->id)}}
+                @break
+                @case('finance')
+                    {{action('CustomersController@updateAsFinance',$customer->id)}}
+                @break
+                @case('development')
+                    {{action('CustomersController@updateAsDevelopment',$customer->id)}}
+                @break
+                @case('admin')
+                    {{action('CustomersController@updateAsAdmin',$customer->id)}}
+                @break
+            @endswitch
+        " method="post">
 
         {{csrf_field()}}
         {{method_field('PUT')}}
@@ -164,7 +179,36 @@ Edit customer
     <label for="limit">Limit:</label>
     <input type="number" name="limit" id="limit" class="form-control" value="{{old( 'limit',$customer->limit )}}" min="0" max="10000">
 </div>
-
+            <div class="form-group">
+                <label for="bcr">Bcr:</label>
+                <select name="bcr" id="bcr">
+                    @switch(old('bcr', $customer->bcr))
+                        @case(false)
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                        @break
+                        @case(true)
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                        @break
+                    @endswitch
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="creditworthy">Creditworthy:</label>
+                <select name="creditworthy" id="creditworthy">
+                    @switch(old('creditworthy', $customer->creditworthy))
+                        @case(false)
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                        @break
+                        @case(true)
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                        @break
+                    @endswitch
+                </select>
+            </div>
 
 
 @endif

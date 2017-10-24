@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Customer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerEditAdminFrom extends FormRequest
 {
@@ -14,6 +15,10 @@ class CustomerEditAdminFrom extends FormRequest
      */
     public function authorize()
     {
+        if (Auth::User()->type == 'admin')
+        {
+            return true;
+        }
         return false;
     }
 
@@ -44,6 +49,9 @@ class CustomerEditAdminFrom extends FormRequest
             'banknumber'                => 'nullable|string',
             'vat_code'                  => 'nullable|string',
             'limit'                     => 'numeric|min:0',
+            'bcr'                       => 'required|numeric|min:0|max:1',
+            'creditworthy'              => 'required|numeric|min:0|max:1'
+
         ];
     }
 
@@ -68,6 +76,8 @@ class CustomerEditAdminFrom extends FormRequest
             $customer->vat_code             = $this->vat_code;
             $customer->banknumber           = $this->banknumber;
             $customer->limit                = $this->limit;
+            $customer->bcr                  = $this->bcr;
+            $customer->creditworthy         = $this->creditworthy;
         $customer->save();
     }
 }

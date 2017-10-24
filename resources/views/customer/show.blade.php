@@ -137,11 +137,12 @@ Customer: {{$customer->name}}
             </section>
             @endif
         </div>
+
         <div class="btn-group pull-right">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addacctionmodal">Add appointment</button>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addoffermodal"  @if(Auth::User()->type != 'sales' && Auth::User()->type != 'admin') disabled @endif>Add offer</button>
-            <a href="{{action('ProjectsController@create', $customer->id)}}" class="btn btn-default"  @if(Auth::User()->type != 'sales' && Auth::User()->type != 'admin') disabled @endif>Add project</a>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal"  @if(Auth::User()->type != 'finance' && Auth::User()->type != 'admin') disabled @endif>Add invoice</button>
+            <button data-href="{{action('ProjectsController@create', $customer->id)}}" class="btn btn-default"  @if(Auth::User()->type != 'sales' && Auth::User()->type != 'admin') disabled @endif>Add project</button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal"  @if(Auth::User()->type != 'finance' && Auth::User()->type != 'admin' || $customer->projects->count() == 0) disabled @endif>Add invoice</button>
             <a href="{{action('CustomersController@edit', $customer->id)}}" class="btn btn-default">Edit customer</a>
             <a class="btn btn-default" href="javascript:window.print()">Info Print</a>
         </div>
