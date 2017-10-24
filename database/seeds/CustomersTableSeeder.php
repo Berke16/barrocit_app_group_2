@@ -49,7 +49,7 @@ class CustomersTableSeeder extends Seeder
                 'street'        => $faker->create()->streetName,
                 'housenumber'   => $faker->create()->buildingNumber,
                 'zip_code'      => $faker->create()->postcode,
-                'residence'     => $faker->creatne()->city,
+                'residence'     => $faker->create()->city,
                 'cp_name'       => $faker->create()->firstName,
                 'cp_lastname'   => $faker->create()->lastName,
                 'cp_insertion'  => $faker->create()->lastName,
