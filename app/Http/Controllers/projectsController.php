@@ -44,13 +44,13 @@ class projectsController extends Controller
             'description'               => 'required|string',
             'start_date'                => 'required|date',
             'deadline'                  => 'required|date|after:start_date',
-            'maintained_contract'       => 'required|max:1',
+            'maintained_contract'       => 'required|min:0|max:1',
             'operating_system'          => 'required|string',
             'applications'              => 'required|string',
             'hardware'                  => 'required|string',
-            'price'                     => 'required|numeric',
-            'amount'                    => 'required|numeric',
-            'kind_of_terms'             => 'required',
+            'price'                     => 'required|numeric|min:0|max:999999',
+            'amount'                    => 'required|numeric|min:1',
+            'kind_of_terms'             => 'required|min:1|max:3',
             'first_payday'              => 'required|date',
         ]);
 
