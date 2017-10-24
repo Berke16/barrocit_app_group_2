@@ -31,7 +31,7 @@
                         <label for="price">Price:<span style="color: red">*</span></label>
                         <div class="input-group">
                             <span class="input-group-addon">€</span>
-                            <input type="text" id="price" class="form-control" aria-label="amount" name="price" value="{{old('price')}}">
+                            <input type="text" id="price" class="form-control" aria-label="amount" name="price" value="{{old('price')}}" min="10" max="10000">
                             <span class="input-group-addon">.00</span>
                         </div>
                     </div>
