@@ -69,8 +69,8 @@ Project: {{$project->name}}
             </table>
         </section>
         <form action="{{action('ProjectsController@destroy', $project->id)}}" method="post" class="btn-group pull-right">
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal" @if(Auth::User()->type != 'finance' && Auth::User()->type != 'admin') disabled @endif>Add invoice</button>
-            @if(Auth::user()->type == 'development' || Auth::user()->type == 'sales'  || Auth::user()->type == 'admin')
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal">Add invoice</button>
+            @if(Auth::user()->type == 'development' || Auth::user()->type == 'sales'  || Auth::user()->type == 'user')
             <a href="{{action('ProjectsController@edit', $project->id)}}" class="btn btn-default">Edit project</a>
             @endif
             {{csrf_field()}}
@@ -83,7 +83,7 @@ Project: {{$project->name}}
     </div>
 </div>
 
-@if(Auth::User()->type == 'finance' && Auth::User()->type == 'admin')
+@if(Auth::User()->type == 'finance' || 'admin')
 <div class="container">
    @php $invoices = $project->invoices @endphp
    @include('tables.invoicestable')

@@ -26,7 +26,7 @@ class invoicesController extends Controller
             'payday'                => 'nullable|date',
             'date_of_sending'       => 'required|date',
             'description'           => 'required|string',
-            'price'                 => 'required|numeric|min:0|max:999999',
+            'price'                 => 'required|numeric',
         ]);
 
         $invoice = new Invoice();
