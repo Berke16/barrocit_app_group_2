@@ -31,7 +31,7 @@ class CreateCustomersTable extends Migration
             $table->string('tele2')->nullable();
             $table->string('fax_number')->nullable();
             $table->string('mail')->nullable();
-            $table->float('limit')->default(0);
+            $table->float('limit')->default();
             $table->string('vat_code')->nullable();
             $table->tinyInteger('prospect')->default(0);
             $table->string('banknumber')->nullable();

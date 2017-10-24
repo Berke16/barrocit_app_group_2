@@ -47,7 +47,7 @@ class InvoicesTableSeeder extends Seeder
                         DB::table('invoices')->insert([
                             'project_id'        => $customer->projects->first()->id,
                             'description'       => $faker->create()->sentence,
-                            'price'             => 500,//DAT WAS GENOEG
+                            'price'             => 500,
                             'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-09-20'),
                         ]);
                 }
@@ -57,7 +57,7 @@ class InvoicesTableSeeder extends Seeder
                         DB::table('invoices')->insert([
                             'project_id'        => $customer->projects->first()->id,
                             'description'       => $faker->create()->sentence,
-                            'price'             => $faker->create()->numberBetween(100, 400),
+                            'price'             => 500,
                             'date_of_sending'   => now(),
                         ]);
                     for ($i=0;$i<2;$i++)
@@ -65,19 +65,19 @@ class InvoicesTableSeeder extends Seeder
                         DB::table('invoices')->insert([
                             'project_id'        => $customer->projects->first()->id,
                             'description'       => $faker->create()->sentence,
-                            'price'             => $faker->create()->numberBetween(100, 400),
-                            'payday2'           => now(),
+                            'price'             => 500,
+                            'date_of_sending'   => now(),
                         ]);
                     }
                 }
                 if ($customer_one_count > 20 && $customer_one_count <= 25)
                 {
-                    for ($i=0; $i<2;$i++)
+                    for ($i=0; $i<3;$i++)
                     {
                         DB::table('invoices')->insert([
                             'project_id'        => $customer->projects->first()->id,
                             'description'       => $faker->create()->sentence,
-                            'price'             => $faker->create()->numberBetween(100, 400),
+                            'price'             => 400,
                             'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-09-20'),
                         ]);
                     }
@@ -88,6 +88,7 @@ class InvoicesTableSeeder extends Seeder
                             'description'       => $faker->create()->sentence,
                             'price'             => $faker->create()->numberBetween(100, 400),
                             'payday2'           => now(),
+                            'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-09-20'),
                         ]);
                     }
                 }
@@ -98,7 +99,7 @@ class InvoicesTableSeeder extends Seeder
                         DB::table('invoices')->insert([
                             'project_id'        => $customer->projects->first()->id,
                             'description'       => $faker->create()->sentence,
-                            'price'             => $faker->create()->numberBetween(100, 400),
+                            'price'             => $faker->create()->numberBetween(100, 399),
                             'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-11-20'),
                         ]);
                     }
@@ -172,7 +173,7 @@ class InvoicesTableSeeder extends Seeder
                             DB::table('invoices')->insert([
                                 'project_id'        => $customer->projects->get(0)->id,
                                 'description'       => $faker->create()->sentence,
-                                'price'             => $faker->create()->numberBetween(100, 400),
+                                'price'             => 30,
                                 'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-11-20'),
                             ]);
                         }
@@ -181,7 +182,7 @@ class InvoicesTableSeeder extends Seeder
                             DB::table('invoices')->insert([
                                 'project_id'        => $customer->projects->get(1)->id,
                                 'description'       => $faker->create()->sentence,
-                                'price'             => $faker->create()->numberBetween(100, 400),
+                                'price'             => 30,
                                 'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-11-20'),
                             ]);
                         }
@@ -256,7 +257,7 @@ class InvoicesTableSeeder extends Seeder
                             DB::table('invoices')->insert([
                                 'project_id'        => $customer->projects->get(1)->id,
                                 'description'       => $faker->create()->sentence,
-                                'price'             => 400,
+                                'price'             => 600,
                                 'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-11-20'),
                             ]);
                         }
@@ -288,7 +289,7 @@ class InvoicesTableSeeder extends Seeder
                             DB::table('invoices')->insert([
                                 'project_id'        => $customer->projects->get(0)->id,
                                 'description'       => $faker->create()->sentence,
-                                'price'             => 400,
+                                'price'             => 500,
                                 'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-11-20'),
                             ]);
                         }
@@ -307,7 +308,7 @@ class InvoicesTableSeeder extends Seeder
                             DB::table('invoices')->insert([
                                 'project_id'        => $customer->projects->get(1)->id,
                                 'description'       => $faker->create()->sentence,
-                                'price'             => 400,
+                                'price'             => 100,
                                 'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-11-20'),
                             ]);
                         }
@@ -329,7 +330,7 @@ class InvoicesTableSeeder extends Seeder
                             DB::table('invoices')->insert([
                                 'project_id'        => $customer->projects->get(1)->id,
                                 'description'       => $faker->create()->sentence,
-                                'price'             => 400,
+                                'price'             => 500,
                                 'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-11-20'),
                             ]);
                         }
@@ -348,7 +349,7 @@ class InvoicesTableSeeder extends Seeder
                             DB::table('invoices')->insert([
                                 'project_id'        => $customer->projects->get(0)->id,
                                 'description'       => $faker->create()->sentence,
-                                'price'             => 400,
+                                'price'             => 200,
                                 'date_of_sending'   => \Carbon\Carbon::createFromFormat('Y-m-d', '2017-11-20'),
                             ]);
                         }
