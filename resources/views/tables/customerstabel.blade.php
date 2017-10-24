@@ -13,18 +13,18 @@
     <div class="table_style">
         <table class="table table-hover" id="dev-table">
             <thead>
-            <tr>
-                <th class="col-sm-1">Nr.</th>
-                <th class="col-sm-3">Name</th>
-                <th class="col-sm-3">Contact person</th>
-                <th class="col-sm-3">Latest contact</th>
-                <th class="col-sm-1 text-center">Status</th>
-                <th class="col-sm-1"></th>
+                <tr>
+                    <th class="col-sm-1">Nr.</th>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Contact person</th>
+                    <th class="col-sm-3">Latest contact</th>
+                    <th class="col-sm-1 text-center">Status</th>
+                    <th class="col-sm-1"></th>
 
-            </tr>
+                </tr>
             </thead>
             <tbody>
-            @foreach($customers as $customer)
+                @foreach($customers as $customer)
                 <tr>
                     <th>{{$customer->id}}</th>
                     <th data-href="../customer/{{$customer->id}}">{{$customer->name}}</th>
@@ -32,23 +32,23 @@
                     <th>@if($customer->actions->count() > 0){{$customer->actions->last()->date_of_action}}@endif</th>
                     <th class="text-center">
                         @switch($customer->status())
-                            @case(false)
-                            <span class="label label-success">Good</span>
-                            @break
-                            @case(true)
-                            <span class="label label-danger" >Beyond limit</span>
-                            @break
+                        @case(false)
+                        <span class="label label-success">Good</span>
+                        @break
+                        @case(true)
+                        <span class="label label-danger" >Beyond limit</span>
+                        @break
                         @endswitch
                     </th>
                     <th class="text-center">
                         <form action="{{action('CustomersController@destroy',$customer->id)}}" method="post" style="z-index: 100; margin: 0;">
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
-                            <button  type="submit" class="glyphicon glyphicon-remove btn-xs btn-danger"></button>
+                            <button  type="submit" class="glyphicon glyphicon-remove btn-xs btn-danger" @if(Auth::User()->type != 'sales' && Auth::User()->type != 'admin') disabled @endif></button>
                         </form>
                     </th>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>

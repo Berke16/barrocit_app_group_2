@@ -7,6 +7,7 @@ use App\Project;
 use App\Invoice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class projectsController extends Controller
 {
@@ -26,7 +27,7 @@ class projectsController extends Controller
     public function create($id)
     {
         return view('project.create')
-            ->with('customer', Customer::find($id));
+        ->with('customer', Customer::find($id));
     }
 
     /**
@@ -43,13 +44,13 @@ class projectsController extends Controller
             'description'               => 'required|string',
             'start_date'                => 'required|date',
             'deadline'                  => 'required|date|after:start_date',
-            'maintained_contract'       => 'required|max:1',
+            'maintained_contract'       => 'required|min:0|max:1',
             'operating_system'          => 'required|string',
             'applications'              => 'required|string',
             'hardware'                  => 'required|string',
-            'price'                     => 'required|numeric',
-            'amount'                    => 'required|numeric',
-            'kind_of_terms'             => 'required',
+            'price'                     => 'required|numeric|min:0|max:999999',
+            'amount'                    => 'required|numeric|min:1',
+            'kind_of_terms'             => 'required|min:1|max:3',
             'first_payday'              => 'required|date',
         ]);
 
@@ -76,17 +77,17 @@ class projectsController extends Controller
         for ($i = 1; $i <= $project->amount; $i++)
         {
             $invoice = new Invoice();
-                $invoice->project_id        = $project->id;
-                $invoice->description       = 'Number '. $i .' invoice for project: '.$project->name;
-                $invoice->price             = $invoice_price;
-                if ($i > 1)
-                {
-                    $amount += $project->kind_of_terms;
-                    $invoice->date_of_sending   = Carbon::parse($project->first_payday)->addMonths($amount);
-                }
-                else{
-                    $invoice->date_of_sending   = Carbon::parse($project->first_payday);
-                }
+            $invoice->project_id        = $project->id;
+            $invoice->description       = 'Number '. $i .' invoice for project: '.$project->name;
+            $invoice->price             = $invoice_price;
+            if ($i > 1)
+            {
+                $amount += $project->kind_of_terms;
+                $invoice->date_of_sending   = Carbon::parse($project->first_payday)->addMonths($amount);
+            }
+            else{
+                $invoice->date_of_sending   = Carbon::parse($project->first_payday);
+            }
             $invoice->save();
         }
         return redirect(action('ProjectsController@show', $project->id));
@@ -112,7 +113,10 @@ class projectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('project.edit')
+        ->with('project', project::find($id))
+        ->with('customer', customer::find($id));
+
     }
 
     /**
@@ -124,7 +128,31 @@ class projectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'                      => 'required|string',
+            'customerid'                => 'required',
+            'description'               => 'required|string',
+            'start_date'                => 'required|date',
+            'deadline'                  => 'required|date|after:start_date',
+            'maintained_contract'       => 'required|max:1',
+            'operating_system'          => 'required|string',
+            'applications'              => 'required|string',
+            'hardware'                  => 'required|string',
+        ]);
+        $project= project::find($id);
+        $project->name                  = $request->name;
+        $project->customer_id           = $request->customerid;
+        $project->description           = $request->description;
+        $project->start_date            = $request->start_date;
+        $project->deadline              = $request->deadline;
+        $project->maintained_contract   = $request->maintained_contract;
+        $project->operating_system      = $request->operating_system;
+        $project->applications          = $request->applications;
+        $project->hardware              = $request->hardware;
+        $project->save();
+
+        return redirect(action('ProjectsController@show', $project->id));
+
     }
 
     /**
@@ -133,9 +161,10 @@ class projectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        Project::destroy($id);
+        Project::destroy($project->id);
+        Session::flash('message', "Project has been deleted.");
         return redirect('/home');
     }
 }
