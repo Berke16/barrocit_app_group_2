@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Customer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerCreateForm extends FormRequest

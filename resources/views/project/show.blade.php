@@ -83,7 +83,7 @@ Project: {{$project->name}}
     </div>
 </div>
 
-@if(Auth::User()->type == 'finance' && Auth::User()->type == 'admin')
+@if(Auth::User()->type == 'finance' || Auth::User()->type == 'admin')
 <div class="container">
    @php $invoices = $project->invoices @endphp
    @include('tables.invoicestable')

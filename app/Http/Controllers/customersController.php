@@ -9,6 +9,7 @@ use App\Http\Requests\CustomerEditDevelopmentForm;
 use App\Http\Requests\CustomerEditFinanceForm;
 use App\Http\Requests\CustomerEditSalesForm;
 use App\Project;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -92,38 +93,12 @@ class customersController extends Controller
         ->with('customer', $customer);
     }
 
-
-    /**
-     * @param Customer $customer
-     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Customer $customer)
-    {
-        switch (Auth::user()->type)
-        {
-            case 'admin';
-                return $this->updateAsAdmin(CustomerEditAdminFrom::capture(), $customer);
-            break;
-            case 'sales';
-                return $this->updateAsSales(CustomerEditSalesForm::capture(), $customer);
-                break;
-            case 'finance';
-                return $this->updateAsFinance(CustomerEditFinanceForm::capture(), $customer);
-                break;
-            case 'development';
-                return $this->updateAsDevelopment(CustomerEditDevelopmentForm::capture(), $customer);
-                break;
-                default;
-                return back()->withErrors('Something went wrong try again!');
-        }
-    }
-
     /**
      * @param CustomerEditAdminFrom $request
      * @param $customer
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function updateAsAdmin(CustomerEditAdminFrom $request, $customer)
+    public function updateAsAdmin(CustomerEditAdminFrom $request, Customer $customer)
     {
         $request->persist($customer);
         return redirect(action('CustomersController@show', $customer->id));
@@ -134,7 +109,7 @@ class customersController extends Controller
      * @param $customer
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function updateAsSales(CustomerEditSalesForm $request, $customer)
+    public function updateAsSales(CustomerEditSalesForm $request, Customer $customer)
     {
         $request->persist($customer);
         return redirect(action('CustomersController@show', $customer->id));
@@ -145,7 +120,7 @@ class customersController extends Controller
      * @param $customer
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function updateAsFinance(CustomerEditFinanceForm $request, $customer)
+    public function updateAsFinance(CustomerEditFinanceForm $request, Customer $customer)
     {
         $request->persist($customer);
         return redirect(action('CustomersController@show', $customer->id));
@@ -157,7 +132,7 @@ class customersController extends Controller
      * @param $customer
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function updateAsDevelopment(CustomerEditDevelopmentForm $request, $customer)
+    public function updateAsDevelopment(CustomerEditDevelopmentForm $request, Customer $customer)
     {
         $request->persist($customer);
         return redirect(action('CustomersController@show', $customer->id));

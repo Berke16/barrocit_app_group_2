@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Customer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerEditDevelopmentForm extends FormRequest
 {
@@ -14,6 +15,10 @@ class CustomerEditDevelopmentForm extends FormRequest
      */
     public function authorize()
     {
+        if (Auth::User()->type == 'development')
+        {
+            return true;
+        }
         return false;
     }
 

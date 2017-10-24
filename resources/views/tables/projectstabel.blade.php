@@ -28,13 +28,10 @@
                         <span class="label label-default ">Normal</span>
                         @break
                         @case(1)
-                        <span class="label label-danger">Red</span>
+                        <span class="label label-danger">Paused</span>
                         @break
                         @case(2)
                         <span class="label label-success">Finished</span>
-                        @break
-                        @case(3)
-                        <span class="label label-danger">DELETED</span>
                         @break
                         @endswitch
                     </td>
