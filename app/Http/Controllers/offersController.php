@@ -23,7 +23,7 @@ class offersController extends Controller
     {
         $this->validate($request, [
             'description'           => 'required|string',
-            'total_project_price'   => 'required|numeric'
+            'total_project_price'   => 'required|numeric|min:0|max:999999'
         ]);
 
         $offer = new \App\Offer();
