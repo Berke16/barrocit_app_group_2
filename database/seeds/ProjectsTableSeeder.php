@@ -13,6 +13,9 @@ class ProjectsTableSeeder extends Seeder
     {
         $faker = new \Faker\Factory();
         $customers = \App\Customer::all()->where('bcr', '=', 1);
+        $startdate = \Carbon\Carbon::createFromFormat('Y-m-d', '2017-05-20');
+        $enddate = \Carbon\Carbon::createFromFormat('Y-m-d', '2018-7-20');
+        $payday = \Carbon\Carbon::createFromFormat('Y-m-d', '2018-4-29');
 
         $count = 0;
         foreach($customers as $customer){
@@ -23,11 +26,11 @@ class ProjectsTableSeeder extends Seeder
                 break;
             }
             DB::table('projects')->insert([
-                'customer_id' => $customer->id,
+                'customer_id'           => $customer->id,
                 'name'                  => $faker->create()->name,
                 'description'           => $faker->create()->sentence,
-                'start_date'            => $faker->create()->date,
-                'deadline'              => $faker->create()->date,
+                'start_date'            => $startdate,
+                'deadline'              => $enddate,
                 'maintained_contract'   => $faker->create()->numberBetween(0,1),
                 'applications'          => $faker->create()->sentence,
                 'hardware'              => $faker->create()->sentence,
@@ -35,7 +38,7 @@ class ProjectsTableSeeder extends Seeder
                 'price'                 => $faker->create()->numberBetween(800,9856),
                 'amount'                => $faker->create()->numberBetween(1,36),
                 'kind_of_terms'         => $faker->create()->numberBetween(0,2),
-                'first_payday'          => $faker->create()->date,
+                'first_payday'          => $payday,
             ]);
         }
 
@@ -54,8 +57,8 @@ class ProjectsTableSeeder extends Seeder
                     'customer_id' => $customer->id,
                     'name'                  => $faker->create()->name,
                     'description'           => $faker->create()->sentence,
-                    'start_date'            => $faker->create()->date,
-                    'deadline'              => $faker->create()->date,
+                    'start_date'            => $startdate,
+                    'deadline'              => $enddate,
                     'maintained_contract'   => $faker->create()->numberBetween(0,1),
                     'applications'          => $faker->create()->sentence,
                     'hardware'              => $faker->create()->sentence,
@@ -63,15 +66,15 @@ class ProjectsTableSeeder extends Seeder
                     'price'                 => $faker->create()->numberBetween(800,9856),
                     'amount'                => $faker->create()->numberBetween(1,36),
                     'kind_of_terms'         => $faker->create()->numberBetween(0,2),
-                    'first_payday'          => $faker->create()->date,
+                    'first_payday'          => $payday
                 ]);
 
                 DB::table('projects')->insert([
                     'customer_id' => $customer->id,
                     'name'                  => $faker->create()->name,
                     'description'           => $faker->create()->sentence,
-                    'start_date'            => $faker->create()->date,
-                    'deadline'              => $faker->create()->date,
+                    'start_date'            => $startdate,
+                    'deadline'              => $enddate,
                     'maintained_contract'   => $faker->create()->numberBetween(0,1),
                     'applications'          => $faker->create()->sentence,
                     'hardware'              => $faker->create()->sentence,
@@ -79,7 +82,7 @@ class ProjectsTableSeeder extends Seeder
                     'price'                 => $faker->create()->numberBetween(800,9856),
                     'amount'                => $faker->create()->numberBetween(1,36),
                     'kind_of_terms'         => $faker->create()->numberBetween(0,2),
-                    'first_payday'          => $faker->create()->date,
+                    'first_payday'          => $payday
                 ]);
             }
 

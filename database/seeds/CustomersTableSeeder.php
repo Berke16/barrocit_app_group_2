@@ -34,7 +34,7 @@ class CustomersTableSeeder extends Seeder
                 'fax_number'    => $faker->create()->phoneNumber,
                 'mail'          => $faker->create()->companyEmail,
                 'banknumber'    => $faker->create()->iban('nl'),
-                'limit'         => $faker->create()->numberBetween(2,400),
+                'limit'         => 400,
                 'vat_code'      => $fakerDutch->vat,
                 'prospect'      => $faker->create()->numberBetween(0,1),
                 'creditworthy'  => 1,
@@ -58,7 +58,7 @@ class CustomersTableSeeder extends Seeder
                 'fax_number'    => $faker->create()->phoneNumber,
                 'mail'          => $faker->create()->companyEmail,
                 'banknumber'    => $faker->create()->iban('nl'),
-                'limit'         => $faker->create()->numberBetween(2,400),
+                'limit'         => 400,
                 'vat_code'      => $fakerDutch->vat,
                 'prospect'      => 1,
                 'creditworthy'  => 1,
@@ -85,7 +85,7 @@ class CustomersTableSeeder extends Seeder
                 'limit'         => 400,
                 'vat_code'      => $fakerDutch->vat,
                 'prospect'      => 1,
-                'creditworthy'  => 1,
+                'creditworthy'  => 0,
                 'bcr'           => 1,
             ]);
         }
