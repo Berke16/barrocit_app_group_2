@@ -21,7 +21,7 @@ Edit customer
                 @break
             @endswitch
         " method="post">
-
+        {{csrf_field()}}
         {{method_field('PUT')}}
         {{--sales can change this--}}
         @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance' || Auth::user()->type == 'admin')

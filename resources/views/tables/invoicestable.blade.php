@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="panel-body">
-        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Invoces Table" />
+        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#invoices-table" placeholder="Filter Invoices" />
     </div>
     <div class="table_style">
         <table class="table table-hover text-center" id="invoices-table">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Http\Middleware\ProjectsMiddleware;
 use App\Project;
 use App\Invoice;
 use Carbon\Carbon;
@@ -17,6 +18,7 @@ class projectsController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('sales')->only('create', 'store', 'destroy');
+        $this->middleware(ProjectsMiddleware::class)->only('edit');
     }
 
     /**
