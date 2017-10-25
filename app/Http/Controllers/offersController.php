@@ -58,7 +58,7 @@ class offersController extends Controller
             $offer->status = false;
         }
         else
-            $offer->status = true;
+        $offer->status = true;
         $offer->save();
 
         return back();

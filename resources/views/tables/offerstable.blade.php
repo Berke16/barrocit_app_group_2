@@ -3,7 +3,7 @@
         <h3 class="panel-title">Offers</h3>
     </div>
     <div style="height: 200px; overflow: scroll; overflow-x: hidden ;">
-        <table class="table table-hover text-center" id="invoices-table">
+        <table class="table table-hover text-center">
             <thead>
                 <tr>
                     <th class="text-center">Offernumbers</th>
