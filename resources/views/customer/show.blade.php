@@ -144,7 +144,7 @@ Customer: {{$customer->name}}
             <button data-href="{{action('ProjectsController@create', $customer->id)}}" class="btn btn-default"  @if(Auth::User()->type != 'sales' && Auth::User()->type != 'admin') disabled @endif>Add project</button>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#invoicemodal"  @if(Auth::User()->type != 'finance' && Auth::User()->type != 'admin' || $customer->projects->count() == 0) disabled @endif>Add invoice</button>
             <a href="{{action('CustomersController@edit', $customer->id)}}" class="btn btn-default">Edit customer</a>
-            <a class="btn btn-default" href="javascript:window.print()">Info Print</a>
+            <a class="btn btn-default" href="javascript:window.print()">Info print</a>
         </div>
     </div>
 </div>
@@ -234,7 +234,6 @@ Customer: {{$customer->name}}
     </div>
 
 </div>
-<!-- Modelbox voor het maken van de acties. -->
 
 <div id="addacctionmodal" class="modal fade" role="dialog">
     <div class="modal-dialog">

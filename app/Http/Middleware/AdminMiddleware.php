@@ -16,7 +16,8 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         $user_type = $request->user()->type;
-        if ($user_type != 'admin')
+
+        if ($user_type != 'admin' && $user_type != 'user')
         {
             return back()->withErrors(['Permission denied!!!']);
         }

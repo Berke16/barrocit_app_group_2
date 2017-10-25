@@ -61,7 +61,7 @@ Add project
                 <label for="price">Total project price<span style="color: red">*</span></label>
                 <div class="input-group">
                     <span class="input-group-addon">€</span>
-                    <input type="text" class="form-control" id="price" aria-label="amount" name="price" value="{{old('price')}}" required>
+                    <input type="text" class="form-control" id="price" aria-label="amount" name="price" value="{{old('price')}}" min="100" max="50000" required>
                     <span class="input-group-addon">.00</span>
                 </div>
             </div>
@@ -86,7 +86,7 @@ Add project
             </div>
 
             <div class="form-group">
-                <input type="submit" class="pull-right" value="Add project">
+                <input type="submit" class="btn btn-primary pull-right" value="Add project">
             </div>
 
         </section>

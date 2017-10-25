@@ -3,7 +3,6 @@
 Edit customer
 @endsection
 @section('content')
-<!-- this is a form that an employee needs to fill to create a customer. this "new" customer can't get a project immediately, a finance employee needs to do a bcr check first to see if the customer is worth to get a project. -->
 <div class="container well">
 
     <form action="
@@ -23,7 +22,6 @@ Edit customer
             @endswitch
         " method="post">
 
-        {{csrf_field()}}
         {{method_field('PUT')}}
         {{--sales can change this--}}
         @if(Auth::user()->type == 'sales' || Auth::user()->type == 'finance' || Auth::user()->type == 'admin')
@@ -213,7 +211,7 @@ Edit customer
 
 @endif
 <div class="form-group pull-right col-lg-2">
-    <input type="submit" class="btn btn-primary col-lg-12" value="edit customer">
+    <input type="submit" class="btn btn-primary col-lg-12" value="Edit customer">
 </div>
 </form>
 </div>
