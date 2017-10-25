@@ -32,9 +32,9 @@ Users
         <div class="form-group col-lg-3">
             <label for="type">Type of department:<span style="color: red">*</span></label>
             <select name="type" id="type" class="form-control">
-                <option value="sales">Sales</option>
-                <option value="finance">Finance</option>
-                <option value="development">Development</option>
+                <option value="0">Sales</option>
+                <option value="1">Finance</option>
+                <option value="2">Development</option>
             </select>
         </div>
         <div class="form-group pull-right col-lg-2">

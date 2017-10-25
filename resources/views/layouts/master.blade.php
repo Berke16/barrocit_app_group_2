@@ -11,20 +11,17 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
-    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--}}
+    {{--<link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">--}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
-
     @include('layouts.nav')
     @yield('content')
-
     <footer>
         <h1 class="subhead text-center">SOFTWARE FOR REAL.</h1>
         <p class="text-center">&copy; BARROC IT |  2017</p>
     </footer>
-
     @include('layouts.scripts')
 </body>
 </html>

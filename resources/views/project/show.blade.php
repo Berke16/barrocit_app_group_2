@@ -76,7 +76,7 @@ Project: {{$project->name}}
             {{csrf_field()}}
             {{method_field('DELETE')}}
             <input class="btn btn-default" type="submit" value="Delete project"  @if(Auth::User()->type != 'sales' && Auth::User()->type != 'admin') disabled @endif>
-            <a class="btn btn-default" href="javascript:window.print()">Info Print</a>
+            <a class="btn btn-default" href="javascript:window.print()">Info print</a>
 
         </form>
 
@@ -88,7 +88,6 @@ Project: {{$project->name}}
    @php $invoices = $project->invoices @endphp
    @include('tables.invoicestable')
 </div>
-<!-- Modelbox voor het maken van de invoices. -->
 
 <div id="invoicemodal" class="modal fade" role="dialog">
     <div class="modal-dialog">

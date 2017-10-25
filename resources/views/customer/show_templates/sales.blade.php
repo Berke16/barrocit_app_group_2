@@ -5,17 +5,10 @@
     @include('tables.projectstabel')
 </div>
 
-
 <div class="col-md-12">
-
     @php $offers = $customer->offers; @endphp
     @include('tables.offerstable')
-
 </div>
-
-
-
-<!-- Modelbox voor het maken van de offertes. -->
 
 <div id="addoffermodal" class="modal fade" role="dialog">
     <div class="modal-dialog">

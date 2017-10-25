@@ -3,7 +3,6 @@
 Add customer
 @endsection
 @section('content')
-<!-- this is a form that an employee needs to fill to create a customer. this "new" customer can't get a project immediately, a finance employee needs to do a bcr check first to see if the customer is worth to get a project. -->
 <div class="container well">
 
     <form action="{{action('CustomersController@store')}}" method="post">
@@ -101,9 +100,8 @@ Add customer
         </div>
 
         <div class="form-group pull-right col-lg-2">
-            <input type="submit" class="btn btn-primary col-lg-12" value="add customer">
+            <input type="submit" class="btn btn-primary col-lg-12" value="Add customer">
         </div>
-
     </form>
 
 </div>

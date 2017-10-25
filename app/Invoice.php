@@ -27,7 +27,6 @@ class Invoice extends Model
      * Return 1 when : Invoice in progress
      * Return 2 when : Invoice not payed
      * Return 3 when : Invoice payed
-     *
      */
 
     public function status()
