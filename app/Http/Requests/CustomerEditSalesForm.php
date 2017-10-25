@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Customer;
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Support\Facades\Auth;
 class CustomerEditSalesForm extends FormRequest
 {
     /**
@@ -14,6 +14,10 @@ class CustomerEditSalesForm extends FormRequest
      */
     public function authorize()
     {
+        if (Auth::User()->type == 'sales')
+        {
+            return true;
+        }
         return false;
     }
 

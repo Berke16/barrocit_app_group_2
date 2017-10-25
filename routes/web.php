@@ -24,7 +24,15 @@ Route::put('offer/{id}', 'OffersController@statusChange');
 Route::resource('offer' , 'OffersController');
 Route::resource('action' , 'ActionsController');
 Route::resource('home' , 'HomesController');
+
+
 Route::resource('customer' , 'CustomersController');
+
+
+Route::put('customer/{id}/updateAsAdmin','CustomersController@updateAsAdmin');
+Route::put('customer/{id}/updateAsSales','CustomersController@updateAsSales');
+Route::put('customer/{id}/updateAsFinance','CustomersController@updateAsFinance');
+Route::put('customer/{id}/updateAsDevelopment','CustomersController@updateAsDevelopment');
 
 
 Route::put('invoice/{invoice}/payed' , 'invoicesController@payed');

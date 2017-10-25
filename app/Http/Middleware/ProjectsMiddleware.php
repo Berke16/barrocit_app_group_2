@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AdminMiddleware
+class ProjectsMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,10 @@ class AdminMiddleware
     {
         $user_type = $request->user()->type;
 
-        if ($user_type != 'admin' && $user_type != 'user')
+        if ($user_type == 'finance')
         {
             return back()->withErrors(['Permission denied!!!']);
         }
-
         return $next($request);
     }
 }

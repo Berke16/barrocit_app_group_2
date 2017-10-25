@@ -7,7 +7,6 @@ Edit project
     <form action="{{ action('ProjectsController@update', $project->id)}}" class="" method="post">
         {{ csrf_field() }}
         {{method_field('PUT')}}
-        <input type="hidden" name="customerid" value="{{$customer->id}}">
         <section class="col-md-4">
 
             <div class="form-group">
@@ -63,7 +62,7 @@ Edit project
         </section>
         <section class="col-md-12">
             <div class="form-group">
-                <input type="submit" class="pull-right" value="edit project">
+                <input type="submit" class="pull-right" value="Edit project">
             </div>
         </section>
     </form>

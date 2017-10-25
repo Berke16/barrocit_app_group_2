@@ -4,6 +4,7 @@ Home: Admin
 @endsection
 @section('content')
 <div class="container">
+
     <div class="col-md-12">
         @include('tables.customerstabel')
     </div>
@@ -16,5 +17,6 @@ Home: Admin
     <div class="col-md-12">
         @include('tables.invoicestable')
     </div>
+
 </div>
 @endsection
