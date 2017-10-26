@@ -132,7 +132,6 @@ class projectsController extends Controller
     {
         $this->validate($request, [
             'name'                      => 'required|string',
-            'customerid'                => 'required|numeric',
             'description'               => 'required|string',
             'start_date'                => 'required|date',
             'deadline'                  => 'required|date|after:start_date',
@@ -143,7 +142,6 @@ class projectsController extends Controller
         ]);
         $project= project::find($id);
         $project->name                  = $request->name;
-        $project->customer_id           = $request->customerid;
         $project->description           = $request->description;
         $project->start_date            = $request->start_date;
         $project->deadline              = $request->deadline;
