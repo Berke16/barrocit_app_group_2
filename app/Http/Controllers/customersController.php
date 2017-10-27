@@ -101,6 +101,7 @@ class customersController extends Controller
     public function updateAsAdmin(CustomerEditAdminFrom $request, Customer $customer)
     {
         $request->persist($customer);
+        Session::flash('message', "Customer has been updated.");
         return redirect(action('CustomersController@show', $customer->id));
     }
 
@@ -112,6 +113,7 @@ class customersController extends Controller
     public function updateAsSales(CustomerEditSalesForm $request, Customer $customer)
     {
         $request->persist($customer);
+        Session::flash('message', "Customer has been updated.");
         return redirect(action('CustomersController@show', $customer->id));
     }
 
@@ -123,6 +125,7 @@ class customersController extends Controller
     public function updateAsFinance(CustomerEditFinanceForm $request, Customer $customer)
     {
         $request->persist($customer);
+        Session::flash('message', "Customer has been updated.");
         return redirect(action('CustomersController@show', $customer->id));
     }
 
@@ -135,6 +138,7 @@ class customersController extends Controller
     public function updateAsDevelopment(CustomerEditDevelopmentForm $request, Customer $customer)
     {
         $request->persist($customer);
+        Session::flash('message', "Customer has been updated.");
         return redirect(action('CustomersController@show', $customer->id));
     }
 
