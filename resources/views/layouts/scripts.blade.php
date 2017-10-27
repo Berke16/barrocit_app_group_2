@@ -2,7 +2,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 
-<script src="/js/table_filter.js"></script>
+<script src="js/table_filter.js"></script>
 <script>
 	$(function(){
 		$('*[data-href]').click(function(){
